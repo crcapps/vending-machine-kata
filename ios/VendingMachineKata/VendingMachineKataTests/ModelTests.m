@@ -154,6 +154,33 @@ CoinRecognizer *coinRecognizer;
     XCTAssertNotNil(returned, @"Vending machine doesn't have a coin return!");
 }
 
+#pragma mark - Coin Recognizer Tests
+
+- (void)testCoinRecognizerQuarter {
+    CoinData coinData = [self identifyCoin:kQuarter];
+    XCTAssertEqual(kCoinTypeQuarter, coinData.coinType, "Quarter was not recognized!");
+}
+
+- (void)testCoinRecognizerDime {
+    CoinData coinData = [self identifyCoin:kDime];
+    XCTAssertEqual(kCoinTypeDime, coinData.coinType, "Dime was not recognized!");
+}
+
+- (void)testCoinRecognizerNickel {
+    CoinData coinData = [self identifyCoin:kNickel];
+    XCTAssertEqual(kCoinTypeNickel, coinData.coinType, "Nickel was not recognized!");
+}
+
+- (void)testCoinRecognizerPenny {
+    CoinData coinData = [self identifyCoin:kPenny];
+    XCTAssertEqual(kCoinTypePenny, coinData.coinType, "Penny was not recognized!");
+}
+
+- (void)testCoinRecognizerSlug {
+    CoinData coinData = [self identifyCoin:kSlug];
+    XCTAssertEqual(kCoinTypeSlug, coinData.coinType, "Slug was not recognized!");
+}
+
 #pragma mark - Coin Slot Tests
 
 - (void)testCoinSlotDroppedQuarterValue {
@@ -194,6 +221,13 @@ CoinRecognizer *coinRecognizer;
 
 - (NSDecimalNumber *)expectedValueForRejectedCoin {
     return [NSDecimalNumber decimalNumberWithDouble:kRejectedCoinExpectedValue];
+}
+
+- (CoinData)identifyCoin:(Coin)coin {
+    NSNumber *diameter = [NSNumber numberWithDouble:coin.diameter];
+    NSNumber *mass = [NSNumber numberWithDouble:coin.mass];
+    NSNumber *thickness = [NSNumber numberWithDouble:coin.thickness];
+    return [CoinRecognizer identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
 }
 
 - (NSDecimalNumber *)dropCoin:(Coin)coin{

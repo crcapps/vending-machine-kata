@@ -10,11 +10,11 @@
 
 /** Enumerates the types of coins recognized (or not) */
 typedef NS_ENUM(NSInteger, CoinType) {
-    CoinTypeSlug,
-    CoinTypePenny,
-    CoinTypeNickel,
-    CoinTypeDime,
-    CoinTypeQuarter
+    kCoinTypeSlug,
+    kCoinTypePenny,
+    kCoinTypeNickel,
+    kCoinTypeDime,
+    kCoinTypeQuarter
 };
 
 /** Represents data about an identified coin */
