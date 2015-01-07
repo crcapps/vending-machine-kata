@@ -12,4 +12,14 @@
 
 @implementation VendingMachine
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _coinSlot = [CoinSlot new];
+        _display = [Display new];
+    }
+    
+    return self;
+}
+
 @end
