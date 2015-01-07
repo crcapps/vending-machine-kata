@@ -76,10 +76,10 @@ static Coin const kPenny = {
 };
 
 // Slug
-static double const kSlugDiameterValue = 21.21;
-static double const kSlugMassValue = 5.000;
+static double const kSlugDiameterValue = 24.26;
+static double const kSlugMassValue = 2.500;
 static double const kSlugThicknessValue = 1.95;
-static double const kSlugExpectedValue = 0.05;
+static double const kSlugExpectedValue = 0.00;
 static Coin const kSlug = {
     .diameter = kSlugDiameterValue,
     .mass = kSlugMassValue,
