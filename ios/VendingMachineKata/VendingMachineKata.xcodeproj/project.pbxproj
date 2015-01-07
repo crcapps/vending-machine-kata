@@ -15,6 +15,7 @@
 		F8DF372D1A5D7DF300C25C9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372C1A5D7DF300C25C9F /* Images.xcassets */; };
 		F8DF37301A5D7DF300C25C9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372E1A5D7DF300C25C9F /* LaunchScreen.xib */; };
 		F8DF373C1A5D7DF300C25C9F /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */; };
+		F8EF424E1A5D84DC008D58D1 /* AcceptCoinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		F8DF37351A5D7DF300C25C9F /* VendingMachineKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF373A1A5D7DF300C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
+		F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */,
 				F8DF37391A5D7DF300C25C9F /* Supporting Files */,
+				F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */,
 			);
 			path = VendingMachineKataTests;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8EF424E1A5D84DC008D58D1 /* AcceptCoinsTest.m in Sources */,
 				F8DF373C1A5D7DF300C25C9F /* VendingMachineKataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +425,7 @@
 				F8DF37411A5D7DF300C25C9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8DF37421A5D7DF300C25C9F /* Build configuration list for PBXNativeTarget "VendingMachineKataTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				F8DF37441A5D7DF300C25C9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
