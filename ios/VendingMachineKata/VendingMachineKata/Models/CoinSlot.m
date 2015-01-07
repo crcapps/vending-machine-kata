@@ -10,4 +10,8 @@
 
 @implementation CoinSlot
 
+- (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
+    return [NSDecimalNumber new];
+}
+
 @end
