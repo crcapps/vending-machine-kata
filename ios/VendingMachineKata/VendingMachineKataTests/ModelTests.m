@@ -14,9 +14,11 @@
 #import "CoinSlot.h"
 #import "Display.h"
 #import "CoinReturn.h"
+#import "CoinRecognizer.h"
 
 #pragma mark - Coinage setup
 
+/** Struct for mocking coin drops and comparing the results to the expected values */
 struct Coin {
     double diameter;
     double mass;
@@ -73,6 +75,18 @@ static Coin const kPenny = {
     .expectedValue = kPennyExpectedValue
 };
 
+// Slug
+static double const kSlugDiameterValue = 21.21;
+static double const kSlugMassValue = 5.000;
+static double const kSlugThicknessValue = 1.95;
+static double const kSlugExpectedValue = 0.05;
+static Coin const kSlug = {
+    .diameter = kSlugDiameterValue,
+    .mass = kSlugMassValue,
+    .thickness = kSlugThicknessValue,
+    .expectedValue = kSlugExpectedValue
+};
+
 static double const kRejectedCoinExpectedValue = 0.00;
 
 @interface ModelTests : XCTestCase
@@ -85,6 +99,7 @@ VendingMachine *vendingMachine;
 CoinSlot *coinSlot;
 Display *display;
 CoinReturn *coinReturn;
+CoinRecognizer *coinRecognizer;
 
 - (void)setUp {
     [super setUp];
@@ -92,12 +107,15 @@ CoinReturn *coinReturn;
     coinSlot = [CoinSlot new];
     display = [Display new];
     coinReturn = [CoinReturn new];
+    coinRecognizer = [CoinRecognizer new];
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
+
+#pragma mark - Sanity Check
 
 - (void)testVendingMachineClassExists {
     XCTAssertNotNil(vendingMachine, @"VendingMachine class doesn't exist!");
@@ -107,6 +125,10 @@ CoinReturn *coinReturn;
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
 }
 
+- (void)testCoinRecognizerClassExists {
+    XCTAssertNotNil(coinRecognizer, @"CoinRecognizer class doesn't exist!");
+}
+
 - (void)testDisplayClassExists {
     XCTAssertNotNil(display, @"Display class doesn't exist!");
 }
@@ -114,6 +136,8 @@ CoinReturn *coinReturn;
 - (void)testCoinReturnClassExists {
     XCTAssertNotNil(coinReturn, @"CoinReturn class doesn't exist!");
 }
+
+#pragma mark - Vending Machine Integrity
 
 - (void)testVendingMachineHasCoinSlot {
     CoinSlot *slot = vendingMachine.coinSlot;
@@ -129,6 +153,8 @@ CoinReturn *coinReturn;
     CoinReturn *returned = vendingMachine.coinReturn;
     XCTAssertNotNil(returned, @"Vending machine doesn't have a coin return!");
 }
+
+#pragma mark - Coin Slot Tests
 
 - (void)testCoinSlotDroppedQuarterValue {
     NSDecimalNumber *expectedValue = [self expectedValueForCoin:kQuarter];
@@ -152,6 +178,12 @@ CoinReturn *coinReturn;
     NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
     NSDecimalNumber *actualValue = [self dropCoin:kPenny];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny and was not rejected.");
+}
+
+- (void)testCoinSlotDropSlugForRejection {
+    NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
+    NSDecimalNumber *actualValue = [self dropCoin:kSlug];
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug and was not rejected.");
 }
                                      
 #pragma mark - Supporting Methods

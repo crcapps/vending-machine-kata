@@ -21,6 +21,7 @@
 		F8EF425E1A5D97A0008D58D1 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425D1A5D97A0008D58D1 /* ModelTests.m */; };
 		F8EF42691A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42681A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m */; };
 		F8EF426E1A5DC1C3008D58D1 /* CoinReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */; };
+		F8EF427E1A5DEC0F008D58D1 /* CoinRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		F8EF42681A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+VendingMachine.m"; sourceTree = "<group>"; };
 		F8EF426C1A5DC1C3008D58D1 /* CoinReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinReturn.h; sourceTree = "<group>"; };
 		F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinReturn.m; sourceTree = "<group>"; };
+		F8EF427C1A5DEC0F008D58D1 /* CoinRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRecognizer.h; sourceTree = "<group>"; };
+		F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				F8EF425B1A5D8880008D58D1 /* Display.m */,
 				F8EF426C1A5DC1C3008D58D1 /* CoinReturn.h */,
 				F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */,
+				F8EF427C1A5DEC0F008D58D1 /* CoinRecognizer.h */,
+				F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			files = (
 				F8EF42591A5D87D0008D58D1 /* CoinSlot.m in Sources */,
 				F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */,
+				F8EF427E1A5DEC0F008D58D1 /* CoinRecognizer.m in Sources */,
 				F8EF425C1A5D8880008D58D1 /* Display.m in Sources */,
 				F8EF42531A5D859F008D58D1 /* VendingMachine.m in Sources */,
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
