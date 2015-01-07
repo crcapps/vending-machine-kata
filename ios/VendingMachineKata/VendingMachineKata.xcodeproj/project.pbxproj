@@ -16,6 +16,7 @@
 		F8DF37301A5D7DF300C25C9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372E1A5D7DF300C25C9F /* LaunchScreen.xib */; };
 		F8DF373C1A5D7DF300C25C9F /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */; };
 		F8EF424E1A5D84DC008D58D1 /* AcceptCoinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */; };
+		F8EF42531A5D859F008D58D1 /* VendingMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42521A5D859F008D58D1 /* VendingMachine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		F8DF373A1A5D7DF300C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
 		F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTest.m; sourceTree = "<group>"; };
+		F8EF42511A5D859F008D58D1 /* VendingMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingMachine.h; sourceTree = "<group>"; };
+		F8EF42521A5D859F008D58D1 /* VendingMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingMachine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,7 @@
 		F8DF371B1A5D7DF200C25C9F /* VendingMachineKata */ = {
 			isa = PBXGroup;
 			children = (
+				F8EF42501A5D8537008D58D1 /* Models */,
 				F8DF37201A5D7DF200C25C9F /* AppDelegate.h */,
 				F8DF37211A5D7DF200C25C9F /* AppDelegate.m */,
 				F8DF37261A5D7DF200C25C9F /* ViewController.h */,
@@ -123,6 +127,15 @@
 				F8DF373A1A5D7DF300C25C9F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8EF42501A5D8537008D58D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F8EF42511A5D859F008D58D1 /* VendingMachine.h */,
+				F8EF42521A5D859F008D58D1 /* VendingMachine.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +182,7 @@
 		F8DF37111A5D7DF200C25C9F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Casey Ryan Capps";
 				TargetAttributes = {
@@ -227,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */,
+				F8EF42531A5D859F008D58D1 /* VendingMachine.m in Sources */,
 				F8DF37251A5D7DF200C25C9F /* VendingMachineKata.xcdatamodeld in Sources */,
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
 				F8DF371F1A5D7DF200C25C9F /* main.m in Sources */,
