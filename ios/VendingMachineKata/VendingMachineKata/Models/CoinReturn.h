@@ -1,5 +1,5 @@
 //
-//  NSDecimalNumber+VendingMachine.h
+//  CoinReturn.h
 //  VendingMachineKata
 //
 //  Created by Casey Ryan Capps on 1/7/15.
@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDecimalNumber (VendingMachine)
-
-+ (NSDecimalNumber *)decimalNumberWithDouble:(double)doubleValue;
+@interface CoinReturn : NSObject
 
 @end

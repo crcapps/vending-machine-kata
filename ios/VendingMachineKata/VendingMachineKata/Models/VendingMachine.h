@@ -10,6 +10,7 @@
 
 @class CoinSlot;
 @class Display;
+@class CoinReturn;
 
 @interface VendingMachine : NSObject
 
@@ -18,5 +19,8 @@
 
 /** Representes the display of the vending machine. */
 @property (nonatomic, strong, readonly) Display     *display;
+
+/** Represents the coin return tray of the vending machine. */
+@property (nonatomic, strong, readonly) CoinReturn  *coinReturn;
 
 @end

@@ -13,6 +13,7 @@
 #import "VendingMachine.h"
 #import "CoinSlot.h"
 #import "Display.h"
+#import "CoinReturn.h"
 
 #pragma mark - Coinage setup
 
@@ -83,12 +84,14 @@ static double const kRejectedCoinExpectedValue = 0.00;
 VendingMachine *vendingMachine;
 CoinSlot *coinSlot;
 Display *display;
+CoinReturn *coinReturn;
 
 - (void)setUp {
     [super setUp];
     vendingMachine = [VendingMachine new];
     coinSlot = [CoinSlot new];
     display = [Display new];
+    coinReturn = [CoinReturn new];
 }
 
 - (void)tearDown {
@@ -108,6 +111,10 @@ Display *display;
     XCTAssertNotNil(display, @"Display class exists");
 }
 
+- (void)testCoinReturnClassExists {
+    XCTAssertNotNil(coinReturn, @"CoinReturn class exists");
+}
+
 - (void)testVendingMachineHasCoinSlot {
     CoinSlot *slot = vendingMachine.coinSlot;
     XCTAssertNotNil(slot);
@@ -116,6 +123,11 @@ Display *display;
 - (void)testVendingMachineHasDisplay {
     Display *screen = vendingMachine.display;
     XCTAssertNotNil(screen);
+}
+
+- (void)testVendingMachineHasCoinReturn {
+    CoinReturn *returned = vendingMachine.coinReturn;
+    XCTAssertNotNil(returned);
 }
 
 - (void)testCoinSlotDropQuarter {
