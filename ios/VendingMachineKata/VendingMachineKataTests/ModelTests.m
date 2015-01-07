@@ -100,58 +100,58 @@ CoinReturn *coinReturn;
 }
 
 - (void)testVendingMachineClassExists {
-    XCTAssertNotNil(vendingMachine, @"VendingMachine class exists.");
+    XCTAssertNotNil(vendingMachine, @"VendingMachine class doesn't exist!");
 }
 
 - (void)testCoinSlotClassExists {
-    XCTAssertNotNil(coinSlot, @"CoinSlot class exists");
+    XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
 }
 
 - (void)testDisplayClassExists {
-    XCTAssertNotNil(display, @"Display class exists");
+    XCTAssertNotNil(display, @"Display class doesn't exist!");
 }
 
 - (void)testCoinReturnClassExists {
-    XCTAssertNotNil(coinReturn, @"CoinReturn class exists");
+    XCTAssertNotNil(coinReturn, @"CoinReturn class doesn't exist!");
 }
 
 - (void)testVendingMachineHasCoinSlot {
     CoinSlot *slot = vendingMachine.coinSlot;
-    XCTAssertNotNil(slot);
+    XCTAssertNotNil(slot, @"Vending machine doesn't have a coin slot!");
 }
 
 - (void)testVendingMachineHasDisplay {
     Display *screen = vendingMachine.display;
-    XCTAssertNotNil(screen);
+    XCTAssertNotNil(screen, @"Vending machine doesn't have a display!");
 }
 
 - (void)testVendingMachineHasCoinReturn {
     CoinReturn *returned = vendingMachine.coinReturn;
-    XCTAssertNotNil(returned);
+    XCTAssertNotNil(returned, @"Vending machine doesn't have a coin return!");
 }
 
 - (void)testCoinSlotDroppedQuarterValue {
     NSDecimalNumber *expectedValue = [self expectedValueForCoin:kQuarter];
     NSDecimalNumber *actualValue = [self dropCoin:kQuarter];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter and got expected value back.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDroppedDimeValue {
     NSDecimalNumber *expectedValue = [self expectedValueForCoin:kDime];
     NSDecimalNumber *actualValue = [self dropCoin:kDime];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a dime and got expected value back.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a dime but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDroppedNickelValue {
     NSDecimalNumber *expectedValue = [self expectedValueForCoin:kNickel];
     NSDecimalNumber *actualValue = [self dropCoin:kNickel];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel and got expected value back.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDropPennyForRejection {
     NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
     NSDecimalNumber *actualValue = [self dropCoin:kPenny];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny and it got rejected.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny and was not rejected.");
 }
                                      
 #pragma mark - Supporting Methods
