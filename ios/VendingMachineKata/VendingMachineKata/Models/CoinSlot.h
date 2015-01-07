@@ -1,15 +1,13 @@
 //
-//  VendingMachine.m
+//  CoinSlot.h
 //  VendingMachineKata
 //
 //  Created by Casey Ryan Capps on 1/7/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
-#import "VendingMachine.h"
-#import "CoinSlot.h"
-#import "Display.h"
+#import <Foundation/Foundation.h>
 
-@implementation VendingMachine
+@interface CoinSlot : NSObject
 
 @end
