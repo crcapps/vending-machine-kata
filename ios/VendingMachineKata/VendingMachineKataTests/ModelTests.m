@@ -35,16 +35,26 @@ Display *display;
     [super tearDown];
 }
 
-- (void)testVendingMachineExists {
+- (void)testVendingMachineClassExists {
     XCTAssertNotNil(vendingMachine, @"VendingMachine class exists.");
 }
 
-- (void)testCoinSlotExists {
+- (void)testCoinSlotClassExists {
     XCTAssertNotNil(coinSlot, @"CoinSlot class exists");
 }
 
-- (void)testDisplayExists {
+- (void)testDisplayClassExists {
     XCTAssertNotNil(display, @"Display class exists");
+}
+
+- (void)testVendingMachineHasCoinSlot {
+    CoinSlot *slot = vendingMachine.coinSlot;
+    XCTAssertNotNil(slot);
+}
+
+- (void)testVendingMachineHasDisplay {
+    Display *screen = vendingMachine.display;
+    XCTAssertNotNil(screen);
 }
 
 @end
