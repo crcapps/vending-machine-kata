@@ -13,8 +13,6 @@
 		F8DF372B1A5D7DF300C25C9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8DF37291A5D7DF300C25C9F /* Main.storyboard */; };
 		F8DF372D1A5D7DF300C25C9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372C1A5D7DF300C25C9F /* Images.xcassets */; };
 		F8DF37301A5D7DF300C25C9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372E1A5D7DF300C25C9F /* LaunchScreen.xib */; };
-		F8DF373C1A5D7DF300C25C9F /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */; };
-		F8EF424E1A5D84DC008D58D1 /* AcceptCoinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */; };
 		F8EF42531A5D859F008D58D1 /* VendingMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42521A5D859F008D58D1 /* VendingMachine.m */; };
 		F8EF42591A5D87D0008D58D1 /* CoinSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42581A5D87D0008D58D1 /* CoinSlot.m */; };
 		F8EF425C1A5D8880008D58D1 /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425B1A5D8880008D58D1 /* Display.m */; };
@@ -47,8 +45,6 @@
 		F8DF372F1A5D7DF300C25C9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F8DF37351A5D7DF300C25C9F /* VendingMachineKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF373A1A5D7DF300C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
-		F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTest.m; sourceTree = "<group>"; };
 		F8EF42511A5D859F008D58D1 /* VendingMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingMachine.h; sourceTree = "<group>"; };
 		F8EF42521A5D859F008D58D1 /* VendingMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingMachine.m; sourceTree = "<group>"; };
 		F8EF42571A5D87D0008D58D1 /* CoinSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinSlot.h; sourceTree = "<group>"; };
@@ -129,8 +125,6 @@
 		F8DF37381A5D7DF300C25C9F /* VendingMachineKataTests */ = {
 			isa = PBXGroup;
 			children = (
-				F8DF373B1A5D7DF300C25C9F /* VendingMachineKataTests.m */,
-				F8EF424D1A5D84DC008D58D1 /* AcceptCoinsTest.m */,
 				F8EF425D1A5D97A0008D58D1 /* ModelTests.m */,
 				F8DF37391A5D7DF300C25C9F /* Supporting Files */,
 			);
@@ -289,9 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8EF424E1A5D84DC008D58D1 /* AcceptCoinsTest.m in Sources */,
 				F8EF425E1A5D97A0008D58D1 /* ModelTests.m in Sources */,
-				F8DF373C1A5D7DF300C25C9F /* VendingMachineKataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
