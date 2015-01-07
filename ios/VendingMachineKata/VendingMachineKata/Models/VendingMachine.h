@@ -13,7 +13,10 @@
 
 @interface VendingMachine : NSObject
 
+/** Represents the coin slot of the vending machine. */
 @property (nonatomic, strong, readonly) CoinSlot    *coinSlot;
+
+/** Representes the display of the vending machine. */
 @property (nonatomic, strong, readonly) Display     *display;
 
 @end
