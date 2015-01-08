@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "NSDecimalNumber+VendingMachine.h"
 #import "VendingMachine.h"
 #import "CoinSlot.h"
 #import "Display.h"
@@ -130,16 +129,26 @@ CoinRecognizer *coinRecognizer;
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel but didn't get expected value back.");
 }
 
-- (void)testCoinSlotDropPennyForRejection {
+- (void)testCoinSlotDropPennyForZeroValue {
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
     NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny and was not rejected.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny but it was assigned a value.");
 }
 
-- (void)testCoinSlotDropSlugForRejection {
+- (void)testCoinSlotDropSlugForZeroValue {
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
     NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug and was not rejected.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug but it was assigned a value.");
+}
+
+- (void)dropFourQuartersForValue {
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    NSDecimalNumber *actualValue = coinSlot.currentTotalValue;
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped four quarters but it didn't add up to a dollar.");
 }
 
 @end
