@@ -13,7 +13,6 @@
 #import "CoinSlot.h"
 #import "Display.h"
 #import "CoinReturn.h"
-#import "CoinRecognizer.h"
 #import "CoinData.h"
 
 #pragma mark - Coinage setup
@@ -28,7 +27,7 @@ VendingMachine *vendingMachine;
 CoinSlot *coinSlot;
 Display *display;
 CoinReturn *coinReturn;
-CoinRecognizer *coinRecognizer;
+CoinData *coinRecognizer;
 
 - (void)setUp {
     [super setUp];
@@ -36,7 +35,7 @@ CoinRecognizer *coinRecognizer;
     coinSlot = [CoinSlot new];
     display = [Display new];
     coinReturn = [CoinReturn new];
-    coinRecognizer = [CoinRecognizer new];
+    coinRecognizer = [CoinData new];
 }
 
 - (void)tearDown {
@@ -86,27 +85,27 @@ CoinRecognizer *coinRecognizer;
 #pragma mark - Coin Recognizer Tests
 
 - (void)testCoinRecognizerQuarter {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
     XCTAssertEqual(kCoinTypeQuarter, coinData.coinType, "Quarter was not recognized!");
 }
 
 - (void)testCoinRecognizerDime {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:@17.91 Mass:@2.268 Thickness:@1.35];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:@17.91 Mass:@2.268 Thickness:@1.35];
     XCTAssertEqual(kCoinTypeDime, coinData.coinType, "Dime was not recognized!");
 }
 
 - (void)testCoinRecognizerNickel {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
     XCTAssertEqual(kCoinTypeNickel, coinData.coinType, "Nickel was not recognized!");
 }
 
 - (void)testCoinRecognizerPenny {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
     XCTAssertEqual(kCoinTypePenny, coinData.coinType, "Penny was not recognized!");
 }
 
 - (void)testCoinRecognizerSlug {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
     XCTAssertEqual(kCoinTypeSlug, coinData.coinType, "Slug was not recognized!");
 }
 

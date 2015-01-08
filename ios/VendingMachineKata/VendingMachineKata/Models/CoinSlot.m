@@ -7,7 +7,6 @@
 //
 
 #import "CoinSlot.h"
-#import "CoinRecognizer.h"
 #import "CoinData.h"
 
 @implementation CoinSlot
@@ -22,7 +21,7 @@
 }
 
 - (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
-    CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
+    CoinData *coinData = [CoinData identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
     if (coinData.isAccepted) {
         [self.insertedCoins addObject:coinData];
     }
