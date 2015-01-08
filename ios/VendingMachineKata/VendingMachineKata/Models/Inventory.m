@@ -10,4 +10,8 @@
 
 @implementation Inventory
 
+- (NSDecimalNumber *)selectItem:(InventoryItem)item {
+    return [NSDecimalNumber new];
+}
+
 @end
