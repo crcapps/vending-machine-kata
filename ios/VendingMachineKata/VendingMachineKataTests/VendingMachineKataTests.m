@@ -274,7 +274,7 @@ Inventory *inventory;
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
-    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];[inventory selectItem:kInventoryItemCola];
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
     
