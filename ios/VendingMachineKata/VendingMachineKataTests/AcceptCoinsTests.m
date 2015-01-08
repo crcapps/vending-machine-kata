@@ -1,5 +1,5 @@
 //
-//  ModelTests.m
+//  AcceptCoins.m
 //  VendingMachineKata
 //
 //  Created by Casey Ryan Capps on 1/7/15.
@@ -13,13 +13,17 @@
 #import "Display.h"
 #import "CoinData.h"
 
-#pragma mark - Coinage setup
+/**
+ As a vendor
+ I want a vending machine that accepts coins
+ So that I can collect money from the customer
+ */
 
-@interface ModelTests : XCTestCase
+@interface AcceptCoinsTests : XCTestCase
 
 @end
 
-@implementation ModelTests
+@implementation AcceptCoinsTests
 
 CoinSlot *coinSlot;
 Display *display;
@@ -43,6 +47,12 @@ CoinData *coinRecognizer;
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
     XCTAssertNotNil(coinRecognizer, @"CoinData class doesn't exist!");
     XCTAssertNotNil(display, @"Display class doesn't exist!");
+}
+
+- (void)testInitialDisplayText {
+    NSString *expectedText = [NSString stringWithString:kDisplayTextInsertCoin];
+    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
+    XCTAssertEqual(NSOrderedSame, compare);
 }
 
 #pragma mark - Coin Recognition Tests
