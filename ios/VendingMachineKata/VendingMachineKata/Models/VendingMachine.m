@@ -9,7 +9,6 @@
 #import "VendingMachine.h"
 #import "CoinSlot.h"
 #import "Display.h"
-#import "CoinReturn.h"
 
 @implementation VendingMachine
 
@@ -18,7 +17,6 @@
     if (self) {
         _coinSlot = [CoinSlot new];
         _display = [Display new];
-        _coinReturn = [CoinReturn new];
     }
     
     return self;
