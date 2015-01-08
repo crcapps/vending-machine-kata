@@ -40,6 +40,7 @@ Display *display;
     [super tearDown];
 }
 
+// This runs on its own at first, then is called by each coin drop to test precondition.
 - (void)testInitialDisplayText {
     NSString *expectedText = kDisplayTextInsertCoin;
     NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
