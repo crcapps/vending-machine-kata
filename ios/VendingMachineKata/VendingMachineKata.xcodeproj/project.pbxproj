@@ -19,6 +19,7 @@
 		F8EF425E1A5D97A0008D58D1 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425D1A5D97A0008D58D1 /* ModelTests.m */; };
 		F8EF426E1A5DC1C3008D58D1 /* CoinReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */; };
 		F8EF427E1A5DEC0F008D58D1 /* CoinRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */; };
+		F8EF42811A5E2302008D58D1 /* CoinData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42801A5E2302008D58D1 /* CoinData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinReturn.m; sourceTree = "<group>"; };
 		F8EF427C1A5DEC0F008D58D1 /* CoinRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRecognizer.h; sourceTree = "<group>"; };
 		F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRecognizer.m; sourceTree = "<group>"; };
+		F8EF427F1A5E2302008D58D1 /* CoinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinData.h; sourceTree = "<group>"; };
+		F8EF42801A5E2302008D58D1 /* CoinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */,
 				F8EF427C1A5DEC0F008D58D1 /* CoinRecognizer.h */,
 				F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */,
+				F8EF427F1A5E2302008D58D1 /* CoinData.h */,
+				F8EF42801A5E2302008D58D1 /* CoinData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
 				F8DF371F1A5D7DF200C25C9F /* main.m in Sources */,
 				F8EF426E1A5DC1C3008D58D1 /* CoinReturn.m in Sources */,
+				F8EF42811A5E2302008D58D1 /* CoinData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
