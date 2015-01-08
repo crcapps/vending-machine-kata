@@ -64,7 +64,7 @@ static Coin const kNickel = {
 };
 
 // Penny
-static double const kPennyDiameterValue = 0.750;
+static double const kPennyDiameterValue = 19.05;
 static double const kPennyMassValue = 2.500;
 static double const kPennyThicknessValue = 1.52;
 static double const kPennyExpectedValue = 0.01;
