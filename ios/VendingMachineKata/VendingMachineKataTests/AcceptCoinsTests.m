@@ -139,7 +139,7 @@ Display *display;
     [self dropCoin:kCoinTypePenny];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = kDisplayTextInsertCoin;
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 1;
@@ -158,7 +158,7 @@ Display *display;
     [self dropCoin:kCoinTypeSlug];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = kDisplayTextInsertCoin;
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 1;
