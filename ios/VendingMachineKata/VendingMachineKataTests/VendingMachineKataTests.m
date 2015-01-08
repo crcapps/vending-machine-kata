@@ -9,32 +9,44 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+
+#import "CoinSlot.h"
+#import "Display.h"
+#import "CoinData.h"
+
 @interface VendingMachineKataTests : XCTestCase
 
 @end
 
 @implementation VendingMachineKataTests
 
+CoinSlot *coinSlot;
+Display *display;
+CoinData *coinData;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    coinSlot = [CoinSlot new];
+    display = [Display new];
+    coinData = [CoinData new];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+#pragma mark - Sanity Checks
+
+- (void)testClassesExist {
+    XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
+    XCTAssertNotNil(coinData, @"CoinData class doesn't exist!");
+    XCTAssertNotNil(display, @"Display class doesn't exist!");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testInitialDisplayText {
+    NSString *expectedText = kDisplayTextInsertCoin;
+    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
+    XCTAssertEqual(NSOrderedSame, compare);
 }
 
 @end
