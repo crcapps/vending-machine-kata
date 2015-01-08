@@ -7,10 +7,11 @@
 //
 
 #import "CoinRecognizer.h"
+#import "CoinData.h"
 
 @implementation CoinRecognizer
 
-+ (CoinData)identifyCoinForDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
++ (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
     // Default to a slug to be careful.
     CoinType coinType = kCoinTypeSlug;
     
@@ -28,13 +29,12 @@
     // Reject pennies and slugs.
     BOOL isAccepted = (coinType != kCoinTypeSlug && coinType != kCoinTypePenny);
     
-    CoinData data = {
-        .coinType = coinType,
-        .coinValue = isAccepted ? coinValue : [@0.00 decimalValue], // If it isn't accepted, the value is 0, regardless
-        .isAccepted = isAccepted
-    };
+    CoinData *coinData = [CoinData new];
+    coinData.coinType = coinType;
+    coinData.coinValue = isAccepted ? coinValue : [@0.00 decimalValue];
+    coinData.isAccepted = isAccepted;
     
-    return data;
+    return coinData;
 }
 
 + (CoinType)coinTypeForNumber:(NSNumber *)number {
