@@ -18,77 +18,6 @@
 
 #pragma mark - Coinage setup
 
-/** Struct for mocking coin drops and comparing the results to the expected values */
-struct Coin {
-    double diameter;
-    double mass;
-    double thickness;
-    double expectedValue;
-};
-typedef struct Coin Coin;
-
-// Quarter
-static double const kQuarterDiameterValue = 24.26;
-static double const kQuarterMassValue = 5.670;
-static double const kQuarterThicknessValue = 1.75;
-static double const kQuarterExpectedValue = 0.25;
-static Coin const kQuarter = {
-    .diameter = kQuarterDiameterValue,
-    .mass = kQuarterMassValue,
-    .thickness = kQuarterThicknessValue,
-    .expectedValue = kQuarterExpectedValue
-};
-
-// Dime
-static double const kDimeDiameterValue = 17.91;
-static double const kDimeMassValue = 2.268;
-static double const kDimeThicknessValue = 1.35;
-static double const kDimeExpectedValue = 0.10;
-static Coin const kDime = {
-    .diameter = kDimeDiameterValue,
-    .mass = kDimeMassValue,
-    .thickness = kDimeThicknessValue,
-    .expectedValue = kDimeExpectedValue
-};
-
-// Nickel
-static double const kNickelDiameterValue = 21.21;
-static double const kNickelMassValue = 5.000;
-static double const kNickelThicknessValue = 1.95;
-static double const kNickelExpectedValue = 0.05;
-static Coin const kNickel = {
-    .diameter = kNickelDiameterValue,
-    .mass = kNickelMassValue,
-    .thickness = kNickelThicknessValue,
-    .expectedValue = kNickelExpectedValue
-};
-
-// Penny
-static double const kPennyDiameterValue = 19.05;
-static double const kPennyMassValue = 2.500;
-static double const kPennyThicknessValue = 1.52;
-static double const kPennyExpectedValue = 0.01;
-static Coin const kPenny = {
-    .diameter = kPennyDiameterValue,
-    .mass = kPennyMassValue,
-    .thickness = kPennyThicknessValue,
-    .expectedValue = kPennyExpectedValue
-};
-
-// Slug
-static double const kSlugDiameterValue = 24.26;
-static double const kSlugMassValue = 2.500;
-static double const kSlugThicknessValue = 1.95;
-static double const kSlugExpectedValue = 0.00;
-static Coin const kSlug = {
-    .diameter = kSlugDiameterValue,
-    .mass = kSlugMassValue,
-    .thickness = kSlugThicknessValue,
-    .expectedValue = kSlugExpectedValue
-};
-
-static double const kRejectedCoinExpectedValue = 0.00;
-
 @interface ModelTests : XCTestCase
 
 @end
@@ -157,33 +86,33 @@ CoinRecognizer *coinRecognizer;
 #pragma mark - Coin Recognizer Tests
 
 - (void)testCoinRecognizerQuarter {
-    CoinData coinData = [self identifyCoin:kQuarter];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
     XCTAssertEqual(kCoinTypeQuarter, coinData.coinType, "Quarter was not recognized!");
 }
 
 - (void)testCoinRecognizerDime {
-    CoinData coinData = [self identifyCoin:kDime];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:@17.91 Mass:@2.268 Thickness:@1.35];
     XCTAssertEqual(kCoinTypeDime, coinData.coinType, "Dime was not recognized!");
 }
 
 - (void)testCoinRecognizerNickel {
-    CoinData coinData = [self identifyCoin:kNickel];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
     XCTAssertEqual(kCoinTypeNickel, coinData.coinType, "Nickel was not recognized!");
 }
 
 - (void)testCoinRecognizerPenny {
-    CoinData coinData = [self identifyCoin:kPenny];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
     XCTAssertEqual(kCoinTypePenny, coinData.coinType, "Penny was not recognized!");
 }
 
 - (void)testCoinRecognizerSlug {
-    CoinData coinData = [self identifyCoin:kSlug];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
     XCTAssertEqual(kCoinTypeSlug, coinData.coinType, "Slug was not recognized!");
 }
 
 #pragma mark - Coin Slot Tests
 
-- (void)testCoinSlotDroppedQuarterValue {
+/*- (void)testCoinSlotDroppedQuarterValue {
     NSDecimalNumber *expectedValue = [self expectedValueForCoin:kQuarter];
     NSDecimalNumber *actualValue = [self dropCoin:kQuarter];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter but didn't get expected value back.");
@@ -211,31 +140,6 @@ CoinRecognizer *coinRecognizer;
     NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
     NSDecimalNumber *actualValue = [self dropCoin:kSlug];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug and was not rejected.");
-}
-                                     
-#pragma mark - Supporting Methods
-
-- (NSDecimalNumber *)expectedValueForCoin:(Coin)coin {
-    return [NSDecimalNumber decimalNumberWithDouble:coin.expectedValue];
-}
-
-- (NSDecimalNumber *)expectedValueForRejectedCoin {
-    return [NSDecimalNumber decimalNumberWithDouble:kRejectedCoinExpectedValue];
-}
-
-- (CoinData)identifyCoin:(Coin)coin {
-    NSNumber *diameter = [NSNumber numberWithDouble:coin.diameter];
-    NSNumber *mass = [NSNumber numberWithDouble:coin.mass];
-    NSNumber *thickness = [NSNumber numberWithDouble:coin.thickness];
-    return [CoinRecognizer identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
-}
-
-- (NSDecimalNumber *)dropCoin:(Coin)coin{
-    NSNumber *diameter = [NSNumber numberWithDouble:coin.diameter];
-    NSNumber *mass = [NSNumber numberWithDouble:coin.mass];
-    NSNumber *thickness = [NSNumber numberWithDouble:coin.thickness];
-    return [coinSlot dropCoinWithDiameter:diameter Mass:mass Thickness:thickness];
-}
-
+}*/
 
 @end
