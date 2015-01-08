@@ -30,7 +30,7 @@
     
     CoinData data = {
         .coinType = coinType,
-        .coinValue = coinValue,
+        .coinValue = isAccepted ? coinValue : [@0.00 decimalValue], // If it isn't accepted, the value is 0, regardless
         .isAccepted = isAccepted
     };
     
