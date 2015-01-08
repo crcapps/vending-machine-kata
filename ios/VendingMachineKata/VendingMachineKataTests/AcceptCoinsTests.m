@@ -82,6 +82,7 @@ Display *display;
     [self dropCoin:kCoinTypeQuarter];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.25 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 1;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 0;
@@ -91,6 +92,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a quarter but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a quarter but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter but didn't get expected value back.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testCoinSlotDroppedDime {
@@ -99,6 +101,7 @@ Display *display;
     [self dropCoin:kCoinTypeDime];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.10 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 1;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 0;
@@ -108,6 +111,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a dime but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a dime but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a dime but didn't get expected value back.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testCoinSlotDroppedNickel {
@@ -116,6 +120,7 @@ Display *display;
     [self dropCoin:kCoinTypeNickel];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.05 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 1;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 0;
@@ -125,6 +130,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a nickel but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a nickel but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel but didn't get expected value back.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testCoinSlotDroppedPenny {
@@ -133,6 +139,7 @@ Display *display;
     [self dropCoin:kCoinTypePenny];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 1;
@@ -142,6 +149,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a penny but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a penny but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny but it was assigned a value.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testCoinSlotDroppedSlug {
@@ -150,6 +158,7 @@ Display *display;
     [self dropCoin:kCoinTypeSlug];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 1;
@@ -159,6 +168,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a slug but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a slug but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug but it was assigned a value.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testDropFourQuarters {
@@ -167,6 +177,7 @@ Display *display;
     [self dropCoin:kCoinTypeQuarter amount:4];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 4;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 0;
@@ -176,6 +187,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped four quarters but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped four quarters but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped four quarters but it didn't add up to a dollar.");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 - (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugs {
@@ -187,6 +199,7 @@ Display *display;
     [self dropCoin:kCoinTypeSlug amount:3];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    NSString *expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
     NSInteger expectedAcceptedCount = 8; // The pennies and slugs shouldn't end up in the value bag.
     NSDecimalNumber *actualValue = coinSlot.insertedCoins.value;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
@@ -196,6 +209,7 @@ Display *display;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped lots of coins but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped lots of coins but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped lots of coins but it didn't add up correctly");
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
 }
 
 #pragma mark - Helper Methods
