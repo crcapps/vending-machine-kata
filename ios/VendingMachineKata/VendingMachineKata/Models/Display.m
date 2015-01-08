@@ -10,6 +10,8 @@
 #import "Notifications.h"
 
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
+NSString * const kDisplayTextThankYou = @"THANK YOU";
+NSString * const kDisplayTextPrice = @"PRICE";
 
 @implementation Display
 

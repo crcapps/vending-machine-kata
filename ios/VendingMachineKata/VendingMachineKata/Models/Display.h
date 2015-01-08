@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const kDisplayTextInsertCoin;
+extern NSString * const kDisplayTextThankYou;
+extern NSString * const kDisplayTextPrice;
 
 @interface Display : NSObject
 
