@@ -82,6 +82,7 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 0;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
+    
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a quarter but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a quarter but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter but didn't get expected value back.");
@@ -95,6 +96,7 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 0;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
+    
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a dime but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a dime but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a dime but didn't get expected value back.");
@@ -108,6 +110,7 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 0;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
+    
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a nickel but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a nickel but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel but didn't get expected value back.");
@@ -121,8 +124,8 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 1;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
-    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a penny but the wrong number were in the value bag.");
     
+    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a penny but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a penny but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny but it was assigned a value.");
 }
@@ -135,6 +138,7 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 1;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
+    
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a slug but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a slug but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug but it was assigned a value.");
@@ -151,8 +155,8 @@ CoinData *coinRecognizer;
     NSInteger expectedRejectedCount = 0;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
     NSDecimalNumber *actualValue = coinSlot.insertedCoinsValue;
-    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped four quarters but the wrong number were in the value bag.");
     
+    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped four quarters but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped four quarters but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped four quarters but it didn't add up to a dollar.");
 }
@@ -177,8 +181,8 @@ CoinData *coinRecognizer;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.count;
     NSInteger expectedRejectedCount = 5;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.count;
-    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped lots of coins but the wrong number were in the value bag.");
     
+    XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped lots of coins but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped lots of coins but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped lots of coins but it didn't add up correctly");
 }
