@@ -27,32 +27,15 @@
 
 CoinSlot *coinSlot;
 Display *display;
-CoinData *coinRecognizer;
 
 - (void)setUp {
     [super setUp];
     coinSlot = [CoinSlot new];
     display = [Display new];
-    coinRecognizer = [CoinData new];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-}
-
-#pragma mark - Sanity Checks
-
-- (void)testClassesExist {
-    XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
-    XCTAssertNotNil(coinRecognizer, @"CoinData class doesn't exist!");
-    XCTAssertNotNil(display, @"Display class doesn't exist!");
-}
-
-- (void)testInitialDisplayText {
-    NSString *expectedText = kDisplayTextInsertCoin;
-    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
-    XCTAssertEqual(NSOrderedSame, compare);
 }
 
 #pragma mark - Coin Recognition Tests
