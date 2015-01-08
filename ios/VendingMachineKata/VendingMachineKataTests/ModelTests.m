@@ -155,4 +155,42 @@ CoinRecognizer *coinRecognizer;
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped four quarters but it didn't add up to a dollar.");
 }
 
+- (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugsForValue {
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    NSDecimalNumber *actualValue = coinSlot.currentTotalValue;
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped lots of coins but it didn't add up correctly");
+}
+
+- (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugsForCount {
+    NSInteger expectedValue = 8; // The pennies and slugs shouldn't end up in the value bag.
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    NSInteger actualValue = coinSlot.insertedCoins.count;
+    XCTAssertEqual(expectedValue, actualValue, @"Dropped lots of coins but the wrong number were in the value bag.");
+}
+
 @end

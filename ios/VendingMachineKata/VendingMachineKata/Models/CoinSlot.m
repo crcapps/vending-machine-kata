@@ -29,7 +29,7 @@
 
 - (NSDecimalNumber *)currentTotalValue {
     NSDecimalNumber *totalValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    for (CoinData *coinData in self.insertedCoins) {;
+    for (CoinData *coinData in self.insertedCoins) {
         NSDecimalNumber *new = [NSDecimalNumber decimalNumberWithDecimal:coinData.coinValue];
         totalValue = [totalValue decimalNumberByAdding:new];
     }
