@@ -308,8 +308,11 @@ Inventory *inventory;
     [self dropCoin:kCoinTypeDime];
     [self dropCoin:kCoinTypeNickel];
     
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCandy];
+    
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
     
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
 }
 
