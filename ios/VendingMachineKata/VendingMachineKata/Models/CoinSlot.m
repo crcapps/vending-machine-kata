@@ -15,17 +15,19 @@
     self = [super init];
     if (self) {
         _insertedCoins = [NSCountedSet new];
+        _returnedCoins = [NSCountedSet new];
     }
     
     return self;
 }
 
-- (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
+- (void)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
     CoinData *coinData = [CoinData identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
     if (coinData.isAccepted) {
         [self.insertedCoins addObject:coinData];
+    } else {
+        [self.returnedCoins addObject:coinData];
     }
-    return [NSDecimalNumber decimalNumberWithDecimal:coinData.coinValue];
 }
 
 - (NSDecimalNumber *)currentTotalValue {

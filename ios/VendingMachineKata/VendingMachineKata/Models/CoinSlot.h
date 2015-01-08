@@ -16,10 +16,13 @@
 /** Represents the collection of coins inserted into the slot */
 @property (nonatomic, strong, readonly) NSCountedSet *insertedCoins;
 
+/** Represents the collection of coins ejected into the return tray */
+@property (nonatomic, strong, readonly) NSCountedSet *returnedCoins;
+
 /** Represents a coin being dropped into the slot,
  reading the diameter and mass from hardware.
  Returns the value of the coin.
  */
-- (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness;
+- (void)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness;
 
 @end
