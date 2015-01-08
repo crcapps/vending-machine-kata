@@ -21,7 +21,6 @@
 
 /** Represents a coin being dropped into the slot,
  reading the diameter and mass from hardware.
- Returns the value of the coin.
  */
 - (void)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness;
 
