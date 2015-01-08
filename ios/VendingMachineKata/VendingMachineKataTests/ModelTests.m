@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "VendingMachine.h"
 #import "CoinSlot.h"
 #import "Display.h"
 #import "CoinData.h"
@@ -22,15 +21,12 @@
 
 @implementation ModelTests
 
-VendingMachine *vendingMachine;
 CoinSlot *coinSlot;
 Display *display;
-CoinReturn *coinReturn;
 CoinData *coinRecognizer;
 
 - (void)setUp {
     [super setUp];
-    vendingMachine = [VendingMachine new];
     coinSlot = [CoinSlot new];
     display = [Display new];
     coinRecognizer = [CoinData new];
@@ -44,17 +40,9 @@ CoinData *coinRecognizer;
 #pragma mark - Sanity Checks
 
 - (void)testClassesExist {
-    XCTAssertNotNil(vendingMachine, @"VendingMachine class doesn't exist!");
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
-    XCTAssertNotNil(coinRecognizer, @"CoinRecognizer class doesn't exist!");
+    XCTAssertNotNil(coinRecognizer, @"CoinData class doesn't exist!");
     XCTAssertNotNil(display, @"Display class doesn't exist!");
-}
-
-- (void)testVendingMachineIntegrity {
-    CoinSlot *slot = vendingMachine.coinSlot;
-    XCTAssertNotNil(slot, @"Vending machine doesn't have a coin slot!");
-    Display *screen = vendingMachine.display;
-    XCTAssertNotNil(screen, @"Vending machine doesn't have a display!");
 }
 
 #pragma mark - Coin Recognition Tests
