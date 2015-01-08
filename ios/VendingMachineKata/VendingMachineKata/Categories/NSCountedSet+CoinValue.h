@@ -16,6 +16,11 @@
  */
 - (NSDecimalNumber *)value;
 
+/** Gives the string representation of the coins value
+ formatted as a localized currency string.
+ */
+- (NSString *)valueText;
+
 /** Counts all the coins in the bag and ignores the cruft. */
 - (NSInteger)coins;
 

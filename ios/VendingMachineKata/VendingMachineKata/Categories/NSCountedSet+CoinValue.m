@@ -22,6 +22,10 @@
     return totalValue;
 }
 
+- (NSString *)valueText {
+    return [NSNumberFormatter localizedStringFromNumber:self.value numberStyle:NSNumberFormatterCurrencyStyle];
+}
+
 - (NSInteger)coins {
     NSInteger totalCount = 0;
     for (NSObject *object in self) {
