@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/** The types of items in the machine */
 typedef NS_ENUM(NSInteger, InventoryItem) {
     kInventoryItemCola,
     kInventoryItemChips,
@@ -16,6 +17,9 @@ typedef NS_ENUM(NSInteger, InventoryItem) {
 
 @interface Inventory : NSObject
 
+@property (nonatomic, strong, readonly) NSDictionary    *items;
+
+/** select an item from the machine */
 - (NSDecimalNumber *)selectItem:(InventoryItem)item;
 
 @end
