@@ -7,11 +7,13 @@
 //
 
 #import "CoinSlot.h"
+#import "CoinRecognizer.h"
 
 @implementation CoinSlot
 
 - (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
-    return [NSDecimalNumber new];
+    CoinData coinData = [CoinRecognizer identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
+    return [NSDecimalNumber decimalNumberWithDecimal:coinData.coinValue];
 }
 
 @end
