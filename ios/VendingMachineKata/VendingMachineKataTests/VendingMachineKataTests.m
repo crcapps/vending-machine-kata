@@ -1,13 +1,18 @@
 //
 //  VendingMachineKataTests.m
-//  VendingMachineKataTests
+//  VendingMachineKata
 //
-//  Created by Casey Ryan Capps on 1/7/15.
+//  Created by Casey Ryan Capps on 1/8/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+
+
+#import "CoinSlot.h"
+#import "Display.h"
+#import "CoinData.h"
 
 @interface VendingMachineKataTests : XCTestCase
 
@@ -15,14 +20,27 @@
 
 @implementation VendingMachineKataTests
 
+CoinSlot *coinSlot;
+Display *display;
+CoinData *coinData;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    coinSlot = [CoinSlot new];
+    display = [Display new];
+    coinData = [CoinData new];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+#pragma mark - Sanity Checks
+
+- (void)testClassesExist {
+    XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
+    XCTAssertNotNil(coinData, @"CoinData class doesn't exist!");
+    XCTAssertNotNil(display, @"Display class doesn't exist!");
 }
 
 @end
