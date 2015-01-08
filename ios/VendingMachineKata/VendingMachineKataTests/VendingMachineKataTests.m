@@ -257,10 +257,6 @@ Inventory *inventory;
 - (void)testSelectColaBeforeInsertingCoins {
     XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
-    [self dropCoin:kCoinTypeDime amount:2];
-    
-    NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
-    
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
@@ -270,7 +266,7 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after selection.");
-    XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
+
 }
 
 - (void)testSelectColaWithEnoughMoney {
@@ -308,12 +304,8 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
 }
 
-- (void)testSelectChipsSansMoney {
+- (void)testSelectChipsBeforeInsertingCoins {
     XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
-    [self dropCoin:kCoinTypeDime amount:2];
-    
-    NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
     
@@ -324,7 +316,6 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after selection.");
-    XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
 }
 
 - (void)testSelectChipsWithEnoughMoney {
@@ -363,12 +354,8 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
 }
 
-- (void)testSelectCandySansMoney {
+- (void)testSelectCandyBeforeInsertingCoins {
     XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
-    [self dropCoin:kCoinTypeDime amount:2];
-    
-    NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCandy];
     
@@ -379,7 +366,6 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after selection.");
-    XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
 }
 
 - (void)testSelectCandyWithEnoughMoney {
