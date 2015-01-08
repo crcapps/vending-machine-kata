@@ -79,9 +79,7 @@ Inventory *inventory;
 
 // This runs on its own at first, then is called by each coin drop to test precondition.
 - (void)testInitialDisplayText {
-    NSString *expectedText = kDisplayTextInsertCoin;
-    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
-    XCTAssertEqual(NSOrderedSame, compare);
+    XCTAssert([self displayTextIsValidInitialValue], @"Display text was not a valid initial value");
 }
 
 #pragma mark - Accept Coins Tests
@@ -93,7 +91,7 @@ Inventory *inventory;
  */
 
 - (void)testCoinSlotDroppedQuarter {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter];
     
@@ -112,7 +110,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedDime {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeDime];
     
@@ -131,7 +129,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedNickel {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeNickel];
     
@@ -150,7 +148,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedPenny {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];;
     
     [self dropCoin:kCoinTypePenny];
     
@@ -169,7 +167,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedSlug {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeSlug];
     
@@ -188,7 +186,7 @@ Inventory *inventory;
 }
 
 - (void)testDropFourQuarters {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -207,7 +205,7 @@ Inventory *inventory;
 }
 
 - (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugs {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter amount:3];
     [self dropCoin:kCoinTypePenny amount:2];
@@ -237,7 +235,9 @@ Inventory *inventory;
  */
 
 - (void)testSelectColaWithoutEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
+    
+    [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
     
@@ -250,7 +250,7 @@ Inventory *inventory;
 }
 
 - (void)testSelectColaWithEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -258,12 +258,15 @@ Inventory *inventory;
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
     
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
+    XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
 }
 
 - (void)testSelectChipsWithoutEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
+    
+    [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
     
@@ -276,7 +279,7 @@ Inventory *inventory;
 }
 
 - (void)testSelectChipsWithEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter amount:2];
     
@@ -284,12 +287,15 @@ Inventory *inventory;
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
     
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
+    XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
 }
 
 - (void)testSelectCandyWithoutEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
+    
+    [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCandy];
     
@@ -302,7 +308,7 @@ Inventory *inventory;
 }
 
 - (void)testSelectCandyWithEnoughMoney {
-    [self testInitialDisplayText];
+    [self displayTextIsValidInitialValue];
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     [self dropCoin:kCoinTypeDime];
@@ -312,11 +318,23 @@ Inventory *inventory;
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
     
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
+    XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
 }
 
 #pragma mark - Helper Methods
+
+- (BOOL)displayTextIsValidInitialValue {
+    NSString *displayText = [NSString stringWithString:display.text];
+    BOOL isInsertCoin = ([displayText isEqualToString:kDisplayTextInsertCoin]);
+    BOOL valid = isInsertCoin;
+    return valid;
+}
+
+- (BOOL)coinSlotIsEmpty {
+    return coinSlot.insertedCoins.coins == 0 && coinSlot.insertedCoins.value == [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+}
 
 - (void)dropCoin:(CoinType)coin amount:(NSInteger)amount {
     if (amount > 0) {
