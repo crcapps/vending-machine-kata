@@ -19,3 +19,6 @@ extern NSString * const kNotificationItemSelectedSufficientCredit;
 
 /** Name of notification posted when an item is selected without enough money inserted */
 extern NSString * const kNotificationItemSelectedInsufficientCredit;
+
+/** Name of notification posted when the purchase is completed */
+extern NSString * const kNotificationPurchaseCompleted;

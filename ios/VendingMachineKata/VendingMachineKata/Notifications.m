@@ -11,4 +11,5 @@
 NSString * const kNotificationCoinAccepted = @"CoinWasAcceptedNotification";
 NSString * const kNotificationItemSelected = @"ItemSelectedNotification";
 NSString * const kNotificationItemSelectedSufficientCredit = @"SufficientCreditForSelectedItemNotification";
-NSString * const kNotificationItemSelectedInsufficientCredit=  @"InsufficentCreditForSelectedItemNotification";
+NSString * const kNotificationItemSelectedInsufficientCredit =  @"InsufficentCreditForSelectedItemNotification";
+NSString * const kNotificationPurchaseCompleted = @"PurchaseCompletedNotification";
