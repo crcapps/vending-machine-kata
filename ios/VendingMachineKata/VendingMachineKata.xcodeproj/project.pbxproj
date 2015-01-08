@@ -17,7 +17,6 @@
 		F8EF42591A5D87D0008D58D1 /* CoinSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42581A5D87D0008D58D1 /* CoinSlot.m */; };
 		F8EF425C1A5D8880008D58D1 /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425B1A5D8880008D58D1 /* Display.m */; };
 		F8EF425E1A5D97A0008D58D1 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425D1A5D97A0008D58D1 /* ModelTests.m */; };
-		F8EF42691A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42681A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m */; };
 		F8EF426E1A5DC1C3008D58D1 /* CoinReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */; };
 		F8EF427E1A5DEC0F008D58D1 /* CoinRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */; };
 /* End PBXBuildFile section */
@@ -52,8 +51,6 @@
 		F8EF425A1A5D8880008D58D1 /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		F8EF425B1A5D8880008D58D1 /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
 		F8EF425D1A5D97A0008D58D1 /* ModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
-		F8EF42671A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+VendingMachine.h"; sourceTree = "<group>"; };
-		F8EF42681A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+VendingMachine.m"; sourceTree = "<group>"; };
 		F8EF426C1A5DC1C3008D58D1 /* CoinReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinReturn.h; sourceTree = "<group>"; };
 		F8EF426D1A5DC1C3008D58D1 /* CoinReturn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinReturn.m; sourceTree = "<group>"; };
 		F8EF427C1A5DEC0F008D58D1 /* CoinRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRecognizer.h; sourceTree = "<group>"; };
@@ -99,7 +96,6 @@
 		F8DF371B1A5D7DF200C25C9F /* VendingMachineKata */ = {
 			isa = PBXGroup;
 			children = (
-				F8EF42601A5DB836008D58D1 /* Categories */,
 				F8EF42501A5D8537008D58D1 /* Models */,
 				F8DF37201A5D7DF200C25C9F /* AppDelegate.h */,
 				F8DF37211A5D7DF200C25C9F /* AppDelegate.m */,
@@ -154,15 +150,6 @@
 				F8EF427D1A5DEC0F008D58D1 /* CoinRecognizer.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F8EF42601A5DB836008D58D1 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				F8EF42671A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.h */,
-				F8EF42681A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +260,6 @@
 				F8EF425C1A5D8880008D58D1 /* Display.m in Sources */,
 				F8EF42531A5D859F008D58D1 /* VendingMachine.m in Sources */,
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
-				F8EF42691A5DB920008D58D1 /* NSDecimalNumber+VendingMachine.m in Sources */,
 				F8DF371F1A5D7DF200C25C9F /* main.m in Sources */,
 				F8EF426E1A5DC1C3008D58D1 /* CoinReturn.m in Sources */,
 			);
