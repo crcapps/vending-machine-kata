@@ -112,34 +112,34 @@ CoinRecognizer *coinRecognizer;
 
 #pragma mark - Coin Slot Tests
 
-/*- (void)testCoinSlotDroppedQuarterValue {
-    NSDecimalNumber *expectedValue = [self expectedValueForCoin:kQuarter];
-    NSDecimalNumber *actualValue = [self dropCoin:kQuarter];
+- (void)testCoinSlotDroppedQuarterValue {
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.25 decimalValue]];
+    NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a quarter but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDroppedDimeValue {
-    NSDecimalNumber *expectedValue = [self expectedValueForCoin:kDime];
-    NSDecimalNumber *actualValue = [self dropCoin:kDime];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.10 decimalValue]];
+    NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@17.91 Mass:@2.268 Thickness:@1.35];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a dime but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDroppedNickelValue {
-    NSDecimalNumber *expectedValue = [self expectedValueForCoin:kNickel];
-    NSDecimalNumber *actualValue = [self dropCoin:kNickel];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.05 decimalValue]];
+    NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@21.21 Mass:@5.000 Thickness:@1.95];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a nickel but didn't get expected value back.");
 }
 
 - (void)testCoinSlotDropPennyForRejection {
-    NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
-    NSDecimalNumber *actualValue = [self dropCoin:kPenny];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+    NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@19.05 Mass:@2.500 Thickness:@1.52];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny and was not rejected.");
 }
 
 - (void)testCoinSlotDropSlugForRejection {
-    NSDecimalNumber *expectedValue = [self expectedValueForRejectedCoin];
-    NSDecimalNumber *actualValue = [self dropCoin:kSlug];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+    NSDecimalNumber *actualValue = [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug and was not rejected.");
-}*/
+}
 
 @end
