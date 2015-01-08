@@ -36,5 +36,11 @@
     return totalCount;
 }
 
+- (void)empty {
+    for (NSObject *object in self) {
+        [self removeObject:object];
+    }
+}
+
 @end
 

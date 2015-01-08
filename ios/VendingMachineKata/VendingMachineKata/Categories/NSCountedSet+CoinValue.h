@@ -24,4 +24,7 @@
 /** Counts all the coins in the bag and ignores the cruft. */
 - (NSInteger)coins;
 
+/** Empties out the bag */
+- (void)empty;
+
 @end
