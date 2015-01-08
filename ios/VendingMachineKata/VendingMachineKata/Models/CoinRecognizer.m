@@ -31,7 +31,7 @@
     
     CoinData *coinData = [CoinData new];
     coinData.coinType = coinType;
-    coinData.coinValue = isAccepted ? coinValue : [@0.00 decimalValue];
+    coinData.coinValue = coinValue;
     coinData.isAccepted = isAccepted;
     
     return coinData;
