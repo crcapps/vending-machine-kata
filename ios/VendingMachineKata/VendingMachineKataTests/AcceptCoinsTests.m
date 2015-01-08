@@ -50,7 +50,7 @@ CoinData *coinRecognizer;
 }
 
 - (void)testInitialDisplayText {
-    NSString *expectedText = [NSString stringWithString:kDisplayTextInsertCoin];
+    NSString *expectedText = kDisplayTextInsertCoin;
     NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
     XCTAssertEqual(NSOrderedSame, compare);
 }
