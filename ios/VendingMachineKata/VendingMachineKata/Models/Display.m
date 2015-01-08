@@ -12,4 +12,13 @@ NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 
 @implementation Display
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _text = kDisplayTextInsertCoin;
+    }
+    
+    return self;
+}
+
 @end

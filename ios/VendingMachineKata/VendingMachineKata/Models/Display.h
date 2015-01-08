@@ -12,4 +12,7 @@ extern NSString * const kDisplayTextInsertCoin;
 
 @interface Display : NSObject
 
+/** The text show on the display */
+@property (nonatomic, strong, readonly) NSString    *text;
+
 @end
