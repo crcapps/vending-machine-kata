@@ -43,10 +43,4 @@ CoinData *coinData;
     XCTAssertNotNil(display, @"Display class doesn't exist!");
 }
 
-- (void)testInitialDisplayText {
-    NSString *expectedText = kDisplayTextInsertCoin;
-    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
-    XCTAssertEqual(NSOrderedSame, compare);
-}
-
 @end

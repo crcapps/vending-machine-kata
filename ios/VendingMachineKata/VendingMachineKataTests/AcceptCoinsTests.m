@@ -38,6 +38,12 @@ Display *display;
     [super tearDown];
 }
 
+- (void)testInitialDisplayText {
+    NSString *expectedText = kDisplayTextInsertCoin;
+    NSComparisonResult compare = [expectedText caseInsensitiveCompare:display.text];
+    XCTAssertEqual(NSOrderedSame, compare);
+}
+
 #pragma mark - Coin Recognition Tests
 
 - (void)testCoinRecognizerQuarter {
