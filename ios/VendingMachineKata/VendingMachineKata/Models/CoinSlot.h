@@ -10,9 +10,6 @@
 
 @interface CoinSlot : NSObject
 
-/** The current total value of the inserted coins */
-@property (nonatomic, strong, readonly) NSDecimalNumber  *insertedCoinsValue;
-
 /** Represents the collection of coins inserted into the slot */
 @property (nonatomic, strong, readonly) NSCountedSet *insertedCoins;
 

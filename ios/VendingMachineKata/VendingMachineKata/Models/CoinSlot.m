@@ -14,7 +14,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _insertedCoins = [NSCountedSet new];
+        
+        _insertedCoins= [NSCountedSet new];
         _returnedCoins = [NSCountedSet new];
     }
     
@@ -28,15 +29,6 @@
     } else {
         [self.returnedCoins addObject:coinData];
     }
-}
-
-- (NSDecimalNumber *)insertedCoinsValue {
-    NSDecimalNumber *totalValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    for (CoinData *coinData in self.insertedCoins) {
-        NSDecimalNumber *new = [NSDecimalNumber decimalNumberWithDecimal:coinData.coinValue];
-        totalValue = [totalValue decimalNumberByAdding:new];
-    }
-    return totalValue;
 }
 
 @end
