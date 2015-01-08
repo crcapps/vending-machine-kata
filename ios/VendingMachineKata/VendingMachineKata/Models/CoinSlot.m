@@ -21,8 +21,8 @@
     return self;
 }
 
-- (void)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
-    CoinData *coinData = [CoinData identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
+- (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
+    CoinData *coinData = [CoinData identifyCoinForDiameter:diameter mass:mass thickness:thickness];
     if (coinData.isAccepted) {
         [self.insertedCoins addObject:coinData];
     } else {

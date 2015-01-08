@@ -10,13 +10,13 @@
 
 @implementation CoinData
 
-+ (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
++ (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
     // Default to a slug to be careful.
     CoinType coinType = kCoinTypeSlug;
     
     CoinType diameterGuess = [self identifyCoinByDiameter:diameter];
-    CoinType massGuess = [self identifyCoinByMass:mass];
-    CoinType thicknessGuess = [self identifyCoinByThickness:thickness];
+    CoinType massGuess = [self identifyCoinBymass:mass];
+    CoinType thicknessGuess = [self identifyCoinBythickness:thickness];
     
     // Consensus rules here.
     if (diameterGuess == massGuess && massGuess == thicknessGuess) {
@@ -55,7 +55,7 @@
     return [self coinTypeForNumber:coinTypeNumber];
 }
 
-+ (CoinType)identifyCoinByMass:(NSNumber *)mass {
++ (CoinType)identifyCoinBymass:(NSNumber *)mass {
     static NSDictionary *masses = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -65,7 +65,7 @@
     return [self coinTypeForNumber:coinTypeNumber];
 }
 
-+ (CoinType)identifyCoinByThickness:(NSNumber *)thickness {
++ (CoinType)identifyCoinBythickness:(NSNumber *)thickness {
     static NSDictionary *thicknesses = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

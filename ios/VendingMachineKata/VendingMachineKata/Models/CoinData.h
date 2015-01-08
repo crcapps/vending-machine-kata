@@ -30,6 +30,6 @@ typedef NS_ENUM(NSInteger, CoinType) {
 @property (nonatomic)   BOOL        isAccepted;
 
 /** Identify a coin given its physical characteristics and return the data for it */
-+ (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness;
++ (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness;
 
 @end
