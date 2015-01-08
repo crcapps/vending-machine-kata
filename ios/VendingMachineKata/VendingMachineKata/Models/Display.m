@@ -15,10 +15,14 @@ NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _text = kDisplayTextInsertCoin;
+        [self resetText];
     }
     
     return self;
+}
+
+- (void)resetText {
+    _text = kDisplayTextInsertCoin;
 }
 
 @end
