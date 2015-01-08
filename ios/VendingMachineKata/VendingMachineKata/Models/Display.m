@@ -13,6 +13,16 @@ NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 NSString * const kDisplayTextThankYou = @"THANK YOU";
 NSString * const kDisplayTextPrice = @"PRICE";
 
+@interface Display ()
+
+/** If the display should display the total value of inserted coins */
+@property (nonatomic)           BOOL        shouldDisplayCredit;
+
+/** The credit to be displayed */
+@property (nonatomic, strong)   NSString    *credit;
+
+@end
+
 @implementation Display
 
 @synthesize text = _text;
@@ -31,7 +41,12 @@ NSString * const kDisplayTextPrice = @"PRICE";
 
 - (NSString *)text {
     NSString *text = _text;
-    [self resetText];
+    if (self.shouldDisplayCredit) {
+        self.shouldDisplayCredit = NO;
+        _text = self.credit;
+    } else {
+        [self resetText];
+    }
     return text;
 }
 
@@ -48,12 +63,23 @@ NSString * const kDisplayTextPrice = @"PRICE";
 
 - (void)sufficientCredit:(NSNotification *)notification {
     _text = kDisplayTextThankYou;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self];
 }
 
 - (void)insufficientCredit:(NSNotification *)notification {
     NSDecimalNumber *price = [notification.userInfo valueForKey:@"price"];
-    NSString *priceText = [NSNumberFormatter localizedStringFromNumber:price numberStyle:NSNumberFormatterCurrencyStyle];
+    NSDecimalNumber *credit = [notification.userInfo valueForKey:@"credit"];
+    self.credit = [NSNumberFormatter
+                   localizedStringFromNumber:credit
+                   numberStyle:NSNumberFormatterCurrencyStyle];
+    NSComparisonResult compare = [credit compare:@0.00];
+    NSString *priceText = [NSNumberFormatter
+                           localizedStringFromNumber:price
+                           numberStyle:NSNumberFormatterCurrencyStyle];
     NSString *text = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, priceText];
+    if (compare == NSOrderedDescending) {
+        self.shouldDisplayCredit = YES;
+    }
     _text = text;
 }
 
