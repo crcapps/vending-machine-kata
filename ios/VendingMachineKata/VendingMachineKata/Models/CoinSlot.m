@@ -23,7 +23,9 @@
 
 - (NSDecimalNumber *)dropCoinWithDiameter:(NSNumber *)diameter Mass:(NSNumber *)mass Thickness:(NSNumber *)thickness {
     CoinData *coinData = [CoinRecognizer identifyCoinForDiameter:diameter Mass:mass Thickness:thickness];
-    [self.insertedCoins addObject:coinData];
+    if (coinData.isAccepted) {
+        [self.insertedCoins addObject:coinData];
+    }
     return [NSDecimalNumber decimalNumberWithDecimal:coinData.coinValue];
 }
 
