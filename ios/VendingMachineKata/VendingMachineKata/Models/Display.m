@@ -7,6 +7,7 @@
 //
 
 #import "Display.h"
+#import "Notifications.h"
 
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 
@@ -16,6 +17,7 @@ NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
     self = [super init];
     if (self) {
         [self resetText];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
     }
     
     return self;
@@ -23,6 +25,17 @@ NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 
 - (void)resetText {
     _text = kDisplayTextInsertCoin;
+}
+
+- (void)coinWasAccepted:(NSNotification *)notification {
+    NSString *text = [notification.userInfo valueForKey:@"text"];
+    if (text) {
+        _text = text;
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

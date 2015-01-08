@@ -8,6 +8,8 @@
 
 #import "CoinSlot.h"
 #import "CoinData.h"
+#import "Notifications.h"
+#import "NSCountedSet+CoinValue.h"
 
 @implementation CoinSlot
 
@@ -26,6 +28,7 @@
     CoinData *coinData = [CoinData identifyCoinForDiameter:diameter mass:mass thickness:thickness];
     if (coinData.isAccepted) {
         [self.insertedCoins addObject:coinData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCoinAccepted object:self userInfo:@{@"text":self.insertedCoins.valueText}];
     } else {
         [self.returnedCoins addObject:coinData];
     }
