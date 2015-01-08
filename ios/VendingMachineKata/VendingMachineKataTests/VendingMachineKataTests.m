@@ -79,7 +79,7 @@ Inventory *inventory;
 
 // This runs on its own at first, then is called by each coin drop to test precondition.
 - (void)testInitialDisplayText {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display text was not a valid initial value");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
 }
 
 #pragma mark - Accept Coins Tests
@@ -91,7 +91,7 @@ Inventory *inventory;
  */
 
 - (void)testCoinSlotDroppedQuarter {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter];
     
@@ -110,7 +110,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedDime {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeDime];
     
@@ -129,7 +129,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedNickel {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue],@"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeNickel];
     
@@ -148,7 +148,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedPenny {
-    [self displayTextIsValidInitialValue];;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;;
     
     [self dropCoin:kCoinTypePenny];
     
@@ -167,7 +167,7 @@ Inventory *inventory;
 }
 
 - (void)testCoinSlotDroppedSlug {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeSlug];
     
@@ -186,7 +186,7 @@ Inventory *inventory;
 }
 
 - (void)testDropFourQuarters {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -205,7 +205,7 @@ Inventory *inventory;
 }
 
 - (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugs {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter amount:3];
     [self dropCoin:kCoinTypePenny amount:2];
@@ -235,7 +235,7 @@ Inventory *inventory;
  */
 
 - (void)testSelectColaWithoutEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeDime amount:2];
     
@@ -245,12 +245,14 @@ Inventory *inventory;
     NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
     NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
 
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:expectedText]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
+    XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");
 }
 
 - (void)testSelectColaWithEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -261,10 +263,11 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
 }
 
 - (void)testSelectChipsWithoutEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeDime amount:2];
     
@@ -274,12 +277,14 @@ Inventory *inventory;
     NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
     NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
 
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:expectedText]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
+    XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");
 }
 
 - (void)testSelectChipsWithEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter amount:2];
     
@@ -290,10 +295,12 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
+
 }
 
 - (void)testSelectCandyWithoutEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeDime amount:2];
     
@@ -303,12 +310,14 @@ Inventory *inventory;
     NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
     NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
     
-    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
-    XCTAssert([display.text isEqualToString:expectedText]);
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
+    XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
+    XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");
 }
 
 - (void)testSelectCandyWithEnoughMoney {
-    [self displayTextIsValidInitialValue];
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     [self dropCoin:kCoinTypeDime];
@@ -321,6 +330,7 @@ Inventory *inventory;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
 }
 
 #pragma mark - Helper Methods
