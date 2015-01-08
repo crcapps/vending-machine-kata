@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F84390691A5F0FA4006F4174 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390681A5F0FA4006F4174 /* Notifications.m */; };
+		F843906B1A5F158D006F4174 /* SelectProductTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F843906A1A5F158D006F4174 /* SelectProductTests.m */; };
 		F8DF371F1A5D7DF200C25C9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF371E1A5D7DF200C25C9F /* main.m */; };
 		F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37211A5D7DF200C25C9F /* AppDelegate.m */; };
 		F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37271A5D7DF200C25C9F /* ViewController.m */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		F84390671A5F0FA4006F4174 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		F84390681A5F0FA4006F4174 /* Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
+		F843906A1A5F158D006F4174 /* SelectProductTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectProductTests.m; sourceTree = "<group>"; };
 		F8DF37191A5D7DF200C25C9F /* VendingMachineKata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VendingMachineKata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF371D1A5D7DF200C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DF371E1A5D7DF200C25C9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				F8E6D1651A5EE756001A6377 /* VendingMachineKataTests.m */,
 				F8EF425D1A5D97A0008D58D1 /* AcceptCoinsTests.m */,
 				F8DF37391A5D7DF300C25C9F /* Supporting Files */,
+				F843906A1A5F158D006F4174 /* SelectProductTests.m */,
 			);
 			path = VendingMachineKataTests;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8E6D1661A5EE756001A6377 /* VendingMachineKataTests.m in Sources */,
+				F843906B1A5F158D006F4174 /* SelectProductTests.m in Sources */,
 				F8EF425E1A5D97A0008D58D1 /* AcceptCoinsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
