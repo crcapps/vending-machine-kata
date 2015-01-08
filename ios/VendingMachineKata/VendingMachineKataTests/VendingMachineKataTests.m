@@ -14,6 +14,7 @@
 #import "CoinSlot.h"
 #import "Display.h"
 #import "CoinData.h"
+#import "Inventory.h"
 
 @interface VendingMachineKataTests : XCTestCase
 
@@ -23,13 +24,15 @@
 
 CoinSlot *coinSlot;
 Display *display;
-CoinData *coinData;
+CoinData *coinDataTest;
+Inventory *inventory;
 
 - (void)setUp {
     [super setUp];
     coinSlot = [CoinSlot new];
     display = [Display new];
-    coinData = [CoinData new];
+    coinDataTest = [CoinData new];
+    inventory = [Inventory new];
 }
 
 - (void)tearDown {
@@ -40,8 +43,9 @@ CoinData *coinData;
 
 - (void)testClassesExist {
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
-    XCTAssertNotNil(coinData, @"CoinData class doesn't exist!");
+    XCTAssertNotNil(coinDataTest, @"CoinData class doesn't exist!");
     XCTAssertNotNil(display, @"Display class doesn't exist!");
+    
 }
 
 #pragma mark - Coin Recognition Tests
@@ -233,27 +237,80 @@ CoinData *coinData;
  */
 
 - (void)testSelectColaWithoutEnoughMoney {
+    [self testInitialDisplayText];
     
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
+
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
+    XCTAssert([display.text isEqualToString:expectedText]);
 }
 
 - (void)testSelectColaWithEnoughMoney {
+    [self testInitialDisplayText];
     
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];[inventory selectItem:kInventoryItemCola];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
+    
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
 }
 
 - (void)testSelectChipsWithoutEnoughMoney {
+    [self testInitialDisplayText];
     
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
+    NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
+
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
+    XCTAssert([display.text isEqualToString:expectedText]);
 }
 
 - (void)testSelectChipsWithEnoughMoney {
+    [self testInitialDisplayText];
     
+    [self dropCoin:kCoinTypeQuarter amount:2];
+    
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
+    
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
 }
 
 - (void)testSelectCandyWithoutEnoughMoney {
+    [self testInitialDisplayText];
     
+    NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCandy];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
+    NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
+    
+    XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice]);
+    XCTAssert([display.text isEqualToString:expectedText]);
 }
 
 - (void)testSelectCandyWithEnoughMoney {
+    [self testInitialDisplayText];
     
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    [self dropCoin:kCoinTypeDime];
+    [self dropCoin:kCoinTypeNickel];
+    
+    NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou]);
 }
 
 #pragma mark - Helper Methods
