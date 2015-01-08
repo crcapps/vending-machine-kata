@@ -43,46 +43,26 @@ CoinData *coinRecognizer;
     [super tearDown];
 }
 
-#pragma mark - Sanity Check
+#pragma mark - Sanity Checks
 
-- (void)testVendingMachineClassExists {
+- (void)testClassesExist {
     XCTAssertNotNil(vendingMachine, @"VendingMachine class doesn't exist!");
-}
-
-- (void)testCoinSlotClassExists {
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
-}
-
-- (void)testCoinRecognizerClassExists {
     XCTAssertNotNil(coinRecognizer, @"CoinRecognizer class doesn't exist!");
-}
-
-- (void)testDisplayClassExists {
     XCTAssertNotNil(display, @"Display class doesn't exist!");
-}
-
-- (void)testCoinReturnClassExists {
     XCTAssertNotNil(coinReturn, @"CoinReturn class doesn't exist!");
 }
 
-#pragma mark - Vending Machine Integrity
-
-- (void)testVendingMachineHasCoinSlot {
+- (void)testVendingMachineIntegrity {
     CoinSlot *slot = vendingMachine.coinSlot;
     XCTAssertNotNil(slot, @"Vending machine doesn't have a coin slot!");
-}
-
-- (void)testVendingMachineHasDisplay {
     Display *screen = vendingMachine.display;
     XCTAssertNotNil(screen, @"Vending machine doesn't have a display!");
-}
-
-- (void)testVendingMachineHasCoinReturn {
     CoinReturn *returned = vendingMachine.coinReturn;
     XCTAssertNotNil(returned, @"Vending machine doesn't have a coin return!");
 }
 
-#pragma mark - Coin Recognizer Tests
+#pragma mark - Coin Recognition Tests
 
 - (void)testCoinRecognizerQuarter {
     CoinData *coinData = [CoinData identifyCoinForDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
