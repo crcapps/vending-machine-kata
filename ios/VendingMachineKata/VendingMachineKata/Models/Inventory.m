@@ -2,7 +2,7 @@
 //  Inventory.m
 //  VendingMachineKata
 //
-//  Created by the Heatherness on 1/8/15.
+//  Created by Casey Ryan Capps on 1/8/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @implementation Inventory
 
-- (NSDictionary *)items {
+- (NSDictionary *)itemPrices {
     static NSDictionary *items = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -26,7 +26,9 @@
 }
 
 - (NSDecimalNumber *)selectItem:(InventoryItem)item {
-    return [self.items objectForKey:@(item)];
+    NSDecimalNumber *itemPrice = [self.itemPrices objectForKey:@(item)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelected object:self userInfo:@{@"price" : itemPrice}];
+    return itemPrice;
 }
 
 @end

@@ -15,14 +15,24 @@ NSString * const kDisplayTextPrice = @"PRICE";
 
 @implementation Display
 
+@synthesize text = _text;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self resetText];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sufficientCredit:) name:kNotificationItemSelectedSufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
     }
     
     return self;
+}
+
+- (NSString *)text {
+    NSString *text = _text;
+    [self resetText];
+    return text;
 }
 
 - (void)resetText {
@@ -34,6 +44,17 @@ NSString * const kDisplayTextPrice = @"PRICE";
     if (text) {
         _text = text;
     }
+}
+
+- (void)sufficientCredit:(NSNotification *)notification {
+    _text = kDisplayTextThankYou;
+}
+
+- (void)insufficientCredit:(NSNotification *)notification {
+    NSDecimalNumber *price = [notification.userInfo valueForKey:@"price"];
+    NSString *priceText = [NSNumberFormatter localizedStringFromNumber:price numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *text = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, priceText];
+    _text = text;
 }
 
 - (void)dealloc {

@@ -2,7 +2,7 @@
 //  Inventory.h
 //  VendingMachineKata
 //
-//  Created by the Heatherness on 1/8/15.
+//  Created by Casey Ryan Capps on 1/8/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, InventoryItem) {
 
 @interface Inventory : NSObject
 
-@property (nonatomic, strong, readonly) NSDictionary    *items;
+@property (nonatomic, strong, readonly) NSDictionary    *itemPrices;
 
 /** select an item from the machine */
 - (NSDecimalNumber *)selectItem:(InventoryItem)item;

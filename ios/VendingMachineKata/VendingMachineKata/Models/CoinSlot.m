@@ -16,9 +16,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
         _insertedCoins= [NSCountedSet new];
         _returnedCoins = [NSCountedSet new];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemWasSelected:) name:kNotificationItemSelected object:nil];
     }
     
     return self;
@@ -32,6 +32,30 @@
     } else {
         [self.returnedCoins addObject:coinData];
     }
+}
+
+- (void)itemWasSelected:(NSNotification *)notification {
+    NSDecimalNumber *price = [notification.userInfo valueForKey:@"price"];
+    NSComparisonResult compare = [price compare:self.insertedCoins.value];
+    if (compare == NSOrderedDescending) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kNotificationItemSelectedInsufficientCredit
+         object:self userInfo:@{
+                                @"price" : price,
+                                @"credit" : self.insertedCoins.value
+                                    }];
+    } else {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kNotificationItemSelectedSufficientCredit
+         object:self userInfo:@{
+                                @"price" : price,
+                                @"credit" : self.insertedCoins.value
+                                }];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
