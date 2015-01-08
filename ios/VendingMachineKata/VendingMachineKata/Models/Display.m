@@ -8,6 +8,8 @@
 
 #import "Display.h"
 
+NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
+
 @implementation Display
 
 @end

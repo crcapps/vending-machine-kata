@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const kDisplayTextInsertCoin;
+
 @interface Display : NSObject
 
 @end
