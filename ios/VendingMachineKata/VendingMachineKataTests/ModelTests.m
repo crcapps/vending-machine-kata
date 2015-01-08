@@ -145,12 +145,12 @@ CoinRecognizer *coinRecognizer;
     NSDecimalNumber *actualValue = coinSlot.currentTotalValue;    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug but it was assigned a value.");
 }
 
-- (void)dropFourQuartersForValue {
+- (void)testDropFourQuartersForValue {
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
-    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
-    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
-    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
-    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.000 Thickness:@1.52];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
+    [coinSlot dropCoinWithDiameter:@24.26 Mass:@5.670 Thickness:@1.75];
     NSDecimalNumber *actualValue = coinSlot.currentTotalValue;
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped four quarters but it didn't add up to a dollar.");
 }
