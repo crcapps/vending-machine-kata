@@ -410,6 +410,7 @@ CoinBag *aBag;
     XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
     XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
     XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
 }
 
 - (void)testReturnCoinsWithSomeCoinsInserted {
@@ -430,8 +431,15 @@ CoinBag *aBag;
     NSDecimalNumber *actualInsertedCoinsValue = coinSlot.insertedCoins.value;
     
     XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
-    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
-    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return didn't dispense the right coinage.");
+    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return didn't empty inserted bag.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
+}
+
+#pragma mark - Sold Out Methods
+
+- (void)testBuySoldOutItem {
+    
 }
 
 #pragma mark - Helper Methods

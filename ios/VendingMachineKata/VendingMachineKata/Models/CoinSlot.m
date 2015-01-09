@@ -31,6 +31,7 @@
 - (void)returnCoins {
     if (self.insertedCoins.coins > 0) {
         [self.insertedCoins emptyInto:self.returnedCoins];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCoinsReturned object:self];
     }
 }
 
