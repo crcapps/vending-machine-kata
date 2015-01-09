@@ -330,6 +330,7 @@ CoinBank *coinBank;
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.25 decimalValue]];
     
+    XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
     
