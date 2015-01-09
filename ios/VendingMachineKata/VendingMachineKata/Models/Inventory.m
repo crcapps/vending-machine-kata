@@ -49,8 +49,13 @@
     return items;
 }
 
+- (NSInteger)quantityForItem:(InventoryItem)item {
+    NSInteger quantity = [[self.itemQuantities objectForKey:@(item)] integerValue];
+    return quantity;
+}
+
 - (void)addItem:(InventoryItem)item quantity:(NSInteger)quantity {
-    if (quantity > 0) {
+    if (quantity > 0 && [self.itemQuantities objectForKey:@(item)] != nil) {
         NSInteger onHand = [[self.itemQuantities objectForKey:@(item)] integerValue];
         onHand += quantity;
         [self.itemQuantities setObject:@(quantity) forKey:@(item)];
