@@ -28,6 +28,12 @@
     return self;
 }
 
+- (void)returnCoins {
+    if (self.insertedCoins.coins > 0) {
+        [self.insertedCoins emptyInto:self.returnedCoins];
+    }
+}
+
 - (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
     CoinData *coinData = [CoinData identifyCoinForDiameter:diameter mass:mass thickness:thickness];
     if (coinData.isAccepted) {
