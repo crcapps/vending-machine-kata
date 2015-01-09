@@ -16,6 +16,9 @@
 /** Can the bank make change for this amount? */
 - (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount;
 
+/** Have the bank dispense the change */
+- (void)makeChangeForAmount:(NSDecimalNumber *)amount;
+
 /** The shared instance for the class */
 + (instancetype)sharedInstance;
 

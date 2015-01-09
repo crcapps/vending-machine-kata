@@ -76,7 +76,7 @@ NSString * const kDisplayTextPrice = @"PRICE";
 
 - (void)selectionInStock:(NSNotification *)notification {
     _text = kDisplayTextThankYou;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self userInfo:notification.userInfo];
 }
 
 - (void)selectionOutOfStock:(NSNotification *)notification {

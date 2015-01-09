@@ -11,6 +11,7 @@
 #import "Notifications.h"
 #import "NSCountedSet+CoinValue.h"
 #import "Inventory.h"
+#import "CoinBank.h"
 
 @implementation CoinSlot
 
@@ -74,7 +75,9 @@
 }
 
 - (void)purchaseWasCompleted:(NSNotification *)notification {
-    [self.insertedCoins empty];
+    [self.insertedCoins emptyInto:[CoinBank sharedInstance].bankedCoins];
+    NSDecimalNumber *amount = [notification.userInfo objectForKey:kUserInfoKeyChange];
+    [[CoinBank sharedInstance] makeChangeForAmount:amount];
 }
 
 - (void)dealloc {

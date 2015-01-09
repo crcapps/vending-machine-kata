@@ -323,19 +323,14 @@ CoinBank *coinBank;
     [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
-    // And a penny for good luck ;)
-    [self dropCoin:kCoinTypePenny];
-    // And maybe a slug, or two, while we're at it... >;D
-    NSInteger numberOfSlugs = arc4random() % 16;
-    if (numberOfSlugs > 0) {
-        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
-    }
     
-    // Remember the rejected penny in the return tray (and maybe the slugs)?
-    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
     
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
+    
+
+    
 }
 
 - (void)testMakeChangeWithoutEnoughInBank {

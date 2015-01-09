@@ -108,21 +108,21 @@
 
 - (void)canMakeChange:(NSNotification *)notification {
     InventoryItem item = [[notification.userInfo valueForKey:kUserInfoKeyItem] integerValue];
-    [self dispenseProduct:item];
-}
-
-- (void)dispenseProduct:(InventoryItem)item {
     NSString *itemString = [self.itemNames objectForKey:@(item)];
     NSInteger itemQuantity = [self quantityForItem:item];
     if (itemQuantity < 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedOutOfStock object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedOutOfStock object:self userInfo:notification.userInfo];
     } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedInStock object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedInStock object:self userInfo:notification.userInfo];
         itemQuantity--;
         [self.itemQuantities setObject:@(itemQuantity) forKey:@(item)];
         NSLog(@"Dispensed a %@.", itemString);
         NSLog(@"There are now %ld left.", (long)itemQuantity);
     }
+}
+
+- (void)dispenseProduct:(InventoryItem)item {
+    
 }
 
 - (void)dealloc {
