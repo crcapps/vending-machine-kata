@@ -15,7 +15,7 @@
     self = [super init];
     
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sufficientCredit:) name:kNotificationItemSelectedSufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canMakeChange:) name:kNotificationCanMakeChangeForSelection object:nil];
     }
     
     return self;
@@ -94,14 +94,23 @@
     return itemPrice;
 }
 
-- (void)sufficientCredit:(NSNotification *)notification {
+- (void)canMakeChange:(NSNotification *)notification {
     InventoryItem item = [[notification.userInfo valueForKey:kUserInfoKeyItem] integerValue];
     [self dispenseProduct:item];
 }
 
 - (void)dispenseProduct:(InventoryItem)item {
     NSString *itemString = [self.itemNames objectForKey:@(item)];
-    NSLog(@"Dispensed a %@", itemString);
+    NSInteger itemQuantity = [self quantityForItem:item];
+    if (itemQuantity < 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedOutOfStock object:self];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedInStock object:self];
+        itemQuantity--;
+        [self.itemQuantities setObject:@(itemQuantity) forKey:@(item)];
+        NSLog(@"Dispensed a %@.", itemString);
+        NSLog(@"There are now %ld left.", (long)itemQuantity);
+    }
 }
 
 - (void)dealloc {

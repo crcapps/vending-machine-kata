@@ -13,4 +13,7 @@
 /** Represents the collection of coins inserted into the slot */
 @property (nonatomic, strong, readonly) NSCountedSet *bankedCoins;
 
+/** Can the bank make change for this amount? */
+- (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount;
+
 @end
