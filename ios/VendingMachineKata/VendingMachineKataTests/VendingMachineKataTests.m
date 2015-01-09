@@ -436,8 +436,24 @@ CoinBag *aBag;
 #pragma mark - Sold Out Methods
 
 - (void)testBuySoldOutItemWithNoMoneyInserted {
-    [Inventory]
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    
+    [inventory selectItem:kInventoryItemCola];
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
+
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
 }
+
+- (void)testBuySoldOutItemWithMoneyInserted {
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [inventory selectItem:kInventoryItemCola];
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
+    
+    NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
+    XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");}
 
 #pragma mark - Helper Methods
 
