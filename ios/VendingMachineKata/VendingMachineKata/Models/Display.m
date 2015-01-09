@@ -12,6 +12,7 @@
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 NSString * const kDisplayTextThankYou = @"THANK YOU";
 NSString * const kDisplayTextPrice = @"PRICE";
+NSString * const kDisplayTextSoldOut = @"SOLD OUT";
 
 @interface Display ()
 
