@@ -29,4 +29,7 @@
  */
 - (void)empty;
 
+/** Transfers the contents of one bag to another */
+- (void)emptyInto:(NSCountedSet *)bag;
+
 @end

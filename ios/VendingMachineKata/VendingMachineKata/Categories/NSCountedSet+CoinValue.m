@@ -46,5 +46,14 @@
     }
 }
 
+- (void)emptyInto:(NSCountedSet *)bag {
+    for (NSObject *object in self) {
+        [bag addObject:object];
+    }
+    for (NSObject *object in bag) {
+        [self removeObject:object];
+    }
+}
+
 @end
 
