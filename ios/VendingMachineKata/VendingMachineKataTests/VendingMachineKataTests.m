@@ -62,6 +62,11 @@ CoinBank *coinBank;
     XCTAssertEqual(invalidItemCount, 0, @"Inventory allowed adding an invalid item");
 }
 
+- (void)testSlotDropBadCoin {
+    [coinSlot dropCoinWithDiameter:nil mass:nil thickness:nil];
+    XCTAssert(coinSlot.returnedCoins.coins == 1, @"Bad coin was not rejected!");
+}
+
 #pragma mark - Coin Recognition Tests
 
 - (void)testCoinRecognizerQuarter {
@@ -389,7 +394,7 @@ CoinBank *coinBank;
  So that they will use the vending machine again
  */
 
-- (void)testMakeChangeForColaWithEnoughInBank {
+- (void)testMakeChangeWithEnoughInBank {
     [coinBank.bankedCoins addObject:[self createDime]];
     [coinBank.bankedCoins addObject:[self createDime]];
     [coinBank.bankedCoins addObject:[self createNickel]];
@@ -412,72 +417,28 @@ CoinBank *coinBank;
                    @"Machine did not return correct Change!");
 }
 
-- (void)testMakeChangeForChipsWithEnoughInBank {
-    [coinBank.bankedCoins addObject:[self createDime]];
-    [coinBank.bankedCoins addObject:[self createDime]];
+- (void)testMakeChangeWithoutEnoughInBank {
     [coinBank.bankedCoins addObject:[self createNickel]];
     
-    [self dropCoin:kCoinTypeQuarter amount:5];
-    // And a penny for good luck ;)
-    [self dropCoin:kCoinTypePenny];
-    // And maybe a slug, or two, while we're at it... >;D
-    NSInteger numberOfSlugs = arc4random() % 16;
-    if (numberOfSlugs > 0) {
-        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
-    }
+    [self dropCoin:kCoinTypeQuarter amount:3];
     
-    // Remember the rejected penny in the return tray (and maybe the slugs)?
-    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    [inventory selectItem:kInventoryItemCandy];
     
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
-                   @"Machine did not return correct Change!");
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.75 decimalValue]];
     
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.insertedCoins.value],
+                   @"Machine allowed purchase without being able to make change (i.e. ate the money!)");
 }
 
-- (void)testMakeChangeForCandyWithEnoughInBank {
-    [coinBank.bankedCoins addObject:[self createDime]];
-    [coinBank.bankedCoins addObject:[self createDime]];
-    [coinBank.bankedCoins addObject:[self createNickel]];
+- (void)testMakeChangeWithEmptyBank {    
+    [self dropCoin:kCoinTypeQuarter amount:3];
     
-    [self dropCoin:kCoinTypeQuarter amount:5];
-    // And a penny for good luck ;)
-    [self dropCoin:kCoinTypePenny];
-    // And maybe a slug, or two, while we're at it... >;D
-    NSInteger numberOfSlugs = arc4random() % 16;
-    if (numberOfSlugs > 0) {
-        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
-    }
+    [inventory selectItem:kInventoryItemCandy];
     
-    // Remember the rejected penny in the return tray (and maybe the slugs)?
-    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.75 decimalValue]];
     
-    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
-                   @"Machine did not return correct Change!");
-    
-}
-
-- (void)testMakeChangeForColaWithoutEnoughInBank {
-    
-}
-
-- (void)testMakeChangeForChipsWithoutEnoughInBank {
-    
-}
-
-- (void)testMakeChangeForCandyWithoutEnoughInBank {
-    
-}
-
-- (void)testMakeChangeForColaWithEmptyBank {
-    
-}
-
-- (void)testMakeChangeForChipsWithEmptyBank {
-    
-}
-
-- (void)testMakeChangeForCandyWithEmptyBank {
-    
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.insertedCoins.value],
+                   @"Machine allowed purchase without being able to make change (i.e. ate the money!)");
 }
 
 #pragma mark - Helper Methods
