@@ -371,7 +371,7 @@ Inventory *inventory;
 - (void)testSelectCandyWithEnoughMoney {
     XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
     
-    [self dropCoin:kCoinTypeQuarter amount:4];
+    [self dropCoin:kCoinTypeQuarter amount:2];
     [self dropCoin:kCoinTypeDime];
     [self dropCoin:kCoinTypeNickel];
     
