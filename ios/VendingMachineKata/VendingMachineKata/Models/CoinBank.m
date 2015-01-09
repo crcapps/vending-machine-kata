@@ -61,13 +61,14 @@
  QED: Don't worry about DynP.  The edge cases that make greedy fail on minimum coins don't exist
       without arbitrary amounts (i.e. pennies).  Pennies make greedy fail on minimum coins.
  
+ A really nice side effect of this method is that we are never going to give out quarters as change,
+ unless they are just extra quarters the stupid/indecisive customer added.
+ 
  
  THE REVELATION: This isn't actually the Vending Machine Change Making Problem!
  At least, not in its strictest sense!  Including pennies causes edge cases to arise
  where the greedy approach will fail for minimum coins.  Specifically the edge cases where
- the set of possible inputs are [P < 0 && P > 5].
- 
- Far, far more time has been spent on getting the right count out of CoinBag.
+ the set of possible inputs are [P < 0 && P > 5].  Yet another reason to drop the penny.
 
  </SPOILER>
  */
@@ -119,8 +120,7 @@
  or a nickel remaining.
  */
 - (CoinType)findPartialCoinForPrice:(NSDecimalNumber *)price withCoins:(CoinBag *)coins {
-    
-    NSDecimalNumber *dividend = coins.value;
+    NSDecimalNumber *dividend = [coins.value decimalNumberBySubtracting:price];
     
     NSDecimalNumber *divisor = [NSDecimalNumber decimalNumberWithDecimal:[CoinData quarter].coinValue];
     
@@ -130,7 +130,7 @@
     
     NSDecimalNumber *remainder = [dividend decimalNumberBySubtracting:subtractAmount];
     
-    NSDecimalNumber *ten = [NSDecimalNumber decimalNumberWithDecimal:[@10 decimalValue]];
+    NSDecimalNumber *ten = [NSDecimalNumber decimalNumberWithDecimal:[@0.10 decimalValue]];
     
     NSComparisonResult partialCompare = [remainder compare:ten];
     
@@ -158,7 +158,11 @@
     CoinBag *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
     [insertedCoins emptyInto:self.bankedCoins];
     NSDecimalNumber *changeDue = [notification.userInfo objectForKey:kUserInfoKeyChange];
-    BOOL isThereAnyChangeDue = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedSame);
+    BOOL isThereAnyChangeDue = NO;
+    NSComparisonResult zeroChangeCompare = [changeDue compare:[NSDecimalNumber zero]];
+    if (zeroChangeCompare != NSOrderedSame) {
+        isThereAnyChangeDue = YES;
+    }
     BOOL isThereMoreChange = isThereAnyChangeDue;
     // Here's where we get greedy, and I mean Tolkien Dwarf King greedy.  Aesopian fable greedy, even.  As much greed as Ozymandias had hubris.  Montgomery C. Burns greedy.
     NSDecimalNumber *quarterValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData quarter].coinValue];
