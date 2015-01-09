@@ -22,6 +22,7 @@
         _returnedCoins = [NSCountedSet new];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemWasSelected:) name:kNotificationItemSelected object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchaseWasCompleted:) name:kNotificationPurchaseCompleted object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDispensed:) name:kNotificationChangeDispensed object:nil];
     }
     
     return self;
@@ -67,6 +68,13 @@
     [[NSNotificationCenter defaultCenter]
      postNotificationName:kNotificationBankCoinsAndMakeChange object:self userInfo:notification.userInfo];
     _insertedCoins = [NSCountedSet new];
+}
+
+- (void)changeDispensed:(NSNotification *)notification {
+    NSCountedSet *change = [notification.userInfo objectForKey:kUserInfoKeyCoins];
+    for (NSObject *object in change) {
+        [self.returnedCoins addObject:object];
+    }
 }
 
 - (void)dealloc {

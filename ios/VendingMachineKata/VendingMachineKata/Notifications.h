@@ -40,6 +40,9 @@ extern NSString * const kNotificationCanMakeChangeForSelection;
 /** Name of the notification posted when the machine should bank the coins in the slot, dispensing change. */
 extern NSString * const kNotificationBankCoinsAndMakeChange;
 
+/** Name of the notification posted when the machine dispenses change */
+extern NSString * const kNotificationChangeDispensed;
+
 #pragma mark - Key Names
 
 /** Notification UserInfo key for price */

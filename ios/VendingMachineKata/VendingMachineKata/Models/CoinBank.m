@@ -58,7 +58,12 @@
  13) Therefore, we can ALWAYS make change if the machine contains at least one dime and one nickel,
  or three nickels.  [D >= 1 && N >= 1, N >=3] is the master key to this problem.
  14) Bilbo Baggins
- QED: Don't worry about DynP.
+ QED: Don't worry about DynP.  The edge cases that make greedy fail don't exist without arbitrary amounts (i.e. pennies).
+ 
+ THE REVELATION: This isn't actually the Vending Machine Change Making Problem!
+ At least, not in its strictest sense!  Including pennies causes edge cases to arise
+ where the greedy approach will fail.  Specifically the edge cases where the set of possible inputs are [P=3, P=4]
+
  </SPOILER>
  */
 
@@ -147,6 +152,48 @@
 - (void)makeChange:(NSNotification *)notification {
     NSCountedSet *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
     [insertedCoins emptyInto:self.bankedCoins];
+    NSDecimalNumber *changeDue = [notification.userInfo objectForKey:kUserInfoKeyChange];
+    BOOL isThereAnyChangeDue = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedSame);
+    BOOL isThereMoreChange = isThereAnyChangeDue;
+    // Here's where we get greedy, and I mean Tolkien Dwarf King greedy.  Aesopian fable greedy, even.  As much greed as Ozymandias had hubris.  Montgomery C. Burns greedy.
+    NSDecimalNumber *quarterValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData quarter].coinValue];
+    NSDecimalNumber *dimeValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData dime].coinValue];
+    NSDecimalNumber *nickelValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData nickel].coinValue];
+    NSComparisonResult quarterCompare = [changeDue compare:quarterValue];
+    NSCountedSet *changeBag = [NSCountedSet new];
+    if (isThereAnyChangeDue) {
+        if (quarterCompare != NSOrderedAscending && self.bankedCoins.quarters >= 1) {
+            do {
+                [changeBag addObject:[CoinData quarter]];
+                changeDue = [changeDue decimalNumberBySubtracting:quarterValue];
+                [self.bankedCoins removeObject:[CoinData quarter]];
+                isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
+            } while (self.bankedCoins.quarters >= 1 && isThereMoreChange);
+        }
+        if (isThereMoreChange) {
+            NSComparisonResult dimeCompare = [changeDue compare:dimeValue];
+            if (dimeCompare != NSOrderedAscending && self.bankedCoins.dimes >= 1) {
+                do {
+                    [changeBag addObject:[CoinData dime]];
+                    changeDue = [changeDue decimalNumberBySubtracting:dimeValue];
+                    [self.bankedCoins removeObject:[CoinData dime]];
+                    isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
+                } while (self.bankedCoins.dimes >= 1 && isThereMoreChange);
+            }
+        }
+        if (isThereMoreChange) {
+            NSComparisonResult nickelCompare = [changeDue compare:nickelValue];
+            if (nickelCompare != NSOrderedAscending && self.bankedCoins.nickels >= 1) {
+                do {
+                    [changeBag addObject:[CoinData nickel]];
+                    changeDue = [changeDue decimalNumberBySubtracting:nickelValue];
+                    [self.bankedCoins removeObject:[CoinData nickel]];
+                    isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
+                } while (self.bankedCoins.nickels >= 1 && isThereMoreChange);
+            }
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationChangeDispensed object:self userInfo:@{kUserInfoKeyCoins : changeBag}];
+    }
 }
 
 - (void)dealloc {

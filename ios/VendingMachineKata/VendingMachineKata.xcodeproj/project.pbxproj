@@ -10,6 +10,7 @@
 		F84390691A5F0FA4006F4174 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390681A5F0FA4006F4174 /* Notifications.m */; };
 		F84390711A5F1B65006F4174 /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390701A5F1B65006F4174 /* Inventory.m */; };
 		F84390741A5F6E88006F4174 /* CoinBank.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390731A5F6E88006F4174 /* CoinBank.m */; };
+		F897D1111A6044F300737383 /* NSCountedSet+CoinValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F897D1101A6044F300737383 /* NSCountedSet+CoinValue.m */; };
 		F8DF371F1A5D7DF200C25C9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF371E1A5D7DF200C25C9F /* main.m */; };
 		F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37211A5D7DF200C25C9F /* AppDelegate.m */; };
 		F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37271A5D7DF200C25C9F /* ViewController.m */; };
@@ -17,7 +18,6 @@
 		F8DF372D1A5D7DF300C25C9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372C1A5D7DF300C25C9F /* Images.xcassets */; };
 		F8DF37301A5D7DF300C25C9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DF372E1A5D7DF300C25C9F /* LaunchScreen.xib */; };
 		F8E6D1661A5EE756001A6377 /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E6D1651A5EE756001A6377 /* VendingMachineKataTests.m */; };
-		F8E6D16E1A5F023D001A6377 /* NSCountedSet+CoinValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E6D16D1A5F023D001A6377 /* NSCountedSet+CoinValue.m */; };
 		F8EF42591A5D87D0008D58D1 /* CoinSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42581A5D87D0008D58D1 /* CoinSlot.m */; };
 		F8EF425C1A5D8880008D58D1 /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF425B1A5D8880008D58D1 /* Display.m */; };
 		F8EF42811A5E2302008D58D1 /* CoinData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EF42801A5E2302008D58D1 /* CoinData.m */; };
@@ -40,6 +40,8 @@
 		F84390701A5F1B65006F4174 /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
 		F84390721A5F6E88006F4174 /* CoinBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinBank.h; sourceTree = "<group>"; };
 		F84390731A5F6E88006F4174 /* CoinBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBank.m; sourceTree = "<group>"; };
+		F897D10F1A6044F300737383 /* NSCountedSet+CoinValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCountedSet+CoinValue.h"; sourceTree = "<group>"; };
+		F897D1101A6044F300737383 /* NSCountedSet+CoinValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCountedSet+CoinValue.m"; sourceTree = "<group>"; };
 		F8DF37191A5D7DF200C25C9F /* VendingMachineKata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VendingMachineKata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF371D1A5D7DF200C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DF371E1A5D7DF200C25C9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,8 +55,6 @@
 		F8DF37351A5D7DF300C25C9F /* VendingMachineKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF373A1A5D7DF300C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8E6D1651A5EE756001A6377 /* VendingMachineKataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
-		F8E6D16C1A5F023D001A6377 /* NSCountedSet+CoinValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCountedSet+CoinValue.h"; sourceTree = "<group>"; };
-		F8E6D16D1A5F023D001A6377 /* NSCountedSet+CoinValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCountedSet+CoinValue.m"; sourceTree = "<group>"; };
 		F8EF42571A5D87D0008D58D1 /* CoinSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinSlot.h; sourceTree = "<group>"; };
 		F8EF42581A5D87D0008D58D1 /* CoinSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinSlot.m; sourceTree = "<group>"; };
 		F8EF425A1A5D8880008D58D1 /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
@@ -81,6 +81,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F897D10E1A6044F300737383 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F897D10F1A6044F300737383 /* NSCountedSet+CoinValue.h */,
+				F897D1101A6044F300737383 /* NSCountedSet+CoinValue.m */,
+			);
+			name = Categories;
+			path = Models/Categories;
+			sourceTree = "<group>";
+		};
 		F8DF37101A5D7DF200C25C9F = {
 			isa = PBXGroup;
 			children = (
@@ -102,7 +112,7 @@
 		F8DF371B1A5D7DF200C25C9F /* VendingMachineKata */ = {
 			isa = PBXGroup;
 			children = (
-				F8E6D16B1A5F0230001A6377 /* Categories */,
+				F897D10E1A6044F300737383 /* Categories */,
 				F8EF42501A5D8537008D58D1 /* Models */,
 				F8DF37201A5D7DF200C25C9F /* AppDelegate.h */,
 				F8DF37211A5D7DF200C25C9F /* AppDelegate.m */,
@@ -142,15 +152,6 @@
 				F8DF373A1A5D7DF300C25C9F /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F8E6D16B1A5F0230001A6377 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				F8E6D16C1A5F023D001A6377 /* NSCountedSet+CoinValue.h */,
-				F8E6D16D1A5F023D001A6377 /* NSCountedSet+CoinValue.m */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 		F8EF42501A5D8537008D58D1 /* Models */ = {
@@ -273,10 +274,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EF42591A5D87D0008D58D1 /* CoinSlot.m in Sources */,
+				F897D1111A6044F300737383 /* NSCountedSet+CoinValue.m in Sources */,
 				F84390711A5F1B65006F4174 /* Inventory.m in Sources */,
 				F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */,
 				F8EF425C1A5D8880008D58D1 /* Display.m in Sources */,
-				F8E6D16E1A5F023D001A6377 /* NSCountedSet+CoinValue.m in Sources */,
 				F84390691A5F0FA4006F4174 /* Notifications.m in Sources */,
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
 				F8DF371F1A5D7DF200C25C9F /* main.m in Sources */,
