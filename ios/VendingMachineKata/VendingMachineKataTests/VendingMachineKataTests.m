@@ -384,11 +384,9 @@ CoinBank *coinBank;
  */
 
 - (void)testMakeChangeForColaWithEnoughInBank {
-    coinBank.bankedCoins = [NSCountedSet
-                            setWithObjects:[self createDime],
-                            [self createDime],
-                            [self createNickel],
-                            nil];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
     // And a penny for good luck ;)
@@ -409,11 +407,9 @@ CoinBank *coinBank;
 }
 
 - (void)testMakeChangeForChipsWithEnoughInBank {
-    coinBank.bankedCoins = [NSCountedSet
-                            setWithObjects:[self createDime],
-                            [self createDime],
-                            [self createNickel],
-                            nil];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
     // And a penny for good luck ;)
@@ -433,11 +429,9 @@ CoinBank *coinBank;
 }
 
 - (void)testMakeChangeForCandyWithEnoughInBank {
-    coinBank.bankedCoins = [NSCountedSet
-                            setWithObjects:[self createDime],
-                            [self createDime],
-                            [self createNickel],
-                            nil];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createDime]];
+    [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
     // And a penny for good luck ;)
