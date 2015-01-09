@@ -25,18 +25,6 @@
     return self;
 }
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t onceToken;
-    static id sharedInstance;
-    
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [self new];
-    });
-    
-    return sharedInstance;
-}
-
 /*
  <SPOILER>
  We're going greedy!!!!
@@ -82,6 +70,9 @@
             }
         }
         // Nothing should be leftover, since we don't accept pennies
+        if ([amountRemaining compare:[NSDecimalNumber zero]]) {
+            canMakeChange = YES;
+        }
     }
     return canMakeChange;
 }

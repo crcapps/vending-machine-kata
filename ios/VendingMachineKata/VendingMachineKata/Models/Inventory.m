@@ -21,18 +21,6 @@
     return self;
 }
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t onceToken;
-    static id sharedInstance;
-    
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [self new];
-    });
-    
-    return sharedInstance;
-}
-
 - (NSDictionary *)itemPrices {
     static NSDictionary *items = nil;
     static dispatch_once_t onceToken;
@@ -119,10 +107,6 @@
         NSLog(@"Dispensed a %@.", itemString);
         NSLog(@"There are now %ld left.", (long)itemQuantity);
     }
-}
-
-- (void)dispenseProduct:(InventoryItem)item {
-    
 }
 
 - (void)dealloc {

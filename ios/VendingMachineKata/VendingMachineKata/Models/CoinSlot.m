@@ -27,18 +27,6 @@
     return self;
 }
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t onceToken;
-    static id sharedInstance;
-    
-    dispatch_once(&onceToken, ^{
-                      sharedInstance = [self new];
-                  });
-    
-    return sharedInstance;
-}
-
 - (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
     CoinData *coinData = [CoinData identifyCoinForDiameter:diameter mass:mass thickness:thickness];
     if (coinData.isAccepted) {

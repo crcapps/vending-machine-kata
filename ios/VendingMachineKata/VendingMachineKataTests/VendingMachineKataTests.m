@@ -110,7 +110,7 @@ CoinBank *coinBank;
  */
 
 - (void)testCoinSlotDroppedQuarter {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeQuarter];
     
@@ -129,7 +129,7 @@ CoinBank *coinBank;
 }
 
 - (void)testCoinSlotDroppedDime {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeDime];
     
@@ -148,7 +148,7 @@ CoinBank *coinBank;
 }
 
 - (void)testCoinSlotDroppedNickel {
-    XCTAssert([self displayTextIsValidInitialValue],@"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue],@"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeNickel];
     
@@ -167,7 +167,7 @@ CoinBank *coinBank;
 }
 
 - (void)testCoinSlotDroppedPenny {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypePenny];
     
@@ -186,7 +186,7 @@ CoinBank *coinBank;
 }
 
 - (void)testCoinSlotDroppedSlug {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeSlug];
     
@@ -205,7 +205,7 @@ CoinBank *coinBank;
 }
 
 - (void)testDropFourQuarters {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -224,7 +224,7 @@ CoinBank *coinBank;
 }
 
 - (void)testDropThreeQuartersTwoPenniesFiveNickelsAndThreeSlugs {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [self dropCoin:kCoinTypeQuarter amount:3];
     [self dropCoin:kCoinTypePenny amount:2];
@@ -318,13 +318,17 @@ CoinBank *coinBank;
 // Check the implementation to find out!
 
 - (void)testMakeChangeWithEnoughInBank {
+    [inventory addItem:kInventoryItemCola];
+    
     [coinBank.bankedCoins addObject:[self createDime]];
     [coinBank.bankedCoins addObject:[self createDime]];
     [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
     
-    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
+    [inventory selectItem:kInventoryItemCola];
+    
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.25 decimalValue]];
     
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
@@ -334,6 +338,8 @@ CoinBank *coinBank;
 }
 
 - (void)testMakeChangeWithoutEnoughInBank {
+    [inventory addItem:kInventoryItemCandy];
+    
     [coinBank.bankedCoins addObject:[self createNickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:3];
@@ -347,6 +353,8 @@ CoinBank *coinBank;
 }
 
 - (void)testMakeChangeWithEmptyBank {
+    [inventory addItem:kInventoryItemCandy];
+    
     [self dropCoin:kCoinTypeQuarter amount:3];
     
     [inventory selectItem:kInventoryItemCandy];

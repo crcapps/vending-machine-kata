@@ -27,18 +27,6 @@ NSString * const kDisplayTextPrice = @"PRICE";
 
 @synthesize text = _text;
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t onceToken;
-    static id sharedInstance;
-    
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [self new];
-    });
-    
-    return sharedInstance;
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
