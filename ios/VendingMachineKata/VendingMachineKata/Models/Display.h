@@ -11,6 +11,7 @@
 extern NSString * const kDisplayTextInsertCoin;
 extern NSString * const kDisplayTextThankYou;
 extern NSString * const kDisplayTextPrice;
+extern NSString * const kDisplayTextSoldOut;
 
 @interface Display : NSObject
 

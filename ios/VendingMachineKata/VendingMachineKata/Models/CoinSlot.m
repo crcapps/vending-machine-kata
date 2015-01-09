@@ -31,6 +31,7 @@
 - (void)returnCoins {
     if (self.insertedCoins.coins > 0) {
         [self.insertedCoins emptyInto:self.returnedCoins];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCoinsReturned object:self];
     }
 }
 
@@ -54,7 +55,8 @@
          object:self userInfo:@{
                                 kUserInfoKeyPrice : price,
                                 kUserInfoKeyCredit : self.insertedCoins.value,
-                                kUserInfoKeyItem : item
+                                kUserInfoKeyItem : item,
+                                kUserInfoKeyQuantity : [notification.userInfo objectForKey:kUserInfoKeyQuantity]
                                 }];
     } else {
         NSDecimalNumber *change = [self.insertedCoins.value decimalNumberBySubtracting:price];
@@ -65,7 +67,8 @@
                                 kUserInfoKeyCredit : self.insertedCoins.value,
                                 kUserInfoKeyItem : item,
                                 kUserInfoKeyChange : change,
-                                kUserInfoKeyCoins : self.insertedCoins
+                                kUserInfoKeyCoins : self.insertedCoins,
+                                kUserInfoKeyQuantity : [notification.userInfo objectForKey:kUserInfoKeyQuantity]
                                 }];
     }
 }

@@ -333,9 +333,6 @@ CoinBag *aBag;
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
-    
-
-    
 }
 
 - (void)testMakeChangeForOddItemWithEnoughInBank {
@@ -410,6 +407,7 @@ CoinBag *aBag;
     XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
     XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
     XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
 }
 
 - (void)testReturnCoinsWithSomeCoinsInserted {
@@ -430,14 +428,38 @@ CoinBag *aBag;
     NSDecimalNumber *actualInsertedCoinsValue = coinSlot.insertedCoins.value;
     
     XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
-    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
-    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return didn't dispense the right coinage.");
+    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return didn't empty inserted bag.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
 }
+
+#pragma mark - Sold Out Methods
+
+- (void)testBuySoldOutItemWithNoMoneyInserted {
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    
+    [inventory selectItem:kInventoryItemCola];
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
+
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
+}
+
+- (void)testBuySoldOutItemWithMoneyInserted {
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [inventory selectItem:kInventoryItemCola];
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
+    
+    NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
+    XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");}
 
 #pragma mark - Helper Methods
 
 - (BOOL)displayTextIsValidInitialValue {
-    NSString *displayText = [NSString stringWithString:display.text];
+    NSString *displayText = display.text;
     BOOL isInsertCoin = ([displayText isEqualToString:kDisplayTextInsertCoin]);
     BOOL valid = isInsertCoin;
     return valid;

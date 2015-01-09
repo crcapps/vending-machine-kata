@@ -43,6 +43,9 @@ extern NSString * const kNotificationBankCoinsAndMakeChange;
 /** Name of the notification posted when the machine dispenses change */
 extern NSString * const kNotificationChangeDispensed;
 
+/** Name of the notification posted when the coin return is pressed */
+extern NSString * const kNotificationCoinsReturned;
+
 #pragma mark - Key Names
 
 /** Notification UserInfo key for price */
@@ -59,3 +62,6 @@ extern NSString * const kUserInfoKeyChange;
 
 /** Notification UserInfo key for coins attached */
 extern NSString * const kUserInfoKeyCoins;
+
+/** Notification UserInfo key for the quantity of an item in inventory */
+extern NSString * const kUserInfoKeyQuantity;

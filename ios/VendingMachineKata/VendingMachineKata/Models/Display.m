@@ -12,6 +12,7 @@
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 NSString * const kDisplayTextThankYou = @"THANK YOU";
 NSString * const kDisplayTextPrice = @"PRICE";
+NSString * const kDisplayTextSoldOut = @"SOLD OUT";
 
 @interface Display ()
 
@@ -33,8 +34,9 @@ NSString * const kDisplayTextPrice = @"PRICE";
         [self resetText];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsWereReturned:) name:kNotificationCoinsReturned object:nil];
     }
     
     return self;
@@ -68,7 +70,12 @@ NSString * const kDisplayTextPrice = @"PRICE";
 }
 
 - (void)selectionOutOfStock:(NSNotification *)notification {
-    // noop, for now.
+    self.shouldDisplayCredit = YES;
+    NSDecimalNumber *credit = [notification.userInfo valueForKey:kUserInfoKeyCredit];
+    self.credit = [NSNumberFormatter
+                   localizedStringFromNumber:credit
+                   numberStyle:NSNumberFormatterCurrencyStyle];
+    _text = kDisplayTextSoldOut;
 }
 
 - (void)insufficientCredit:(NSNotification *)notification {
@@ -81,11 +88,21 @@ NSString * const kDisplayTextPrice = @"PRICE";
     NSString *priceText = [NSNumberFormatter
                            localizedStringFromNumber:price
                            numberStyle:NSNumberFormatterCurrencyStyle];
-    NSString *text = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, priceText];
+    NSString *text;
+    NSInteger quantity = [[notification.userInfo objectForKey:kUserInfoKeyQuantity] integerValue];
+    if (quantity > 0) {
+        text = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, priceText];
+    } else {
+        text = kDisplayTextSoldOut;
+    }
     if (compare == NSOrderedDescending) {
         self.shouldDisplayCredit = YES;
     }
     _text = text;
+}
+
+- (void)coinsWereReturned:(NSNotification *)notification {
+    [self resetText];
 }
 
 - (void)dealloc {
