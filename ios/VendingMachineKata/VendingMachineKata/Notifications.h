@@ -22,3 +22,12 @@ extern NSString * const kNotificationItemSelectedInsufficientCredit;
 
 /** Name of notification posted when the purchase is completed */
 extern NSString * const kNotificationPurchaseCompleted;
+
+/** Notification UserInfo key for price */
+extern NSString * const kUserInfoKeyPrice;
+
+/** Notification UserInfo key for credit */
+extern NSString * const kUserInfoKeyCredit;
+
+/** Notification UserInfo key for selected item */
+extern NSString * const kUserInfoKeyItem;

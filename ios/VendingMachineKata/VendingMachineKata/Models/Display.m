@@ -67,8 +67,8 @@ NSString * const kDisplayTextPrice = @"PRICE";
 }
 
 - (void)insufficientCredit:(NSNotification *)notification {
-    NSDecimalNumber *price = [notification.userInfo valueForKey:@"price"];
-    NSDecimalNumber *credit = [notification.userInfo valueForKey:@"credit"];
+    NSDecimalNumber *price = [notification.userInfo valueForKey:kUserInfoKeyPrice];
+    NSDecimalNumber *credit = [notification.userInfo valueForKey:kUserInfoKeyCredit];
     self.credit = [NSNumberFormatter
                    localizedStringFromNumber:credit
                    numberStyle:NSNumberFormatterCurrencyStyle];

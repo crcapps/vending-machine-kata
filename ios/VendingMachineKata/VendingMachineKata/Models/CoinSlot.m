@@ -10,6 +10,7 @@
 #import "CoinData.h"
 #import "Notifications.h"
 #import "NSCountedSet+CoinValue.h"
+#import "Inventory.h"
 
 @implementation CoinSlot
 
@@ -36,21 +37,24 @@
 }
 
 - (void)itemWasSelected:(NSNotification *)notification {
-    NSDecimalNumber *price = [notification.userInfo valueForKey:@"price"];
+    NSDecimalNumber *price = [notification.userInfo valueForKey:kUserInfoKeyPrice];
+    NSNumber *item = [notification.userInfo valueForKey:kUserInfoKeyItem];
     NSComparisonResult compare = [price compare:self.insertedCoins.value];
     if (compare == NSOrderedDescending) {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kNotificationItemSelectedInsufficientCredit
          object:self userInfo:@{
-                                @"price" : price,
-                                @"credit" : self.insertedCoins.value
+                                kUserInfoKeyPrice : price,
+                                kUserInfoKeyCredit : self.insertedCoins.value,
+                                kUserInfoKeyItem : item
                                 }];
     } else {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kNotificationItemSelectedSufficientCredit
          object:self userInfo:@{
-                                @"price" : price,
-                                @"credit" : self.insertedCoins.value
+                                kUserInfoKeyPrice : price,
+                                kUserInfoKeyCredit : self.insertedCoins.value,
+                                kUserInfoKeyItem : item
                                 }];
     }
 }
