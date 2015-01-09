@@ -271,6 +271,7 @@ CoinBank *coinBank;
     NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
     XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");
     XCTAssertEqual(NSOrderedSame, [coinSlot.insertedCoins.value compare:currentValue], @"Inserted credit changed without making a purchase.");
+    XCTAssertEqual(NSOrderedSame, [coinBank.bankedCoins.value compare:[NSDecimalNumber zero]], @"Coins were banked without purchase complete!");
 }
 
 - (void)testSelectItemBeforeInsertingCoins {
@@ -301,7 +302,7 @@ CoinBank *coinBank;
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
-
+    XCTAssertEqual(NSOrderedSame, [coinBank.bankedCoins.value compare:expectedPrice], @"Coins were not banked after purchase complete!");
 }
 
 #pragma mark - Make Change Tests
@@ -320,9 +321,9 @@ CoinBank *coinBank;
 - (void)testMakeChangeWithEnoughInBank {
     [inventory addItem:kInventoryItemCola];
     
-    [coinBank.bankedCoins addObject:[self createDime]];
-    [coinBank.bankedCoins addObject:[self createDime]];
-    [coinBank.bankedCoins addObject:[self createNickel]];
+    [coinBank.bankedCoins addObject:[CoinData dime]];
+    [coinBank.bankedCoins addObject:[CoinData dime]];
+    [coinBank.bankedCoins addObject:[CoinData nickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:5];
     
@@ -341,7 +342,7 @@ CoinBank *coinBank;
 - (void)testMakeChangeWithoutEnoughInBank {
     [inventory addItem:kInventoryItemCandy];
     
-    [coinBank.bankedCoins addObject:[self createNickel]];
+    [coinBank.bankedCoins addObject:[CoinData nickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:3];
     
@@ -422,32 +423,4 @@ CoinBank *coinBank;
 - (void)dropCoin:(CoinType)coin {
     [self dropCoin:coin amount:1];
 }
-
-- (CoinData *)createQuarter {
-    CoinData *coin = [CoinData new];
-    
-    coin.coinType = kCoinTypeQuarter;
-    coin.coinValue = [@0.25 decimalValue];
-    
-    return coin;
-}
-
-- (CoinData *)createDime {
-    CoinData *coin = [CoinData new];
-    
-    coin.coinType = kCoinTypeDime;
-    coin.coinValue = [@0.10 decimalValue];
-    
-    return coin;
-}
-
-- (CoinData *)createNickel {
-    CoinData *coin = [CoinData new];
-    
-    coin.coinType = kCoinTypeNickel;
-    coin.coinValue = [@0.05 decimalValue];
-    
-    return coin;
-}
-
 @end
