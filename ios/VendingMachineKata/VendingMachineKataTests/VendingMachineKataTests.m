@@ -439,6 +439,7 @@ CoinBag *aBag;
     XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
     
     [inventory selectItem:kInventoryItemCola];
+    
     XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
 
     XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
@@ -458,7 +459,7 @@ CoinBag *aBag;
 #pragma mark - Helper Methods
 
 - (BOOL)displayTextIsValidInitialValue {
-    NSString *displayText = [NSString stringWithString:display.text];
+    NSString *displayText = display.text;
     BOOL isInsertCoin = ([displayText isEqualToString:kDisplayTextInsertCoin]);
     BOOL valid = isInsertCoin;
     return valid;

@@ -62,3 +62,6 @@ extern NSString * const kUserInfoKeyChange;
 
 /** Notification UserInfo key for coins attached */
 extern NSString * const kUserInfoKeyCoins;
+
+/** Notification UserInfo key for the quantity of an item in inventory */
+extern NSString * const kUserInfoKeyQuantity;

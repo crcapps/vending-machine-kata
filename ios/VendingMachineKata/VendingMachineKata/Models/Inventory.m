@@ -88,7 +88,8 @@
      object:self
      userInfo:@{
                 kUserInfoKeyPrice : itemPrice,
-                kUserInfoKeyItem : @(item)
+                kUserInfoKeyItem : @(item),
+                kUserInfoKeyQuantity :@([self quantityForItem:item])
                 }];
     
     return itemPrice;
