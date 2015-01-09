@@ -333,9 +333,6 @@ CoinBag *aBag;
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
-    
-
-    
 }
 
 - (void)testMakeChangeForOddItemWithEnoughInBank {
@@ -438,8 +435,8 @@ CoinBag *aBag;
 
 #pragma mark - Sold Out Methods
 
-- (void)testBuySoldOutItem {
-    
+- (void)testBuySoldOutItemWithNoMoneyInserted {
+    [Inventory]
 }
 
 #pragma mark - Helper Methods
