@@ -32,6 +32,9 @@ extern NSString * const kNotificationPurchaseCompleted;
 /** Name of the notification posted when the machine can't make change for a selection */
 extern NSString * const kNotificationCannotMakeChangeForSelection;
 
+/** Name of the notification posted when the machine can make change for a selection */
+extern NSString * const kNotificationCanMakeChangeForSelection;
+
 /** Notification UserInfo key for price */
 extern NSString * const kUserInfoKeyPrice;
 

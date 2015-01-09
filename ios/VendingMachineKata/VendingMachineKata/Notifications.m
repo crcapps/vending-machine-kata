@@ -14,6 +14,7 @@ NSString * const kNotificationItemSelectedSufficientCredit = @"SufficientCreditF
 NSString * const kNotificationItemSelectedInsufficientCredit =  @"InsufficentCreditForSelectedItemNotification";
 NSString * const kNotificationPurchaseCompleted = @"PurchaseCompletedNotification";
 NSString * const kNotificationCannotMakeChangeForSelection = @"CannotMakeChangeForSelectionNotification";
+NSString * const kNotificationCanMakeChangeForSelection = @"CanMakeChangeForSelectionNotification";
 NSString * const kNotificationItemSelectedOutOfStock = @"SelectedItemOutOfStockNotification";
 NSString * const kNotificationItemSelectedInStock = @"SelectedItemInStockNotification";
 NSString * const kUserInfoKeyPrice = @"price";
