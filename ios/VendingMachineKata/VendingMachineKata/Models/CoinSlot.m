@@ -63,9 +63,9 @@
 }
 
 - (void)purchaseWasCompleted:(NSNotification *)notification {
-    [self.insertedCoins emptyInto:[CoinBank sharedInstance].bankedCoins];
+
     NSDecimalNumber *amount = [notification.userInfo objectForKey:kUserInfoKeyChange];
-    [[CoinBank sharedInstance] makeChangeForAmount:amount];
+    
 }
 
 - (void)dealloc {
