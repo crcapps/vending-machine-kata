@@ -10,15 +10,17 @@
 #import "CoinData.h"
 #import "Notifications.h"
 #import "NSCountedSet+CoinValue.h"
+#import "Inventory.h"
 
 @implementation CoinSlot
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
         _insertedCoins= [NSCountedSet new];
         _returnedCoins = [NSCountedSet new];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemWasSelected:) name:kNotificationItemSelected object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchaseWasCompleted:) name:kNotificationPurchaseCompleted object:nil];
     }
     
     return self;
@@ -32,6 +34,37 @@
     } else {
         [self.returnedCoins addObject:coinData];
     }
+}
+
+- (void)itemWasSelected:(NSNotification *)notification {
+    NSDecimalNumber *price = [notification.userInfo valueForKey:kUserInfoKeyPrice];
+    NSNumber *item = [notification.userInfo valueForKey:kUserInfoKeyItem];
+    NSComparisonResult compare = [price compare:self.insertedCoins.value];
+    if (compare == NSOrderedDescending) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kNotificationItemSelectedInsufficientCredit
+         object:self userInfo:@{
+                                kUserInfoKeyPrice : price,
+                                kUserInfoKeyCredit : self.insertedCoins.value,
+                                kUserInfoKeyItem : item
+                                }];
+    } else {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kNotificationItemSelectedSufficientCredit
+         object:self userInfo:@{
+                                kUserInfoKeyPrice : price,
+                                kUserInfoKeyCredit : self.insertedCoins.value,
+                                kUserInfoKeyItem : item
+                                }];
+    }
+}
+
+- (void)purchaseWasCompleted:(NSNotification *)notification {
+    [self.insertedCoins empty];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

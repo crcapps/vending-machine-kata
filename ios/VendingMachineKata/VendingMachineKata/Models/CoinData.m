@@ -49,7 +49,12 @@
     static NSDictionary *diameters = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        diameters = @{@24.26:@(kCoinTypeQuarter), @17.91:@(kCoinTypeDime), @21.21:@(kCoinTypeNickel), @19.05:@(kCoinTypePenny)};
+        diameters = @{
+                      @24.26 : @(kCoinTypeQuarter),
+                      @17.91 : @(kCoinTypeDime),
+                      @21.21 : @(kCoinTypeNickel),
+                      @19.05 : @(kCoinTypePenny)
+                      };
     });
     NSNumber *coinTypeNumber = [diameters objectForKey:diameter];
     return [self coinTypeForNumber:coinTypeNumber];
@@ -59,7 +64,12 @@
     static NSDictionary *masses = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        masses = @{@5.670:@(kCoinTypeQuarter), @2.268:@(kCoinTypeDime), @5.000:@(kCoinTypeNickel), @2.500:@(kCoinTypePenny)};
+        masses = @{
+                   @5.670 : @(kCoinTypeQuarter),
+                   @2.268 : @(kCoinTypeDime),
+                   @5.000 : @(kCoinTypeNickel),
+                   @2.500 : @(kCoinTypePenny)
+                   };
     });
     NSNumber *coinTypeNumber = [masses objectForKey:mass];
     return [self coinTypeForNumber:coinTypeNumber];
@@ -69,7 +79,12 @@
     static NSDictionary *thicknesses = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        thicknesses = @{@1.75:@(kCoinTypeQuarter), @1.35:@(kCoinTypeDime), @1.95:@(kCoinTypeNickel), @1.52:@(kCoinTypePenny)};
+        thicknesses = @{
+                        @1.75 : @(kCoinTypeQuarter),
+                        @1.35 : @(kCoinTypeDime),
+                        @1.95 : @(kCoinTypeNickel),
+                        @1.52 : @(kCoinTypePenny)
+                        };
     });
     NSNumber *coinTypeNumber = [thicknesses objectForKey:thickness];
     return [self coinTypeForNumber:coinTypeNumber];
@@ -79,9 +94,9 @@
     static NSDictionary *values = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        values = @{@(kCoinTypeSlug):@0.00, @(kCoinTypePenny):@0.01, @(kCoinTypeNickel):@0.05, @(kCoinTypeDime):@0.10, @(kCoinTypeQuarter):@0.25};
+        values = @{@(kCoinTypeSlug) : @0.00, @(kCoinTypePenny) : @0.01, @(kCoinTypeNickel) : @0.05, @(kCoinTypeDime) : @0.10, @(kCoinTypeQuarter) : @0.25};
     });
-    NSNumber *valueNumber = [values objectForKey:@(coinType)];
+    NSNumber *valueNumber = [values objectForKey : @(coinType)];
     if (valueNumber == nil) {
         valueNumber = @0.00;
     }

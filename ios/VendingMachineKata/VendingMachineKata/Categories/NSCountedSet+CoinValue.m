@@ -36,5 +36,15 @@
     return totalCount;
 }
 
+- (void)empty {
+    NSCountedSet *tempBag = [NSCountedSet new];
+    for (NSObject *object in self) {
+        [tempBag addObject:object];
+    }
+    for (NSObject *object in tempBag) {
+        [self removeObject:object];
+    }
+}
+
 @end
 

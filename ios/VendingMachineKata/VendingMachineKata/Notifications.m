@@ -9,3 +9,10 @@
 #import "Notifications.h"
 
 NSString * const kNotificationCoinAccepted = @"CoinWasAcceptedNotification";
+NSString * const kNotificationItemSelected = @"ItemSelectedNotification";
+NSString * const kNotificationItemSelectedSufficientCredit = @"SufficientCreditForSelectedItemNotification";
+NSString * const kNotificationItemSelectedInsufficientCredit =  @"InsufficentCreditForSelectedItemNotification";
+NSString * const kNotificationPurchaseCompleted = @"PurchaseCompletedNotification";
+NSString * const kUserInfoKeyPrice = @"price";
+NSString * const kUserInfoKeyCredit = @"credit";
+NSString * const kUserInfoKeyItem = @"item";
