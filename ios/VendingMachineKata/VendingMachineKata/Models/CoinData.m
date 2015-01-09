@@ -29,15 +29,7 @@
         coinType = diameterGuess;  // Pick any at this point...
     }
     
-    NSDecimal coinValue = [self valueForCoinType:coinType];
-    
-    
-    
-    CoinData *coinData = [CoinData new];
-    coinData.coinType = coinType;
-    coinData.coinValue = coinValue;
-    
-    return coinData;
+    return [self platoCaveCoinForCoinType:coinType];
 }
 
 + (CoinType)coinTypeForNumber:(NSNumber *)number {
@@ -111,6 +103,88 @@
         valueNumber = @0.00;
     }
     return [valueNumber decimalValue];
+}
+
+/*
+ "Pennies! Nickels! Quarters! Dimes!
+ Come to us while there's still time!"
+ -- The Sirens, when Disney's Duck Tales was trying to be Homer's Odyssey
+ */
+
++ (CoinData *)quarter {
+    static CoinData *platoCaveQuarter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        platoCaveQuarter = [CoinData new];
+        platoCaveQuarter.coinType = kCoinTypeQuarter;
+        platoCaveQuarter.coinValue = [self valueForCoinType:kCoinTypeQuarter];
+    });
+    return platoCaveQuarter;
+}
+
++ (CoinData *)dime {
+    static CoinData *platoCaveDime = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        platoCaveDime = [CoinData new];
+        platoCaveDime.coinType = kCoinTypeDime;
+        platoCaveDime.coinValue = [self valueForCoinType:platoCaveDime.coinType];
+    });
+    return platoCaveDime;
+}
+
++ (CoinData *)nickel {
+    static CoinData *platoCaveNickel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        platoCaveNickel = [CoinData new];
+        platoCaveNickel.coinType = kCoinTypeNickel;
+        platoCaveNickel.coinValue = [self valueForCoinType:platoCaveNickel.coinType];
+    });
+    return platoCaveNickel;
+}
+
++ (CoinData *)penny {
+    static CoinData *platoCavePenny = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        platoCavePenny = [CoinData new];
+        platoCavePenny.coinType = kCoinTypePenny;
+        platoCavePenny.coinValue = [self valueForCoinType:platoCavePenny.coinType];
+    });
+    return platoCavePenny;
+}
+
++ (CoinData *)slug {
+    // I only made this method so I could go:
+    // PLATO'S CAVE SLUG! IT'S COMING RIGHT FOR US! AAAHHH~
+    // or
+    // <DAVIDATTENBOROUGHORSTEPHENFRY>
+    // ... and here we have the rare and reclusive Plato's Cave Slug...
+    // </DAVIDATTENBOROUGHORSTEPHENFRY>
+    static CoinData *platoCaveSlug = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        platoCaveSlug = [CoinData new];
+        platoCaveSlug.coinType = kCoinTypeSlug;
+        platoCaveSlug.coinValue = [self valueForCoinType:platoCaveSlug.coinType];
+    });
+    return platoCaveSlug;
+}
+
++ (CoinData *)platoCaveCoinForCoinType:(CoinType)coinType {
+    switch (coinType) {
+        case kCoinTypeQuarter:
+            return [self quarter];
+        case kCoinTypeDime:
+            return [self dime];
+        case kCoinTypeNickel:
+            return [self nickel];
+        case kCoinTypePenny:
+            return [self penny];
+        default:
+            return [self slug];
+    }
 }
 
 @end
