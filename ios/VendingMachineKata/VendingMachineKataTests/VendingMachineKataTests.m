@@ -312,6 +312,11 @@ CoinBank *coinBank;
  So that they will use the vending machine again
  */
 
+// Aah, The Vending Machine Change Making Problem!
+// How do we solve thee, O well known challenge?
+// Do we use a greedy algorithm? Dynamic Programming?
+// Check the implementation to find out!
+
 - (void)testMakeChangeWithEnoughInBank {
     [coinBank.bankedCoins addObject:[self createDime]];
     [coinBank.bankedCoins addObject:[self createDime]];
