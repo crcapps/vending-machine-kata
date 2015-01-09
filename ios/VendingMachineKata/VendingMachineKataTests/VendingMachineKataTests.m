@@ -254,7 +254,7 @@ CoinBag *aBag;
  So that I can give them an incentive to put money in the machine
  */
 
-- (void)testSelectColaWithoutEnoughMoney {
+- (void)testSelectItemWithoutEnoughMoney {
     [inventory addItem:kInventoryItemCola];
     
     [self dropCoin:kCoinTypeDime amount:2];
@@ -266,7 +266,7 @@ CoinBag *aBag;
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
     NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
     NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
-
+    
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
     NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
@@ -287,7 +287,7 @@ CoinBag *aBag;
     XCTAssertEqual(NSOrderedSame, [actualPrice compare:expectedPrice], @"Item price query returned incorrect amount.");
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after selection.");
-
+    
 }
 
 - (void)testSelectItemWithEnoughMoney {
@@ -441,7 +441,7 @@ CoinBag *aBag;
     [inventory selectItem:kInventoryItemCola];
     
     XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"Display doesn't indicate sold out value");
-
+    
     XCTAssert([self displayTextIsValidInitialValue], @"Display not reset to valid inital value");
 }
 
@@ -456,12 +456,97 @@ CoinBag *aBag;
     NSString *currentAmountText = [NSNumberFormatter localizedStringFromNumber:coinSlot.insertedCoins.value numberStyle:NSNumberFormatterCurrencyStyle];
     XCTAssert([display.text isEqualToString:currentAmountText], @"Display was not reset to current credit.");}
 
+#pragma mark - Exact Change Only Tests
+
+/*
+ As a customer
+ I want to be told when exact change is required
+ So that I can determine if I can buy something with the money I have before inserting it
+ */
+
+- (void)testInitialExactChangeOnly {
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Insert coins message was not initialized when no coins were in bank.");
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not initialized when no coins were in bank.");
+    
+    [coinSlot returnCoins];
+    
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Insert coins message was displayed when no coins were in bank.");
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
+    
+    
+}
+
+- (void)testInitialInsertCoins {
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
+     
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was displayed when coins were in bank.");
+    XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was displayed with sufficient minimum funds in bank.");
+    
+    [inventory addItem:kInventoryItemCandy quantity:2];
+    
+    [coinSlot returnCoins];
+    
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was displayed when coins were in bank.");
+    XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was displayed with sufficient minimum funds in bank.");
+    
+    [self dropCoin:kCoinTypeQuarter amount:3];
+    
+    [inventory selectItem:kInventoryItemCandy]; // Oh Candy, you are the problem child.
+    // Well, it worked.  This whole thing is about you.
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
+    
+    NSDecimalNumber *expectedPrice = [inventory selectItem:kInventoryItemCandy];
+    
+    NSString *expectedPriceText = [NSNumberFormatter localizedStringFromNumber:expectedPrice numberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
+    XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
+    
+    
+    [self dropCoin:kCoinTypeQuarter amount:3];
+    
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.75 decimalValue]];
+    expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
+    
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    
+    [inventory selectItem:kInventoryItemCandy];
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
+    
+        
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    
+    [coinSlot returnCoins];
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
+    
+    
+    [self dropCoin:kCoinTypeNickel amount:3];
+    
+    expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.15 decimalValue]];
+    expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
+    
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    
+    expectedText = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, expectedPriceText];
+    
+    [inventory selectItem:kInventoryItemCandy];
+    
+    XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
+}
+
 #pragma mark - Helper Methods
 
 - (BOOL)displayTextIsValidInitialValue {
     NSString *displayText = display.text;
-    BOOL isInsertCoin = ([displayText isEqualToString:kDisplayTextInsertCoin]);
-    BOOL valid = isInsertCoin;
+    BOOL isInsertCoin = [displayText isEqualToString:kDisplayTextInsertCoin];
+    BOOL isExactChangeOnly = [displayText isEqualToString:kDisplayTextExactChangeOnly];
+    BOOL valid = isInsertCoin || isExactChangeOnly;
     return valid;
 }
 
