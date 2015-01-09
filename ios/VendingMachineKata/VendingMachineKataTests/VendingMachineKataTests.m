@@ -395,7 +395,7 @@ Inventory *inventory;
 }
 
 - (BOOL)coinSlotIsEmpty {
-    return coinSlot.insertedCoins.coins == 0 && coinSlot.insertedCoins.value == [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
+    return ([coinSlot.insertedCoins.value compare:[NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]]] == NSOrderedSame);
 }
 
 - (void)dropCoin:(CoinType)coin amount:(NSInteger)amount {

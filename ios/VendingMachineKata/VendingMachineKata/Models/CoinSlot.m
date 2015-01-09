@@ -56,7 +56,7 @@
 }
 
 - (void)purchaseWasCompleted:(NSNotification *)notification {
-    //[self.insertedCoins empty];
+    [self.insertedCoins empty];
 }
 
 - (void)dealloc {
