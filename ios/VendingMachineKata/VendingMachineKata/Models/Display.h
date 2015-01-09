@@ -17,4 +17,7 @@ extern NSString * const kDisplayTextPrice;
 /** The text shown on the display */
 @property (nonatomic, strong, readonly) NSString    *text;
 
+/** The shared instance for the class */
++ (instancetype)sharedInstance;
+
 @end

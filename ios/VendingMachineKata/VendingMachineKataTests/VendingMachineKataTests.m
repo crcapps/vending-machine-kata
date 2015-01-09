@@ -334,8 +334,6 @@ CoinBank *coinBank;
     // Remember the rejected penny in the return tray (and maybe the slugs)?
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
     
-    
-    
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
                    @"Machine did not return correct Change!");
 }

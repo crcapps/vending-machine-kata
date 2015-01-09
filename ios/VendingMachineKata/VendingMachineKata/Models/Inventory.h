@@ -35,4 +35,7 @@ typedef NS_ENUM(NSInteger, InventoryItem) {
 /** adds an amount of an item to the inventory and increases the quantity by that amount */
 - (void)addItem:(InventoryItem)item quantity:(NSInteger)quantity;
 
+/** The shared instance for the class */
++ (instancetype)sharedInstance;
+
 @end

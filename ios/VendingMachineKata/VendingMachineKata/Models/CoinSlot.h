@@ -21,4 +21,7 @@
  */
 - (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness;
 
+/** The shared instance for the class */
++ (instancetype)sharedInstance;
+
 @end

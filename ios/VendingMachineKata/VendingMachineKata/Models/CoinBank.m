@@ -23,6 +23,18 @@
     return self;
 }
 
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t onceToken;
+    static id sharedInstance;
+    
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [self new];
+    });
+    
+    return sharedInstance;
+}
+
 - (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount {
     BOOL canMakeChange = NO;
     if ([amount compare:[NSDecimalNumber zero]] == NSOrderedSame) {

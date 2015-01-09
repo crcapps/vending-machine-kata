@@ -21,6 +21,18 @@
     return self;
 }
 
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t onceToken;
+    static id sharedInstance;
+    
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [self new];
+    });
+    
+    return sharedInstance;
+}
+
 - (NSDictionary *)itemPrices {
     static NSDictionary *items = nil;
     static dispatch_once_t onceToken;
