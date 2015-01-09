@@ -313,7 +313,7 @@ CoinBank *coinBank;
  */
 
 // Aah, The Vending Machine Change Making Problem!
-// How do we solve thee, O well known challenge?
+// How shall we solve thee, O well known challenge?
 // Do we use a greedy algorithm? Dynamic Programming?
 // Check the implementation to find out!
 
