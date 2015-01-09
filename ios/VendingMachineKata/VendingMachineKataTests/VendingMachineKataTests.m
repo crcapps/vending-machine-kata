@@ -384,6 +384,56 @@ CoinBag *aBag;
                    @"Machine allowed purchase without being able to make change (i.e. ate the money!)");
 }
 
+#pragma mark - Return Coins Tests
+
+/*
+ As a customer
+ I want to have my money returned
+ So that I can change my mind about buying stuff from the vending machine
+ */
+
+- (void)testReturnCoinsNothingInserted {
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    
+    [coinBank.bankedCoins addCoin:[CoinData quarter] amount:3];
+    
+    NSDecimalNumber *expectedBankValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.75 decimalValue]];
+    NSDecimalNumber *expectedReturnedCoinsValue = [NSDecimalNumber zero];
+    NSDecimalNumber *expectedInsertedCoinsValue = [NSDecimalNumber zero];
+    
+    [coinSlot returnCoins];
+    
+    NSDecimalNumber *actualBankValue = coinBank.bankedCoins.value;
+    NSDecimalNumber *actualReturnedCoinsValue = coinSlot.returnedCoins.value;
+    NSDecimalNumber *actualInsertedCoinsValue = coinSlot.insertedCoins.value;
+    
+    XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
+    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
+    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+}
+
+- (void)testReturnCoinsWithSomeCoinsInserted {
+    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");
+    [self dropCoin:kCoinTypeQuarter amount:3];
+    [self dropCoin:kCoinTypeDime amount:3];
+    
+    [coinBank.bankedCoins addCoin:[CoinData quarter] amount:3];
+    
+    NSDecimalNumber *expectedBankValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.75 decimalValue]];
+    NSDecimalNumber *expectedReturnedCoinsValue = [NSDecimalNumber decimalNumberWithDecimal:[@1.05 decimalValue]];
+    NSDecimalNumber *expectedInsertedCoinsValue = [NSDecimalNumber zero];
+    
+    [coinSlot returnCoins];
+    
+    NSDecimalNumber *actualBankValue = coinBank.bankedCoins.value;
+    NSDecimalNumber *actualReturnedCoinsValue = coinSlot.returnedCoins.value;
+    NSDecimalNumber *actualInsertedCoinsValue = coinSlot.insertedCoins.value;
+    
+    XCTAssertEqual(NSOrderedSame, [expectedBankValue compare:actualBankValue], @"Coin Return somehow affected the bank.");
+    XCTAssertEqual(NSOrderedSame, [expectedReturnedCoinsValue compare:actualReturnedCoinsValue], @"Coin return with empty inserted bag dispensed coins.");
+    XCTAssertEqual(NSOrderedSame, [expectedInsertedCoinsValue compare:actualInsertedCoinsValue], @"Coin Return with empty inserted bag altered inserted bag.");
+}
+
 #pragma mark - Helper Methods
 
 - (BOOL)displayTextIsValidInitialValue {
