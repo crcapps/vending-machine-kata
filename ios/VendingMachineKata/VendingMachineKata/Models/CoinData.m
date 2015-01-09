@@ -109,6 +109,8 @@
  "Pennies! Nickels! Quarters! Dimes!
  Come to us while there's still time!"
  -- The Sirens, when Disney's Duck Tales was trying to be Homer's Odyssey
+ 
+ ... also slugs.
  */
 
 + (CoinData *)quarter {

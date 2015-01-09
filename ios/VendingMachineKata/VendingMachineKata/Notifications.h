@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Notification Names
+
 /** Name of notification posted when a dropped coin is accepted */
 extern NSString * const kNotificationCoinAccepted;
 
@@ -35,6 +37,11 @@ extern NSString * const kNotificationCannotMakeChangeForSelection;
 /** Name of the notification posted when the machine can make change for a selection */
 extern NSString * const kNotificationCanMakeChangeForSelection;
 
+/** Name of the notification posted when the machine should bank the coins in the slot */
+extern NSString * const kNotificationBankCoins;
+
+#pragma mark - Key Names
+
 /** Notification UserInfo key for price */
 extern NSString * const kUserInfoKeyPrice;
 
@@ -46,3 +53,6 @@ extern NSString * const kUserInfoKeyItem;
 
 /** Notification UserInfo key for change due */
 extern NSString * const kUserInfoKeyChange;
+
+/** Notification UserInfo key for coins attached */
+extern NSString * const kUserInfoKeyCoins;

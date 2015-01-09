@@ -55,5 +55,17 @@
     }
 }
 
+- (NSInteger)quarters {
+    return [self countForObject:[CoinData quarter]];
+}
+
+- (NSInteger)nickels {
+    return [self countForObject:[CoinData nickel]];
+}
+
+- (NSInteger)dimes {
+    return [self countForObject:[CoinData dime]];
+}
+
 @end
 

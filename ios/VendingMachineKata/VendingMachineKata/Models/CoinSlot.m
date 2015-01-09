@@ -63,7 +63,6 @@
 }
 
 - (void)purchaseWasCompleted:(NSNotification *)notification {
-
     NSDecimalNumber *amount = [notification.userInfo objectForKey:kUserInfoKeyChange];
     
 }
