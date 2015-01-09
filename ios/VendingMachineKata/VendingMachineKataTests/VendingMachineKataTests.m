@@ -52,6 +52,16 @@ CoinBank *coinBank;
     XCTAssertNotNil(coinBank, @"CoinBank class doesn't exist!");
 }
 
+- (void)testMakeInvalidSelection {
+    XCTAssertThrows([inventory selectItem:NSIntegerMax]);
+}
+
+- (void)testAddInvalidItemToInventory {
+    [inventory addItem:NSIntegerMax];
+    NSInteger invalidItemCount = [inventory quantityForItem:NSIntegerMax];
+    XCTAssertEqual(invalidItemCount, 0, @"Inventory allowed adding an invalid item");
+}
+
 #pragma mark - Coin Recognition Tests
 
 - (void)testCoinRecognizerQuarter {
@@ -369,10 +379,6 @@ CoinBank *coinBank;
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
-}
-
-- (void)testMakeInvalidSelection {
-    [inventory selectItem:NSIntegerMax];
 }
 
 #pragma mark - Make Change Tests

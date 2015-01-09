@@ -26,6 +26,9 @@ typedef NS_ENUM(NSInteger, InventoryItem) {
 /** select an item from the machine */
 - (NSDecimalNumber *)selectItem:(InventoryItem)item;
 
+/** gets the quantity of an item in inventory */
+- (NSInteger)quantityForItem:(InventoryItem)item;
+
 /** adds an item to the inventory, incrementing its quantity */
 - (void)addItem:(InventoryItem)item;
 
