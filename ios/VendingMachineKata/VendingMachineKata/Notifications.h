@@ -23,6 +23,9 @@ extern NSString * const kNotificationItemSelectedInsufficientCredit;
 /** Name of notification posted when the purchase is completed */
 extern NSString * const kNotificationPurchaseCompleted;
 
+/** Name of the notification posted when the machine can't make change for a selection */
+extern NSString * const kNotificationCannotMakeChangeForSelection;
+
 /** Notification UserInfo key for price */
 extern NSString * const kUserInfoKeyPrice;
 
