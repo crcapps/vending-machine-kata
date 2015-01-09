@@ -19,3 +19,4 @@ NSString * const kNotificationItemSelectedInStock = @"SelectedItemInStockNotific
 NSString * const kUserInfoKeyPrice = @"price";
 NSString * const kUserInfoKeyCredit = @"credit";
 NSString * const kUserInfoKeyItem = @"item";
+NSString * const kUserInfoKeyChange = @"change";

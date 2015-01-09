@@ -49,12 +49,14 @@
                                 kUserInfoKeyItem : item
                                 }];
     } else {
+        NSDecimalNumber *change = [self.insertedCoins.value decimalNumberBySubtracting:price];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kNotificationItemSelectedSufficientCredit
          object:self userInfo:@{
                                 kUserInfoKeyPrice : price,
                                 kUserInfoKeyCredit : self.insertedCoins.value,
-                                kUserInfoKeyItem : item
+                                kUserInfoKeyItem : item,
+                                kUserInfoKeyChange : change
                                 }];
     }
 }

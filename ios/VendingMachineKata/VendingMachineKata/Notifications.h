@@ -40,3 +40,6 @@ extern NSString * const kUserInfoKeyCredit;
 
 /** Notification UserInfo key for selected item */
 extern NSString * const kUserInfoKeyItem;
+
+/** Notification UserInfo key for change due */
+extern NSString * const kUserInfoKeyChange;
