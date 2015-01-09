@@ -10,6 +10,12 @@
 
 @implementation CoinData
 
+- (BOOL)isAccepted {
+    // Reject pennies and slugs.
+    BOOL isAccepted = (self.coinType != kCoinTypeSlug && self.coinType != kCoinTypePenny);
+    return isAccepted;
+}
+
 + (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
     // Default to a slug to be careful.
     CoinType coinType = kCoinTypeSlug;
@@ -25,13 +31,11 @@
     
     NSDecimal coinValue = [self valueForCoinType:coinType];
     
-    // Reject pennies and slugs.
-    BOOL isAccepted = (coinType != kCoinTypeSlug && coinType != kCoinTypePenny);
+    
     
     CoinData *coinData = [CoinData new];
     coinData.coinType = coinType;
     coinData.coinValue = coinValue;
-    coinData.isAccepted = isAccepted;
     
     return coinData;
 }
