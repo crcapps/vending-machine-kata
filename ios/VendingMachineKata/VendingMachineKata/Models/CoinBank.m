@@ -7,7 +7,7 @@
 //
 
 #import "CoinBank.h"
-#import "NSCountedSet+CoinValue.h"
+#import "CoinBag.h"
 #import "Notifications.h"
 #import "CoinSlot.h"
 #import "CoinData.h"
@@ -19,7 +19,7 @@
     self = [super init];
     
     if (self) {
-        _bankedCoins = [NSCountedSet new];
+        _bankedCoins = [CoinBag new];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sufficientCredit:) name:kNotificationItemSelectedSufficientCredit object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeChange:) name:kNotificationBankCoinsAndMakeChange object:nil];
     }
@@ -67,12 +67,12 @@
  where the greedy approach will fail for minimum coins.  Specifically the edge cases where
  the set of possible inputs are [P < 0 && P > 5].
  
- Far, far more time has been spent on getting the right count out of NSCountedSet.
+ Far, far more time has been spent on getting the right count out of CoinBag.
 
  </SPOILER>
  */
 
-- (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(NSCountedSet *)coins {
+- (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(CoinBag *)coins {
     BOOL canMakeChange = NO;
     NSDecimalNumber *bankedValue = self.bankedCoins.value;
     NSDecimalNumber *insertedValue = coins.value;
@@ -118,7 +118,7 @@
  (whether actually present as quarters or not) to find whether we have a dime
  or a nickel remaining.
  */
-- (CoinType)findPartialCoinForPrice:(NSDecimalNumber *)price withCoins:(NSCountedSet *)coins {
+- (CoinType)findPartialCoinForPrice:(NSDecimalNumber *)price withCoins:(CoinBag *)coins {
     
     NSDecimalNumber *dividend = coins.value;
     
@@ -146,7 +146,7 @@
 - (void)sufficientCredit:(NSNotification *)notification {
     NSDecimalNumber *purchasePrice = [notification.userInfo objectForKey:kUserInfoKeyPrice];
     NSDecimalNumber *changeDue = [notification.userInfo objectForKey:kUserInfoKeyChange];
-    NSCountedSet *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
+    CoinBag *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
     BOOL canMakeChange = [self canMakeChangeForAmount:changeDue onPrice:purchasePrice withCoinsInserted:insertedCoins];
     
     
@@ -155,7 +155,7 @@
 }
 
 - (void)makeChange:(NSNotification *)notification {
-    NSCountedSet *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
+    CoinBag *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
     [insertedCoins emptyInto:self.bankedCoins];
     NSDecimalNumber *changeDue = [notification.userInfo objectForKey:kUserInfoKeyChange];
     BOOL isThereAnyChangeDue = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedSame);
@@ -165,13 +165,13 @@
     NSDecimalNumber *dimeValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData dime].coinValue];
     NSDecimalNumber *nickelValue = [NSDecimalNumber decimalNumberWithDecimal:[CoinData nickel].coinValue];
     NSComparisonResult quarterCompare = [changeDue compare:quarterValue];
-    NSCountedSet *changeBag = [NSCountedSet new];
+    CoinBag *changeBag = [CoinBag new];
     if (isThereAnyChangeDue) {
         if (quarterCompare != NSOrderedAscending && self.bankedCoins.quarters >= 1) {
             do {
-                [changeBag addObject:[CoinData quarter]];
+                [changeBag addCoin:[CoinData quarter]];
                 changeDue = [changeDue decimalNumberBySubtracting:quarterValue];
-                [self.bankedCoins removeObject:[CoinData quarter]];
+                [self.bankedCoins removeCoin:[CoinData quarter]];
                 isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
             } while (self.bankedCoins.quarters >= 1 && isThereMoreChange);
         }
@@ -179,9 +179,9 @@
             NSComparisonResult dimeCompare = [changeDue compare:dimeValue];
             if (dimeCompare != NSOrderedAscending && self.bankedCoins.dimes >= 1) {
                 do {
-                    [changeBag addObject:[CoinData dime]];
+                    [changeBag addCoin:[CoinData dime]];
                     changeDue = [changeDue decimalNumberBySubtracting:dimeValue];
-                    [self.bankedCoins removeObject:[CoinData dime]];
+                    [self.bankedCoins removeCoin:[CoinData dime]];
                     isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
                 } while (self.bankedCoins.dimes >= 1 && isThereMoreChange);
             }
@@ -190,9 +190,9 @@
             NSComparisonResult nickelCompare = [changeDue compare:nickelValue];
             if (nickelCompare != NSOrderedAscending && self.bankedCoins.nickels >= 1) {
                 do {
-                    [changeBag addObject:[CoinData nickel]];
+                    [changeBag addCoin:[CoinData nickel]];
                     changeDue = [changeDue decimalNumberBySubtracting:nickelValue];
-                    [self.bankedCoins removeObject:[CoinData nickel]];
+                    [self.bankedCoins removeCoin:[CoinData nickel]];
                     isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
                 } while (self.bankedCoins.nickels >= 1 && isThereMoreChange);
             }

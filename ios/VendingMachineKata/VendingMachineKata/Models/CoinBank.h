@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class CoinBag;
+
 @interface CoinBank : NSObject
 
 /** Represents the collection of coins inserted into the slot */
-@property (nonatomic, strong, readonly) NSCountedSet *bankedCoins;
+@property (nonatomic, strong, readonly) CoinBag *bankedCoins;
 
 /** Can the bank make change for this amount? */
-- (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(NSCountedSet *)coins;
+- (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(CoinBag *)coins;
 
 @end

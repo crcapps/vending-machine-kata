@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "NSCountedSet+CoinValue.h"
-
 #import "CoinSlot.h"
 #import "Display.h"
 #import "CoinData.h"
 #import "Inventory.h"
 #import "CoinBank.h"
+#import "CoinBag.h"
 
 @interface VendingMachineKataTests : XCTestCase
 
@@ -28,6 +27,7 @@ Display *display;
 CoinData *coinDataTest;
 Inventory *inventory;
 CoinBank *coinBank;
+CoinBag *aBag;
 
 - (void)setUp {
     [super setUp];
@@ -36,6 +36,7 @@ CoinBank *coinBank;
     coinDataTest = [CoinData new];
     inventory = [Inventory new];
     coinBank = [CoinBank new];
+    aBag = [CoinBag new];
 }
 
 - (void)tearDown {
@@ -64,7 +65,7 @@ CoinBank *coinBank;
 
 - (void)testSlotDropBadCoin {
     [coinSlot dropCoinWithDiameter:nil mass:nil thickness:nil];
-    XCTAssert(coinSlot.returnedCoins.coins == 1, @"Bad coin was not rejected!");
+    XCTAssert(coinSlot.insertedCoins.coins == 0, @"Bad coin was not rejected!");
 }
 
 #pragma mark - Coin Recognition Tests
@@ -194,7 +195,7 @@ CoinBank *coinBank;
     NSString *expectedText = kDisplayTextInsertCoin;
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
-    NSInteger expectedRejectedCount = 1;
+    NSInteger expectedRejectedCount = 0; //Because we should totally be ignoring slugs.
     NSInteger actualRejectedCount = coinSlot.returnedCoins.coins;
     NSDecimalNumber *actualValue = coinSlot.insertedCoins.value;
     
@@ -236,7 +237,7 @@ CoinBank *coinBank;
     NSInteger expectedAcceptedCount = 8; // The pennies and slugs shouldn't end up in the value bag.
     NSDecimalNumber *actualValue = coinSlot.insertedCoins.value;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
-    NSInteger expectedRejectedCount = 5;
+    NSInteger expectedRejectedCount = 2;
     NSInteger actualRejectedCount = coinSlot.returnedCoins.coins;
     
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped lots of coins but the wrong number were in the value bag.");
@@ -318,13 +319,11 @@ CoinBank *coinBank;
 // Do we use a greedy algorithm? Dynamic Programming?
 // Check the implementation to find out!
 
-- (void)testMakeChangeWithEnoughInBank {
+- (void)testMakeChangeForEvenDollarItemWithEnoughInBank {
     [inventory addItem:kInventoryItemCola];
     
-    [coinBank.bankedCoins addObject:[CoinData dime]];
-    [coinBank.bankedCoins addObject:[CoinData dime]];
-    [coinBank.bankedCoins addObject:[CoinData nickel]];
-    
+    [coinBank.bankedCoins addCoin:[CoinData dime]];
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:2];
     [self dropCoin:kCoinTypeQuarter amount:5];
     
     [inventory selectItem:kInventoryItemCola];
@@ -339,10 +338,28 @@ CoinBank *coinBank;
     
 }
 
+- (void)testMakeChangeForOddItemWithEnoughInBank {
+    [inventory addItem:kInventoryItemCandy];
+    
+    [coinBank.bankedCoins addCoin:[CoinData dime]];
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:2];
+    
+    [self dropCoin:kCoinTypeQuarter amount:3];
+    
+    [inventory selectItem:kInventoryItemCandy];
+    
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.10 decimalValue]];
+    NSDecimalNumber *actualValue = coinSlot.returnedCoins.value;
+    
+    XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue],
+                   @"Machine did not return correct Change!");
+}
+
 - (void)testMakeChangeWithoutEnoughInBank {
     [inventory addItem:kInventoryItemCandy];
     
-    [coinBank.bankedCoins addObject:[CoinData nickel]];
+    [coinBank.bankedCoins addCoin:[CoinData nickel]];
     
     [self dropCoin:kCoinTypeQuarter amount:3];
     

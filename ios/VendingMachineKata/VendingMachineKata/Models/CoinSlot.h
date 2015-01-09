@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class CoinBag;
+
 @interface CoinSlot : NSObject
 
 /** Represents the collection of coins inserted into the slot */
-@property (nonatomic, strong, readonly) NSCountedSet *insertedCoins;
+@property (nonatomic, strong, readonly) CoinBag *insertedCoins;
 
 /** Represents the collection of coins ejected into the return tray */
-@property (nonatomic, strong, readonly) NSCountedSet *returnedCoins;
+@property (nonatomic, strong, readonly) CoinBag *returnedCoins;
 
 /** Represents a coin being dropped into the slot,
  reading the diameter and mass from hardware.

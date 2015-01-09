@@ -35,19 +35,19 @@ typedef NS_ENUM(NSInteger, CoinType) {
 /** Identify a coin given its physical characteristics and return the data for it */
 + (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness;
 
-/** Quarter singleton for NSCountedSet */
+/** Quarter singleton for CoinBag */
 + (CoinData *)quarter;
 
-/** Dime singleton for NSCountedSet */
+/** Dime singleton for CoinBag */
 + (CoinData *)dime;
 
-/** Nickel singleton for NSCountedSet */
+/** Nickel singleton for CoinBag */
 + (CoinData *)nickel;
 
-/** Penny singleton for NSCountedSet */
+/** Penny singleton for CoinBag */
 + (CoinData *)penny;
 
-/** Slug singleton for NSCountedSet */
+/** Slug singleton for CoinBag */
 + (CoinData *)slug;
 
 @end
