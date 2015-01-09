@@ -23,4 +23,9 @@
  */
 - (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness;
 
+/** Customer pushed the return coins button and everything inserted should be dumped
+ into the return slot
+ */
+- (void)returnCoins;
+
 @end
