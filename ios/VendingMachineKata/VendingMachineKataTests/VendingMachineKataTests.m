@@ -15,6 +15,7 @@
 #import "Display.h"
 #import "CoinData.h"
 #import "Inventory.h"
+#import "CoinBank.h"
 
 @interface VendingMachineKataTests : XCTestCase
 
@@ -26,6 +27,7 @@ CoinSlot *coinSlot;
 Display *display;
 CoinData *coinDataTest;
 Inventory *inventory;
+CoinBank *coinBank;
 
 - (void)setUp {
     [super setUp];
@@ -33,6 +35,7 @@ Inventory *inventory;
     display = [Display new];
     coinDataTest = [CoinData new];
     inventory = [Inventory new];
+    coinBank = [CoinBank new];
 }
 
 - (void)tearDown {
@@ -45,7 +48,8 @@ Inventory *inventory;
     XCTAssertNotNil(coinSlot, @"CoinSlot class doesn't exist!");
     XCTAssertNotNil(coinDataTest, @"CoinData class doesn't exist!");
     XCTAssertNotNil(display, @"Display class doesn't exist!");
-    
+    XCTAssertNotNil(inventory, @"Inventory class doesn't exist!");
+    XCTAssertNotNil(coinBank, @"CoinBank class doesn't exist!");
 }
 
 #pragma mark - Coin Recognition Tests
@@ -235,8 +239,6 @@ Inventory *inventory;
  */
 
 - (void)testSelectColaWithoutEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
@@ -255,8 +257,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectColaBeforeInsertingCoins {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@1.00 decimalValue]];
@@ -270,8 +270,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectColaWithEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeQuarter amount:4];
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCola];
@@ -285,8 +283,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectChipsWithoutEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
@@ -305,8 +301,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectChipsBeforeInsertingCoins {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.50 decimalValue]];
@@ -319,8 +313,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectChipsWithEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeQuarter amount:2];
     
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemChips];
@@ -335,8 +327,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectCandyWithoutEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeDime amount:2];
     
     NSDecimalNumber *currentValue = coinSlot.insertedCoins.value;
@@ -355,8 +345,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectCandyBeforeInsertingCoins {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     NSDecimalNumber *actualPrice = [inventory selectItem:kInventoryItemCandy];
     
     NSDecimalNumber *expectedPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
@@ -369,8 +357,6 @@ Inventory *inventory;
 }
 
 - (void)testSelectCandyWithEnoughMoney {
-    XCTAssert([self displayTextIsValidInitialValue], @"Display not initialzed to valid inital value");;
-    
     [self dropCoin:kCoinTypeQuarter amount:2];
     [self dropCoin:kCoinTypeDime];
     [self dropCoin:kCoinTypeNickel];
@@ -383,6 +369,115 @@ Inventory *inventory;
     XCTAssert([display.text isEqualToString:kDisplayTextThankYou], @"Customer was not thanked after purchase.");
     XCTAssert([self coinSlotIsEmpty], @"Inserted coins were not emptied out after purchase.");
     XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid inital value after purchase.");
+}
+
+- (void)testMakeInvalidSelection {
+    [inventory selectItem:NSIntegerMax];
+}
+
+#pragma mark - Make Change Tests
+
+/*
+ As a vendor
+ I want customers to receive correct change
+ So that they will use the vending machine again
+ */
+
+- (void)testMakeChangeForColaWithEnoughInBank {
+    coinBank.bankedCoins = [NSCountedSet
+                            setWithObjects:[self createDime],
+                            [self createDime],
+                            [self createNickel],
+                            nil];
+    
+    [self dropCoin:kCoinTypeQuarter amount:5];
+    // And a penny for good luck ;)
+    [self dropCoin:kCoinTypePenny];
+    // And maybe a slug, or two, while we're at it... >;D
+    NSInteger numberOfSlugs = arc4random() % 16;
+    if (numberOfSlugs > 0) {
+        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
+    }
+    
+    // Remember the rejected penny in the return tray (and maybe the slugs)?
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    
+    
+    
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
+                   @"Machine did not return correct Change!");
+}
+
+- (void)testMakeChangeForChipsWithEnoughInBank {
+    coinBank.bankedCoins = [NSCountedSet
+                            setWithObjects:[self createDime],
+                            [self createDime],
+                            [self createNickel],
+                            nil];
+    
+    [self dropCoin:kCoinTypeQuarter amount:5];
+    // And a penny for good luck ;)
+    [self dropCoin:kCoinTypePenny];
+    // And maybe a slug, or two, while we're at it... >;D
+    NSInteger numberOfSlugs = arc4random() % 16;
+    if (numberOfSlugs > 0) {
+        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
+    }
+    
+    // Remember the rejected penny in the return tray (and maybe the slugs)?
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
+                   @"Machine did not return correct Change!");
+    
+}
+
+- (void)testMakeChangeForCandyWithEnoughInBank {
+    coinBank.bankedCoins = [NSCountedSet
+                            setWithObjects:[self createDime],
+                            [self createDime],
+                            [self createNickel],
+                            nil];
+    
+    [self dropCoin:kCoinTypeQuarter amount:5];
+    // And a penny for good luck ;)
+    [self dropCoin:kCoinTypePenny];
+    // And maybe a slug, or two, while we're at it... >;D
+    NSInteger numberOfSlugs = arc4random() % 16;
+    if (numberOfSlugs > 0) {
+        [self dropCoin:kCoinTypeSlug amount:numberOfSlugs];
+    }
+    
+    // Remember the rejected penny in the return tray (and maybe the slugs)?
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.26 decimalValue]];
+    
+    XCTAssertEqual(NSOrderedSame, [expectedValue compare:coinSlot.returnedCoins.value],
+                   @"Machine did not return correct Change!");
+    
+}
+
+- (void)testMakeChangeForColaWithoutEnoughInBank {
+    
+}
+
+- (void)testMakeChangeForChipsWithoutEnoughInBank {
+    
+}
+
+- (void)testMakeChangeForCandyWithoutEnoughInBank {
+    
+}
+
+- (void)testMakeChangeForColaWithEmptyBank {
+    
+}
+
+- (void)testMakeChangeForChipsWithEmptyBank {
+    
+}
+
+- (void)testMakeChangeForCandyWithEmptyBank {
+    
 }
 
 #pragma mark - Helper Methods
@@ -440,6 +535,33 @@ Inventory *inventory;
 
 - (void)dropCoin:(CoinType)coin {
     [self dropCoin:coin amount:1];
+}
+
+- (CoinData *)createQuarter {
+    CoinData *coin = [CoinData new];
+    
+    coin.coinType = kCoinTypeQuarter;
+    coin.coinValue = [@0.25 decimalValue];
+    
+    return coin;
+}
+
+- (CoinData *)createDime {
+    CoinData *coin = [CoinData new];
+    
+    coin.coinType = kCoinTypeDime;
+    coin.coinValue = [@0.10 decimalValue];
+    
+    return coin;
+}
+
+- (CoinData *)createNickel {
+    CoinData *coin = [CoinData new];
+    
+    coin.coinType = kCoinTypeNickel;
+    coin.coinValue = [@0.05 decimalValue];
+    
+    return coin;
 }
 
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F84390691A5F0FA4006F4174 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390681A5F0FA4006F4174 /* Notifications.m */; };
 		F84390711A5F1B65006F4174 /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390701A5F1B65006F4174 /* Inventory.m */; };
+		F84390741A5F6E88006F4174 /* CoinBank.m in Sources */ = {isa = PBXBuildFile; fileRef = F84390731A5F6E88006F4174 /* CoinBank.m */; };
 		F8DF371F1A5D7DF200C25C9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF371E1A5D7DF200C25C9F /* main.m */; };
 		F8DF37221A5D7DF200C25C9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37211A5D7DF200C25C9F /* AppDelegate.m */; };
 		F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DF37271A5D7DF200C25C9F /* ViewController.m */; };
@@ -37,6 +38,8 @@
 		F84390681A5F0FA4006F4174 /* Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
 		F843906F1A5F1B65006F4174 /* Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inventory.h; sourceTree = "<group>"; };
 		F84390701A5F1B65006F4174 /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
+		F84390721A5F6E88006F4174 /* CoinBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinBank.h; sourceTree = "<group>"; };
+		F84390731A5F6E88006F4174 /* CoinBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBank.m; sourceTree = "<group>"; };
 		F8DF37191A5D7DF200C25C9F /* VendingMachineKata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VendingMachineKata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DF371D1A5D7DF200C25C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DF371E1A5D7DF200C25C9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				F8EF42801A5E2302008D58D1 /* CoinData.m */,
 				F843906F1A5F1B65006F4174 /* Inventory.h */,
 				F84390701A5F1B65006F4174 /* Inventory.m */,
+				F84390721A5F6E88006F4174 /* CoinBank.h */,
+				F84390731A5F6E88006F4174 /* CoinBank.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				F84390691A5F0FA4006F4174 /* Notifications.m in Sources */,
 				F8DF37281A5D7DF200C25C9F /* ViewController.m in Sources */,
 				F8DF371F1A5D7DF200C25C9F /* main.m in Sources */,
+				F84390741A5F6E88006F4174 /* CoinBank.m in Sources */,
 				F8EF42811A5E2302008D58D1 /* CoinData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

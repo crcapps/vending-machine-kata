@@ -24,7 +24,9 @@
 /** Counts all the coins in the bag and ignores the cruft. */
 - (NSInteger)coins;
 
-/** Empties out the bag */
+/** Empties out the bag into another, anonymous bag,
+ then drop-kicks that bag into oblivion, to be handled by ARC.
+ */
 - (void)empty;
 
 @end
