@@ -98,7 +98,13 @@
     static NSDictionary *values = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        values = @{@(kCoinTypeSlug) : @0.00, @(kCoinTypePenny) : @0.01, @(kCoinTypeNickel) : @0.05, @(kCoinTypeDime) : @0.10, @(kCoinTypeQuarter) : @0.25};
+        values = @{
+                   @(kCoinTypeSlug) : @0.00,
+                   @(kCoinTypePenny) : @0.01,
+                   @(kCoinTypeNickel) : @0.05,
+                   @(kCoinTypeDime) : @0.10,
+                   @(kCoinTypeQuarter) : @0.25
+                   };
     });
     NSNumber *valueNumber = [values objectForKey : @(coinType)];
     if (valueNumber == nil) {
