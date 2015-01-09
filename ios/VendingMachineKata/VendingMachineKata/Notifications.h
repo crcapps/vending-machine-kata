@@ -37,8 +37,8 @@ extern NSString * const kNotificationCannotMakeChangeForSelection;
 /** Name of the notification posted when the machine can make change for a selection */
 extern NSString * const kNotificationCanMakeChangeForSelection;
 
-/** Name of the notification posted when the machine should bank the coins in the slot */
-extern NSString * const kNotificationBankCoins;
+/** Name of the notification posted when the machine should bank the coins in the slot, dispensing change. */
+extern NSString * const kNotificationBankCoinsAndMakeChange;
 
 #pragma mark - Key Names
 

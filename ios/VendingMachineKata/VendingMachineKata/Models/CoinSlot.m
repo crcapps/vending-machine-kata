@@ -64,8 +64,9 @@
 }
 
 - (void)purchaseWasCompleted:(NSNotification *)notification {
-    NSDecimalNumber *amount = [notification.userInfo objectForKey:kUserInfoKeyChange];
-    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:kNotificationBankCoinsAndMakeChange object:self userInfo:notification.userInfo];
+    _insertedCoins = [NSCountedSet new];
 }
 
 - (void)dealloc {

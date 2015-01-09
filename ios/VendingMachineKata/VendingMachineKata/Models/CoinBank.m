@@ -21,6 +21,7 @@
     if (self) {
         _bankedCoins = [NSCountedSet new];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sufficientCredit:) name:kNotificationItemSelectedSufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeChange:) name:kNotificationBankCoinsAndMakeChange object:nil];
     }
     
     return self;
@@ -56,6 +57,7 @@
  12) We're going to take all their money before dispensing change!
  13) Therefore, we can ALWAYS make change if the machine contains at least one dime and one nickel,
  or three nickels.  [D >= 1 && N >= 1, N >=3] is the master key to this problem.
+ 14) Bilbo Baggins
  QED: Don't worry about DynP.
  </SPOILER>
  */
@@ -142,8 +144,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self userInfo:notification.userInfo];
 }
 
-- (void)makeChangeForAmount:(NSDecimalNumber *)amount {
-    
+- (void)makeChange:(NSNotification *)notification {
+    NSCountedSet *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
+    [insertedCoins emptyInto:self.bankedCoins];
 }
 
 - (void)dealloc {

@@ -16,7 +16,4 @@
 /** Can the bank make change for this amount? */
 - (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(NSCountedSet *)coins;
 
-/** Have the bank dispense the change */
-- (void)makeChangeForAmount:(NSDecimalNumber *)amount;
-
 @end
