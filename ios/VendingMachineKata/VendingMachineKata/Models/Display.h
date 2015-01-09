@@ -14,7 +14,7 @@ extern NSString * const kDisplayTextPrice;
 
 @interface Display : NSObject
 
-/** The text show on the display */
+/** The text shown on the display */
 @property (nonatomic, strong, readonly) NSString    *text;
 
 @end
