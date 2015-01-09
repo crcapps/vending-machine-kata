@@ -76,7 +76,6 @@ NSString * const kDisplayTextSoldOut = @"SOLD OUT";
                    localizedStringFromNumber:credit
                    numberStyle:NSNumberFormatterCurrencyStyle];
     _text = kDisplayTextSoldOut;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self userInfo:notification.userInfo];
 }
 
 - (void)insufficientCredit:(NSNotification *)notification {
