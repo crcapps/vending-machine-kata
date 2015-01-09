@@ -32,8 +32,9 @@ NSString * const kDisplayTextPrice = @"PRICE";
     if (self) {
         [self resetText];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sufficientCredit:) name:kNotificationItemSelectedSufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
     }
     
     return self;
@@ -61,9 +62,13 @@ NSString * const kDisplayTextPrice = @"PRICE";
     }
 }
 
-- (void)sufficientCredit:(NSNotification *)notification {
+- (void)selectionInStock:(NSNotification *)notification {
     _text = kDisplayTextThankYou;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self userInfo:notification.userInfo];
+}
+
+- (void)selectionOutOfStock:(NSNotification *)notification {
+    // noop, for now.
 }
 
 - (void)insufficientCredit:(NSNotification *)notification {

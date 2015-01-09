@@ -15,7 +15,10 @@
     NSDecimalNumber *totalValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
     for (NSObject *object in self) {
         if ([object isKindOfClass:[CoinData class]]) {
-            NSDecimalNumber *new = [NSDecimalNumber decimalNumberWithDecimal:((CoinData *)object).coinValue];
+            NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithDecimal:((CoinData *)object).coinValue];
+            NSUInteger count = [self countForObject:object];
+            NSDecimalNumber *decimalCount = [NSDecimalNumber decimalNumberWithDecimal:[@(count) decimalValue]];
+            NSDecimalNumber *new = [value decimalNumberByMultiplyingBy:decimalCount];
             totalValue = [totalValue decimalNumberByAdding:new];
         }
     }
@@ -30,7 +33,7 @@
     NSInteger totalCount = 0;
     for (NSObject *object in self) {
         if ([object isKindOfClass:[CoinData class]]) {
-            totalCount++;
+            totalCount += [self countForObject:object];
         }
     }
     return totalCount;
@@ -44,6 +47,27 @@
     for (NSObject *object in tempBag) {
         [self removeObject:object];
     }
+}
+
+- (void)emptyInto:(NSCountedSet *)bag {
+    for (NSObject *object in self) {
+        [bag addObject:object];
+    }
+    for (NSObject *object in bag) {
+        [self removeObject:object];
+    }
+}
+
+- (NSInteger)quarters {
+    return [self countForObject:[CoinData quarter]];
+}
+
+- (NSInteger)nickels {
+    return [self countForObject:[CoinData nickel]];
+}
+
+- (NSInteger)dimes {
+    return [self countForObject:[CoinData dime]];
 }
 
 @end

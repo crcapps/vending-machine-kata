@@ -24,7 +24,21 @@
 /** Counts all the coins in the bag and ignores the cruft. */
 - (NSInteger)coins;
 
-/** Empties out the bag */
+/** Empties out the bag into another, anonymous bag,
+ then drop-kicks that bag into oblivion, to be handled by ARC.
+ */
 - (void)empty;
+
+/** Transfers the contents of one bag to another */
+- (void)emptyInto:(NSCountedSet *)bag;
+
+/** The quarters in the bag. */
+@property (nonatomic, readonly) NSInteger   quarters;
+
+/** The nickels in the bag. */
+@property (nonatomic, readonly) NSInteger   nickels;
+
+/** The dimes in the bag. */
+@property (nonatomic, readonly) NSInteger   dimes;
 
 @end
