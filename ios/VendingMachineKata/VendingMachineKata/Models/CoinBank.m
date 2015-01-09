@@ -58,11 +58,16 @@
  13) Therefore, we can ALWAYS make change if the machine contains at least one dime and one nickel,
  or three nickels.  [D >= 1 && N >= 1, N >=3] is the master key to this problem.
  14) Bilbo Baggins
- QED: Don't worry about DynP.  The edge cases that make greedy fail don't exist without arbitrary amounts (i.e. pennies).
+ QED: Don't worry about DynP.  The edge cases that make greedy fail on minimum coins don't exist
+      without arbitrary amounts (i.e. pennies).  Pennies make greedy fail on minimum coins.
+ 
  
  THE REVELATION: This isn't actually the Vending Machine Change Making Problem!
  At least, not in its strictest sense!  Including pennies causes edge cases to arise
- where the greedy approach will fail.  Specifically the edge cases where the set of possible inputs are [P=3, P=4]
+ where the greedy approach will fail for minimum coins.  Specifically the edge cases where
+ the set of possible inputs are [P < 0 && P > 5].
+ 
+ Far, far more time has been spent on getting the right count out of NSCountedSet.
 
  </SPOILER>
  */
