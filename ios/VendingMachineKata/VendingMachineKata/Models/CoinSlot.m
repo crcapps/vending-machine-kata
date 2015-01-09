@@ -57,7 +57,8 @@
                                 kUserInfoKeyPrice : price,
                                 kUserInfoKeyCredit : self.insertedCoins.value,
                                 kUserInfoKeyItem : item,
-                                kUserInfoKeyChange : change
+                                kUserInfoKeyChange : change,
+                                kUserInfoKeyCoins : self.insertedCoins
                                 }];
     }
 }

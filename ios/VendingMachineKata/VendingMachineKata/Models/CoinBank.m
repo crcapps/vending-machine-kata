@@ -62,7 +62,9 @@
 
 - (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(NSCountedSet *)coins {
     BOOL canMakeChange = NO;
-    NSDecimalNumber *totalAvailable = [self.bankedCoins.value decimalNumberByAdding:coins.value];
+    NSDecimalNumber *bankedValue = self.bankedCoins.value;
+    NSDecimalNumber *insertedValue = coins.value;
+    NSDecimalNumber *totalAvailable = [bankedValue decimalNumberByAdding:insertedValue];
     if ([amount compare:[NSDecimalNumber zero]] == NSOrderedSame) {
         canMakeChange = YES;
     }
@@ -85,10 +87,16 @@
         // If we add something new that isn't the same price as an existing item, everything breaks.
         // Why not just hardcode the value here then?  We'd have to change everything anyway.
         // Plus, finding it again when it needs changed is part of what tests are for!
-        NSDecimalNumber candyPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]]
+        NSDecimalNumber *candyPrice = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
         NSComparisonResult priceCompare = [price compare:candyPrice];
         if (priceCompare == NSOrderedSame) {
-            <#statements#>
+            CoinType leftover = [self findPartialCoinForPrice:price withCoins:coins];
+            if (leftover == kCoinTypeNickel && nickelsAvailable >= 1) {
+                canMakeChange = YES;
+            }
+            if (leftover == kCoinTypeDime && (dimesAvailable >= 1 || nickelsAvailable >= 2)) {
+                canMakeChange = YES;
+            }
         }
     }
     return canMakeChange;
@@ -98,7 +106,7 @@
  (whether actually present as quarters or not) to find whether we have a dime
  or a nickel remaining.
  */
-- (CoinType)findPartialCoinForAmount:(NSDecimalNumber *) onPrice:(NSDecimalNumber *)price withCoins:(NSCountedSet *)coins {
+- (CoinType)findPartialCoinForPrice:(NSDecimalNumber *)price withCoins:(NSCountedSet *)coins {
     
     NSDecimalNumber *dividend = coins.value;
     
