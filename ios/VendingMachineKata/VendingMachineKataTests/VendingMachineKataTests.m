@@ -479,8 +479,9 @@ CoinBag *aBag;
 - (void)testInitialInsertCoins {
     [coinBank.bankedCoins addCoin:[CoinData dime] amount:1];
     [coinBank.bankedCoins addCoin:[CoinData nickel] amount:1];
-    display.bank = coinBank;
+    display = [display initWithBank:coinBank];
     XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was displayed when coins were in bank.");
+    
     XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was not displayed with sufficient minimum funds in bank.");
     
     [inventory addItem:kInventoryItemCandy quantity:5];

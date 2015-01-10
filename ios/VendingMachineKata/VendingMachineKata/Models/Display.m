@@ -22,7 +22,7 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 @property (nonatomic)               BOOL        shouldDisplayCredit;
 
 
-@property (nonatomic, readonly)     BOOL        shouldDisplayExactChange;
+@property (nonatomic)               BOOL        shouldDisplayExactChange;
 
 /** The credit to be displayed */
 @property (nonatomic, strong)       NSString    *credit;
@@ -58,11 +58,9 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     return text;
 }
 
-- (BOOL)shouldDisplayExactChange {
-    return !self.bank.canMakeChangeForAnything;
-}
-
 - (void)resetText {
+    BOOL canMake = self.bank.canMakeChangeForAnything;
+    self.shouldDisplayExactChange = !canMake;
     if (self.shouldDisplayExactChange) {
         _text = kDisplayTextExactChangeOnly;
     } else {
