@@ -8,6 +8,7 @@
 
 #import "Display.h"
 #import "Notifications.h"
+#import "CoinBank.h"
 
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 NSString * const kDisplayTextThankYou = @"THANK YOU";
@@ -18,10 +19,13 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 @interface Display ()
 
 /** If the display should display the total value of inserted coins */
-@property (nonatomic)           BOOL        shouldDisplayCredit;
+@property (nonatomic)               BOOL        shouldDisplayCredit;
+
+
+@property (nonatomic, readonly)     BOOL        shouldDisplayExactChange;
 
 /** The credit to be displayed */
-@property (nonatomic, strong)   NSString    *credit;
+@property (nonatomic, strong)       NSString    *credit;
 
 @end
 
@@ -29,9 +33,10 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 
 @synthesize text = _text;
 
-- (instancetype)init {
+- (instancetype)initWithBank:(CoinBank *)bank {
     self = [super init];
     if (self) {
+        self.bank = bank;
         [self resetText];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
@@ -54,8 +59,18 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     return text;
 }
 
+- (BOOL)shouldDisplayExactChange {
+    return !self.bank.canMakeChangeForAnything;
+}
+
 - (void)resetText {
-    _text = kDisplayTextInsertCoin;
+    if (self.shouldDisplayCredit) {
+        _text = self.credit;
+    } else if (self.shouldDisplayExactChange) {
+        _text = kDisplayTextExactChangeOnly;
+    } else {
+        _text = kDisplayTextInsertCoin;
+    }
 }
 
 - (void)coinWasAccepted:(NSNotification *)notification {

@@ -12,6 +12,7 @@
 #import "CoinSlot.h"
 #import "CoinData.h"
 #import "Inventory.h"
+#import "Display.h"
 
 @implementation CoinBank
 
@@ -62,13 +63,13 @@
       without arbitrary amounts (i.e. pennies).  Pennies make greedy fail on minimum coins.
  
  A really nice side effect of this method is that we are never going to give out quarters as change,
- unless they are just extra quarters the stupid/indecisive customer added.
+ unless they are just extra quarters the stupid/indecisive customer added themselves.
  
  
  THE REVELATION: This isn't actually the Vending Machine Change Making Problem!
  At least, not in its strictest sense!  Including pennies causes edge cases to arise
  where the greedy approach will fail for minimum coins.  Specifically the edge cases where
- the set of possible inputs are [P < 0 && P > 5].  Yet another reason to drop the penny.
+ the set of possible inputs are [P > 0 && P < 5].  Yet another reason to drop the penny.
 
  </SPOILER>
  */
@@ -112,7 +113,19 @@
             }
         }
     }
+    
     return canMakeChange;
+}
+
+- (BOOL)canMakeChangeForAnything {
+    NSDecimalNumber *candyIsDandy = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
+    NSDecimalNumber *seventyFive = [NSDecimalNumber decimalNumberWithDecimal:[@0.65 decimalValue]];
+    CoinBag *bag = [CoinBag new];
+    [bag addCoin:[CoinData quarter] amount:3];
+    BOOL forTen = [self canMakeChangeForAmount:seventyFive onPrice:candyIsDandy withCoinsInserted:bag];
+    BOOL forFive = [self canMakeChangeForAmount:seventyFive onPrice:candyIsDandy withCoinsInserted:bag];
+    
+    return forTen && forFive;
 }
 
 /** Greedily divides out the number of quarters comprising a value

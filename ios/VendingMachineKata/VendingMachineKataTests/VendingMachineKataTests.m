@@ -32,10 +32,10 @@ CoinBag *aBag;
 - (void)setUp {
     [super setUp];
     coinSlot = [CoinSlot new];
-    display = [Display new];
+    coinBank = [CoinBank new];
+    display = [[Display alloc] initWithBank: coinBank];
     coinDataTest = [CoinData new];
     inventory = [Inventory new];
-    coinBank = [CoinBank new];
     aBag = [CoinBag new];
 }
 
@@ -173,7 +173,6 @@ CoinBag *aBag;
     [self dropCoin:kCoinTypePenny];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    NSString *expectedText = kDisplayTextInsertCoin;
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 1;
@@ -183,7 +182,7 @@ CoinBag *aBag;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a penny but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a penny but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a penny but it was assigned a value.");
-    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid initial value.");
 }
 
 - (void)testCoinSlotDroppedSlug {
@@ -192,7 +191,6 @@ CoinBag *aBag;
     [self dropCoin:kCoinTypeSlug];
     
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithDecimal:[@0.00 decimalValue]];
-    NSString *expectedText = kDisplayTextInsertCoin;
     NSInteger expectedAcceptedCount = 0;
     NSInteger actualAcceptedCount = coinSlot.insertedCoins.coins;
     NSInteger expectedRejectedCount = 0; //Because we should totally be ignoring slugs.
@@ -202,7 +200,7 @@ CoinBag *aBag;
     XCTAssertEqual(expectedAcceptedCount, actualAcceptedCount, @"Dropped a slug but the wrong number were in the value bag.");
     XCTAssertEqual(expectedRejectedCount, actualRejectedCount, @"Dropped a slug but the wrong number were in the return bag.");
     XCTAssertEqual(NSOrderedSame, [expectedValue compare:actualValue], @"Dropped a slug but it was assigned a value.");
-    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    XCTAssert([self displayTextIsValidInitialValue], @"Display was not reset to valid initial value.");
 }
 
 - (void)testDropFourQuarters {
@@ -465,12 +463,14 @@ CoinBag *aBag;
  */
 
 - (void)testInitialExactChangeOnly {
-    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Insert coins message was not initialized when no coins were in bank.");
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was not initialized when no coins were in bank.");
+    
     XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not initialized when no coins were in bank.");
     
     [coinSlot returnCoins];
     
-    XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Insert coins message was displayed when no coins were in bank.");
+    XCTAssertFalse([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was displayed when no coins were in bank.");
+    
     XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
     
     
@@ -478,7 +478,6 @@ CoinBag *aBag;
 
 - (void)testInitialInsertCoins {
     [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
-     
     XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was displayed when coins were in bank.");
     XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was displayed with sufficient minimum funds in bank.");
     
@@ -516,7 +515,6 @@ CoinBag *aBag;
     
     XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
     
-        
     XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
     
     [coinSlot returnCoins];
@@ -536,6 +534,12 @@ CoinBag *aBag;
     [inventory selectItem:kInventoryItemCandy];
     
     XCTAssert([display.text isEqualToString:expectedText], @"Item price was not displayed after selection.");
+    
+    expectedText = [NSNumberFormatter localizedStringFromNumber:expectedValue numberStyle:NSNumberFormatterCurrencyStyle];
+    
+    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
+    
+    [coinSlot returnCoins];
     
     XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
 }
