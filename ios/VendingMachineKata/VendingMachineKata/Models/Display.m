@@ -8,19 +8,24 @@
 
 #import "Display.h"
 #import "Notifications.h"
+#import "CoinBank.h"
 
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
 NSString * const kDisplayTextThankYou = @"THANK YOU";
 NSString * const kDisplayTextPrice = @"PRICE";
 NSString * const kDisplayTextSoldOut = @"SOLD OUT";
+NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 
 @interface Display ()
 
 /** If the display should display the total value of inserted coins */
-@property (nonatomic)           BOOL        shouldDisplayCredit;
+@property (nonatomic)               BOOL        shouldDisplayCredit;
+
+
+@property (nonatomic)               BOOL        shouldDisplayExactChange;
 
 /** The credit to be displayed */
-@property (nonatomic, strong)   NSString    *credit;
+@property (nonatomic, strong)       NSString    *credit;
 
 @end
 
@@ -28,17 +33,17 @@ NSString * const kDisplayTextSoldOut = @"SOLD OUT";
 
 @synthesize text = _text;
 
-- (instancetype)init {
+- (instancetype)initWithBank:(CoinBank *)bank {
     self = [super init];
     if (self) {
-        [self resetText];
+        self.bank = bank;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsWereReturned:) name:kNotificationCoinsReturned object:nil];
+        [self resetText];
     }
-    
     return self;
 }
 
@@ -54,7 +59,13 @@ NSString * const kDisplayTextSoldOut = @"SOLD OUT";
 }
 
 - (void)resetText {
-    _text = kDisplayTextInsertCoin;
+    BOOL canMake = self.bank.canMakeChangeForAnything;
+    self.shouldDisplayExactChange = !canMake;
+    if (self.shouldDisplayExactChange) {
+        _text = kDisplayTextExactChangeOnly;
+    } else {
+        _text = kDisplayTextInsertCoin;
+    }
 }
 
 - (void)coinWasAccepted:(NSNotification *)notification {

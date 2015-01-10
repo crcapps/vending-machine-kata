@@ -8,14 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class CoinBank;
+
 extern NSString * const kDisplayTextInsertCoin;
 extern NSString * const kDisplayTextThankYou;
 extern NSString * const kDisplayTextPrice;
 extern NSString * const kDisplayTextSoldOut;
+extern NSString * const kDisplayTextExactChangeOnly;
 
 @interface Display : NSObject
 
 /** The text shown on the display */
 @property (nonatomic, strong, readonly) NSString    *text;
+
+@property (nonatomic, weak)             CoinBank    *bank;
+
+- (instancetype)initWithBank:(CoinBank *)bank;
 
 @end
