@@ -477,11 +477,13 @@ CoinBag *aBag;
 }
 
 - (void)testInitialInsertCoins {
-    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
+    [coinBank.bankedCoins addCoin:[CoinData dime] amount:1];
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:1];
+    display.bank = coinBank;
     XCTAssertFalse([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was displayed when coins were in bank.");
-    XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was displayed with sufficient minimum funds in bank.");
+    XCTAssert([display.text isEqualToString:kDisplayTextInsertCoin], @"Insert coins message was not displayed with sufficient minimum funds in bank.");
     
-    [inventory addItem:kInventoryItemCandy quantity:2];
+    [inventory addItem:kInventoryItemCandy quantity:5];
     
     [coinSlot returnCoins];
     
@@ -514,8 +516,6 @@ CoinBag *aBag;
     [inventory selectItem:kInventoryItemCandy];
     
     XCTAssert([display.text isEqualToString:kDisplayTextExactChangeOnly], @"Exact Change message was not displayed when no coins were in bank.");
-    
-    XCTAssert([expectedText isEqualToString:display.text], @"Display does not display the correct amount.");
     
     [coinSlot returnCoins];
     

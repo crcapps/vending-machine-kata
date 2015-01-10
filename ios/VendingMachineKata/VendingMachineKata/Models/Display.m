@@ -37,14 +37,13 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     self = [super init];
     if (self) {
         self.bank = bank;
-        [self resetText];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsWereReturned:) name:kNotificationCoinsReturned object:nil];
+        [self resetText];
     }
-    
     return self;
 }
 
@@ -64,9 +63,7 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 }
 
 - (void)resetText {
-    if (self.shouldDisplayCredit) {
-        _text = self.credit;
-    } else if (self.shouldDisplayExactChange) {
+    if (self.shouldDisplayExactChange) {
         _text = kDisplayTextExactChangeOnly;
     } else {
         _text = kDisplayTextInsertCoin;
