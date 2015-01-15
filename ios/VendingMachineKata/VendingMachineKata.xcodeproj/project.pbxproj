@@ -14,6 +14,7 @@
 		F83EEE1F1A684CCF00022130 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F83EEE1E1A684CCF00022130 /* Images.xcassets */; };
 		F83EEE221A684CCF00022130 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83EEE201A684CCF00022130 /* LaunchScreen.xib */; };
 		F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */; };
+		F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE371A684DF600022130 /* AcceptCoinsTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		F83EEE271A684CCF00022130 /* VendingMachineKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VendingMachineKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83EEE2C1A684CCF00022130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
+		F83EEE371A684DF600022130 /* AcceptCoinsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */,
+				F83EEE371A684DF600022130 /* AcceptCoinsTests.m */,
 				F83EEE2B1A684CCF00022130 /* Supporting Files */,
 			);
 			path = VendingMachineKataTests;
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */,
 				F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
