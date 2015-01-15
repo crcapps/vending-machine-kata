@@ -37,6 +37,8 @@
 }
 
 - (void)testItAcceptsValidCoins {
+    NSLog(@"The vending machine will accept valid coins (nickels, dimes, and quarters) and reject invalid ones (pennies).");
+    
     XCTFail(@"This test is not yet implemented.");
 }
 
