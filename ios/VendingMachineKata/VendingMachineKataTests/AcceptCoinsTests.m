@@ -26,6 +26,20 @@
 
 @implementation AcceptCoinsTests
 
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        NSLog(@"\n* Testing User Story: Accept Coins.\n");
+        NSLog(@"As a vendor");
+        NSLog(@"I want a vending machine that accepts coins");
+        NSLog(@"So that I can collect money from the customer");
+        NSLog(@"\n");
+    }
+    
+    return self;
+}
+
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -36,13 +50,9 @@
     [super tearDown];
 }
 
-- (void)testItAcceptsValidCoins {
-    NSLog(@"The vending machine will accept valid coins (nickels, dimes, and quarters) and reject invalid ones (pennies).");
+- (void)testItAcceptsValidCoinsAndRejectsInvalidCoins {
+    NSLog(@"** The vending machine will accept valid coins (nickels, dimes, and quarters) and reject invalid ones (pennies).");
     
-    XCTFail(@"This test is not yet implemented.");
-}
-
-- (void)testItRejectsInvalidCoins {
     XCTFail(@"This test is not yet implemented.");
 }
 
