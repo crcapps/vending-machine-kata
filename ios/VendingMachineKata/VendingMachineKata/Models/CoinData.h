@@ -24,16 +24,16 @@ typedef NS_ENUM(NSInteger, CoinType) {
 @property (nonatomic, strong) NSString *name;
 
 /** The type of coin */
-@property (nonatomic)           CoinType    coinType;
+@property (nonatomic) CoinType coinType;
 
 /** The value of the coin */
-@property (nonatomic)           NSDecimal   coinValue;
+@property (nonatomic) NSDecimal coinValue;
 
 /**
  Whether or not this coin is accepted by the machine
  Pennies and unrecognized, coin-like objects (AKA "slugs") by default.
  */
-@property (nonatomic, readonly) BOOL        isAccepted;
+@property (nonatomic, readonly) BOOL isAccepted;
 
 /** Identify a coin given its physical characteristics and return the data for it */
 + (CoinData *)identifyCoinForDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness;

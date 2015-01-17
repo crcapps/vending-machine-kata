@@ -24,6 +24,8 @@
 		F889547A1A6AE2550019A620 /* CoinDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954791A6AE2550019A620 /* CoinDataTests.m */; };
 		F88954871A6AF5BC0019A620 /* CurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954861A6AF5BC0019A620 /* CurrencyTests.m */; };
 		F889548B1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = F889548A1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m */; };
+		F889548E1A6AF9010019A620 /* CoinBag.m in Sources */ = {isa = PBXBuildFile; fileRef = F889548D1A6AF9010019A620 /* CoinBag.m */; };
+		F88954931A6AFE6B0019A620 /* CoinBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954921A6AFE6B0019A620 /* CoinBagTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		F88954861A6AF5BC0019A620 /* CurrencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyTests.m; sourceTree = "<group>"; };
 		F88954891A6AF8BA0019A620 /* NSDecimalNumber+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+Currency.h"; sourceTree = "<group>"; };
 		F889548A1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+Currency.m"; sourceTree = "<group>"; };
+		F889548C1A6AF9010019A620 /* CoinBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinBag.h; sourceTree = "<group>"; };
+		F889548D1A6AF9010019A620 /* CoinBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBag.m; sourceTree = "<group>"; };
+		F88954921A6AFE6B0019A620 /* CoinBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBagTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +156,8 @@
 			children = (
 				F88954761A6AE23A0019A620 /* CoinData.h */,
 				F88954771A6AE23A0019A620 /* CoinData.m */,
+				F889548C1A6AF9010019A620 /* CoinBag.h */,
+				F889548D1A6AF9010019A620 /* CoinBag.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F88954791A6AE2550019A620 /* CoinDataTests.m */,
+				F88954921A6AFE6B0019A620 /* CoinBagTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -295,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88954781A6AE23A0019A620 /* CoinData.m in Sources */,
+				F889548E1A6AF9010019A620 /* CoinBag.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
 				F83EEE171A684CCF00022130 /* AppDelegate.m in Sources */,
 				F889548B1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m in Sources */,
@@ -311,6 +320,7 @@
 				F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */,
 				F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */,
 				F8832FBE1A6AC9D200CA40D1 /* SelectProductTests.m in Sources */,
+				F88954931A6AFE6B0019A620 /* CoinBagTests.m in Sources */,
 				F88954871A6AF5BC0019A620 /* CurrencyTests.m in Sources */,
 				F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */,
 				F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */,

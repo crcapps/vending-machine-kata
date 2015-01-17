@@ -15,9 +15,9 @@
 
 @end
 
-CoinData *coinData;
-
 @implementation CoinDataTests
+
+CoinData *coinData;
 
 - (void)setUp {
     [super setUp];
