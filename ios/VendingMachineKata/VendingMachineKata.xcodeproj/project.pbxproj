@@ -22,8 +22,8 @@
 		F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */; };
 		F88954781A6AE23A0019A620 /* CoinData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954771A6AE23A0019A620 /* CoinData.m */; };
 		F889547A1A6AE2550019A620 /* CoinDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954791A6AE2550019A620 /* CoinDataTests.m */; };
-		F88954841A6AF4F00019A620 /* NSDecimalNumber+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954831A6AF4F00019A620 /* NSDecimalNumber+Currency.m */; };
 		F88954871A6AF5BC0019A620 /* CurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954861A6AF5BC0019A620 /* CurrencyTests.m */; };
+		F889548B1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = F889548A1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,9 +59,9 @@
 		F88954761A6AE23A0019A620 /* CoinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinData.h; sourceTree = "<group>"; };
 		F88954771A6AE23A0019A620 /* CoinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinData.m; sourceTree = "<group>"; };
 		F88954791A6AE2550019A620 /* CoinDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinDataTests.m; sourceTree = "<group>"; };
-		F88954821A6AF4F00019A620 /* NSDecimalNumber+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDecimalNumber+Currency.h"; path = "../../../../../Documents/NSDecimalNumber+Currency.h"; sourceTree = "<group>"; };
-		F88954831A6AF4F00019A620 /* NSDecimalNumber+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDecimalNumber+Currency.m"; path = "../../../../../Documents/NSDecimalNumber+Currency.m"; sourceTree = "<group>"; };
 		F88954861A6AF5BC0019A620 /* CurrencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyTests.m; sourceTree = "<group>"; };
+		F88954891A6AF8BA0019A620 /* NSDecimalNumber+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+Currency.h"; sourceTree = "<group>"; };
+		F889548A1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+Currency.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 		F83EEE101A684CCE00022130 /* VendingMachineKata */ = {
 			isa = PBXGroup;
 			children = (
-				F88954801A6AF4A10019A620 /* Categories */,
+				F88954881A6AF8BA0019A620 /* Categories */,
 				F83EEE3C1A6853E700022130 /* Models */,
 				F83EEE151A684CCF00022130 /* AppDelegate.h */,
 				F83EEE161A684CCF00022130 /* AppDelegate.m */,
@@ -176,21 +176,21 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		F88954801A6AF4A10019A620 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				F88954821A6AF4F00019A620 /* NSDecimalNumber+Currency.h */,
-				F88954831A6AF4F00019A620 /* NSDecimalNumber+Currency.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
 		F88954851A6AF53D0019A620 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				F88954861A6AF5BC0019A620 /* CurrencyTests.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		F88954881A6AF8BA0019A620 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F88954891A6AF8BA0019A620 /* NSDecimalNumber+Currency.h */,
+				F889548A1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,7 +297,7 @@
 				F88954781A6AE23A0019A620 /* CoinData.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
 				F83EEE171A684CCF00022130 /* AppDelegate.m in Sources */,
-				F88954841A6AF4F00019A620 /* NSDecimalNumber+Currency.m in Sources */,
+				F889548B1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m in Sources */,
 				F83EEE141A684CCF00022130 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
