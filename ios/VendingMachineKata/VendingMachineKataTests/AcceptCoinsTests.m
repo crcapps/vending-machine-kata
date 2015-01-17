@@ -2,7 +2,7 @@
 //  AcceptCoinsTests.m
 //  VendingMachineKata
 //
-//  Created by the Heatherness on 1/15/15.
+//  Created by Casey Ryan Capps on 1/15/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
@@ -24,20 +24,6 @@ Accept Coins
 @end
 
 @implementation AcceptCoinsTests
-
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        NSLog(@"\n* Testing User Story: Accept Coins.\n");
-        NSLog(@"As a vendor");
-        NSLog(@"I want a vending machine that accepts coins");
-        NSLog(@"So that I can collect money from the customer");
-        NSLog(@"\n");
-    }
-    
-    return self;
-}
 
 - (void)setUp {
     [super setUp];
@@ -64,13 +50,13 @@ Accept Coins
 - (void)testItDisplaysCorrectMessageWhenNoCoinsAreInserted {
     NSLog(@"** When there are no coins inserted, the machine displays INSERT COIN.");
     
-    XCTFail(@"This test is not yet implemented.");
+    XCTFail(@"*** This test is not yet implemented.");
 }
 
 - (void)testItPlacesRejectedCoinsInTheCoinReturn {
-    NSLog(@"Rejected coins are placed in the coin return.");
+    NSLog(@"** Rejected coins are placed in the coin return.");
     
-    XCTFail(@"This test is not yet implemented.");
+    XCTFail(@"*** This test is not yet implemented.");
 }
 
 @end

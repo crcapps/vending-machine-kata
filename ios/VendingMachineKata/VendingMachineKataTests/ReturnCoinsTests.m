@@ -2,7 +2,7 @@
 //  ReturnCoinsTests.m
 //  VendingMachineKata
 //
-//  Created by the Heatherness on 1/17/15.
+//  Created by Casey Ryan Capps on 1/17/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
@@ -24,20 +24,6 @@
 @end
 
 @implementation ReturnCoinsTests
-
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        NSLog(@"\n* Testing User Story: Return Coins.\n");
-        NSLog(@"As a customer");
-        NSLog(@"I want to have my money returned");
-        NSLog(@"So that I can change my mind about buying stuff from the vending machine");
-        NSLog(@"\n");
-    }
-    
-    return self;
-}
 
 - (void)setUp {
     [super setUp];

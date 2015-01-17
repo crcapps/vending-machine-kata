@@ -2,7 +2,7 @@
 //  SoldOutTests.m
 //  VendingMachineKata
 //
-//  Created by the Heatherness on 1/17/15.
+//  Created by Casey Ryan Capps on 1/17/15.
 //  Copyright (c) 2015 Casey Ryan Capps. All rights reserved.
 //
 
@@ -25,20 +25,6 @@
 
 @implementation SoldOutTests
 
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        NSLog(@"\n* Testing User Story: Sold Out.\n");
-        NSLog(@"As a customer");
-        NSLog(@" I want to be told when the item I have selected is not available");
-        NSLog(@" So that I can select another item");
-        NSLog(@"\n");
-    }
-    
-    return self;
-}
-
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -55,7 +41,7 @@
     XCTFail(@"*** This test is not yet implemented.");
 }
 
-- (void)testItDisplaysTheCorrectMessageAfterCheckingAgainAfterASoldOutSelection {
+- (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
     NSLog(@"** If the display is checked again, it will display the amount of money remaining in the machine or INSERT COIN if there is no money in the machine.");
     
     XCTFail(@"*** This test is not yet implemented.");
