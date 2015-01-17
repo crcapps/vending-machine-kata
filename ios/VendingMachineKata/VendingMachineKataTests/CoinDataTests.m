@@ -24,11 +24,6 @@ CoinData *coinData;
     coinData = [CoinData new];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 #pragma mark - Coin Recognition Tests
 
 - (void)testItRecognizesQuarterAndReturnsCorrectObject {
