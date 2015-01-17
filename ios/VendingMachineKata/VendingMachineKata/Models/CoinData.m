@@ -119,6 +119,7 @@
         platoCaveQuarter = [CoinData new];
         platoCaveQuarter.coinType = kCoinTypeQuarter;
         platoCaveQuarter.coinValue = [self valueForCoinType:kCoinTypeQuarter];
+        platoCaveQuarter.name = @"quarter";
     });
     return platoCaveQuarter;
 }
@@ -130,6 +131,7 @@
         platoCaveDime = [CoinData new];
         platoCaveDime.coinType = kCoinTypeDime;
         platoCaveDime.coinValue = [self valueForCoinType:platoCaveDime.coinType];
+        platoCaveDime.name = @"dime";
     });
     return platoCaveDime;
 }
@@ -141,6 +143,7 @@
         platoCaveNickel = [CoinData new];
         platoCaveNickel.coinType = kCoinTypeNickel;
         platoCaveNickel.coinValue = [self valueForCoinType:platoCaveNickel.coinType];
+        platoCaveNickel.name = @"nickel";
     });
     return platoCaveNickel;
 }
@@ -152,6 +155,7 @@
         platoCavePenny = [CoinData new];
         platoCavePenny.coinType = kCoinTypePenny;
         platoCavePenny.coinValue = [self valueForCoinType:platoCavePenny.coinType];
+        platoCavePenny.name = @"penny";
     });
     return platoCavePenny;
 }
@@ -169,6 +173,7 @@
         platoCaveSlug = [CoinData new];
         platoCaveSlug.coinType = kCoinTypeSlug;
         platoCaveSlug.coinValue = [self valueForCoinType:platoCaveSlug.coinType];
+        platoCaveSlug.name = @"slug";
     });
     return platoCaveSlug;
 }
