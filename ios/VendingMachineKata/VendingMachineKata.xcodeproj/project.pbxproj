@@ -20,6 +20,8 @@
 		F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */; };
 		F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */; };
 		F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */; };
+		F88954781A6AE23A0019A620 /* CoinData.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954771A6AE23A0019A620 /* CoinData.m */; };
+		F889547A1A6AE2550019A620 /* CoinDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954791A6AE2550019A620 /* CoinDataTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,9 @@
 		F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReturnCoinsTests.m; sourceTree = "<group>"; };
 		F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoldOutTests.m; sourceTree = "<group>"; };
 		F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExactChangeOnlyTests.m; sourceTree = "<group>"; };
+		F88954761A6AE23A0019A620 /* CoinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinData.h; sourceTree = "<group>"; };
+		F88954771A6AE23A0019A620 /* CoinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinData.m; sourceTree = "<group>"; };
+		F88954791A6AE2550019A620 /* CoinDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinDataTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,13 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */,
-				F83EEE371A684DF600022130 /* AcceptCoinsTests.m */,
-				F8832FBD1A6AC9D200CA40D1 /* SelectProductTests.m */,
-				F8832FBF1A6AC9E700CA40D1 /* MakeChangeTests.m */,
-				F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */,
-				F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */,
-				F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */,
+				F889547B1A6AE2600019A620 /* Behaviors */,
 				F83EEE2B1A684CCF00022130 /* Supporting Files */,
+				F889547C1A6AE2710019A620 /* Models */,
 			);
 			path = VendingMachineKataTests;
 			sourceTree = "<group>";
@@ -141,8 +142,31 @@
 		F83EEE3C1A6853E700022130 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F88954761A6AE23A0019A620 /* CoinData.h */,
+				F88954771A6AE23A0019A620 /* CoinData.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F889547B1A6AE2600019A620 /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				F83EEE371A684DF600022130 /* AcceptCoinsTests.m */,
+				F8832FBD1A6AC9D200CA40D1 /* SelectProductTests.m */,
+				F8832FBF1A6AC9E700CA40D1 /* MakeChangeTests.m */,
+				F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */,
+				F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */,
+				F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */,
+			);
+			name = Behaviors;
+			sourceTree = "<group>";
+		};
+		F889547C1A6AE2710019A620 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F88954791A6AE2550019A620 /* CoinDataTests.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F88954781A6AE23A0019A620 /* CoinData.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
 				F83EEE171A684CCF00022130 /* AppDelegate.m in Sources */,
 				F83EEE141A684CCF00022130 /* main.m in Sources */,
@@ -256,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F889547A1A6AE2550019A620 /* CoinDataTests.m in Sources */,
 				F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */,
 				F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */,
 				F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */,
