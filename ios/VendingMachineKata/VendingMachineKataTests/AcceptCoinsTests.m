@@ -53,18 +53,24 @@
 - (void)testItAcceptsValidCoinsAndRejectsInvalidCoins {
     NSLog(@"** The vending machine will accept valid coins (nickels, dimes, and quarters) and reject invalid ones (pennies).");
     
-    XCTFail(@"This test is not yet implemented.");
+    XCTFail(@"*** This test is not yet implemented.");
 }
 
 - (void)testItAddsValueOfInsertedCoinToCurrentAmountAndUpdatesDisplay {
-    XCTFail(@"This test is not yet implemented.");
+    NSLog(@"** When a valid coin is inserted the amount of the coin will be added to the current amount and the display will be updated.");
+    
+    XCTFail(@"*** This test is not yet implemented.");
 }
 
 - (void)testItDisplaysCorrectMessageWhenNoCoinsAreInserted {
+    NSLog(@"** When there are no coins inserted, the machine displays INSERT COIN.");
+    
     XCTFail(@"This test is not yet implemented.");
 }
 
 - (void)testItPlacesRejectedCoinsInTheCoinReturn {
+    NSLog(@"Rejected coins are placed in the coin return.");
+    
     XCTFail(@"This test is not yet implemented.");
 }
 

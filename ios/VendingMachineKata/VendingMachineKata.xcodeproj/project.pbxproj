@@ -15,7 +15,6 @@
 		F83EEE221A684CCF00022130 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83EEE201A684CCF00022130 /* LaunchScreen.xib */; };
 		F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */; };
 		F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE371A684DF600022130 /* AcceptCoinsTests.m */; };
-		F83EEE3F1A6853FD00022130 /* CoinSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE3E1A6853FD00022130 /* CoinSlot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +42,6 @@
 		F83EEE2C1A684CCF00022130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
 		F83EEE371A684DF600022130 /* AcceptCoinsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTests.m; sourceTree = "<group>"; };
-		F83EEE3D1A6853FD00022130 /* CoinSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinSlot.h; sourceTree = "<group>"; };
-		F83EEE3E1A6853FD00022130 /* CoinSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinSlot.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +126,6 @@
 		F83EEE3C1A6853E700022130 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F83EEE3D1A6853FD00022130 /* CoinSlot.h */,
-				F83EEE3E1A6853FD00022130 /* CoinSlot.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,7 +231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F83EEE3F1A6853FD00022130 /* CoinSlot.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
 				F83EEE171A684CCF00022130 /* AppDelegate.m in Sources */,
 				F83EEE141A684CCF00022130 /* main.m in Sources */,
@@ -435,6 +429,7 @@
 				F83EEE331A684CCF00022130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F83EEE341A684CCF00022130 /* Build configuration list for PBXNativeTarget "VendingMachineKataTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +438,7 @@
 				F83EEE361A684CCF00022130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
