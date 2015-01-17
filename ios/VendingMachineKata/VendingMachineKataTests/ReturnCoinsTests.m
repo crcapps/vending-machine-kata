@@ -9,11 +9,35 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+/**
+ Return Coins
+ 
+ As a customer
+ I want to have my money returned
+ So that I can change my mind about buying stuff from the vending machine
+ 
+ When the return coins is selected, the money the customer has placed in the machine is returned and the display shows INSERT COIN.
+ */
+
 @interface ReturnCoinsTests : XCTestCase
 
 @end
 
 @implementation ReturnCoinsTests
+
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        NSLog(@"\n* Testing User Story: Return Coins.\n");
+        NSLog(@"As a customer");
+        NSLog(@"I want to have my money returned");
+        NSLog(@"So that I can change my mind about buying stuff from the vending machine");
+        NSLog(@"\n");
+    }
+    
+    return self;
+}
 
 - (void)setUp {
     [super setUp];
@@ -25,16 +49,10 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testItReturnsInsertedMoneyAndDisplayShowsCorrectMessage {
+    NSLog(@"** When the return coins is selected, the money the customer has placed in the machine is returned and the display shows INSERT COIN.");
+    
+    XCTFail(@"*** This test is not yet implemented.");
 }
 
 @end
