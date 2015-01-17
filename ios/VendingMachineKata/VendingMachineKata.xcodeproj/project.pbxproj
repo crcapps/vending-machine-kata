@@ -15,6 +15,11 @@
 		F83EEE221A684CCF00022130 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83EEE201A684CCF00022130 /* LaunchScreen.xib */; };
 		F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */; };
 		F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F83EEE371A684DF600022130 /* AcceptCoinsTests.m */; };
+		F8832FBE1A6AC9D200CA40D1 /* SelectProductTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FBD1A6AC9D200CA40D1 /* SelectProductTests.m */; };
+		F8832FC01A6AC9E700CA40D1 /* MakeChangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FBF1A6AC9E700CA40D1 /* MakeChangeTests.m */; };
+		F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */; };
+		F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */; };
+		F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +47,11 @@
 		F83EEE2C1A684CCF00022130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VendingMachineKataTests.m; sourceTree = "<group>"; };
 		F83EEE371A684DF600022130 /* AcceptCoinsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptCoinsTests.m; sourceTree = "<group>"; };
+		F8832FBD1A6AC9D200CA40D1 /* SelectProductTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectProductTests.m; sourceTree = "<group>"; };
+		F8832FBF1A6AC9E700CA40D1 /* MakeChangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeChangeTests.m; sourceTree = "<group>"; };
+		F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReturnCoinsTests.m; sourceTree = "<group>"; };
+		F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoldOutTests.m; sourceTree = "<group>"; };
+		F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExactChangeOnlyTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +120,11 @@
 			children = (
 				F83EEE2D1A684CCF00022130 /* VendingMachineKataTests.m */,
 				F83EEE371A684DF600022130 /* AcceptCoinsTests.m */,
+				F8832FBD1A6AC9D200CA40D1 /* SelectProductTests.m */,
+				F8832FBF1A6AC9E700CA40D1 /* MakeChangeTests.m */,
+				F8832FC11A6ACA0800CA40D1 /* ReturnCoinsTests.m */,
+				F8832FC31A6ACA1800CA40D1 /* SoldOutTests.m */,
+				F8832FC51A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m */,
 				F83EEE2B1A684CCF00022130 /* Supporting Files */,
 			);
 			path = VendingMachineKataTests;
@@ -242,7 +257,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */,
+				F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */,
+				F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */,
+				F8832FBE1A6AC9D200CA40D1 /* SelectProductTests.m in Sources */,
 				F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */,
+				F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */,
+				F8832FC01A6AC9E700CA40D1 /* MakeChangeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
