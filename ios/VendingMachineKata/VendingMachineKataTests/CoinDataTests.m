@@ -66,7 +66,7 @@ CoinData *coinData;
     XCTAssert([[CoinData slug] isEqual:coinData], @"Coin recognizer returned incorrect object!");
 }
 
-- (void)testEdgeCaseNilInputsReturnSlug {
+- (void)testItReturnsSlugTypeForNilInputEdgeCase{
     CoinData *coinData = [CoinData identifyCoinForDiameter:nil mass:nil thickness:nil];
     
     XCTAssertEqual(kCoinTypeSlug, coinData.coinType, "Slug was not recognized! Recognizer returned %@ instead.", coinData.name);
