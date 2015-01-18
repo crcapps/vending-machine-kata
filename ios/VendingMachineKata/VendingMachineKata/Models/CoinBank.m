@@ -49,17 +49,17 @@ static void *bankedCoinsContext = &bankedCoinsContext;
 }
 
 - (void)registerForKeyValueObserving {
-    [self.bankedCoins addObserver:self forKeyPath:@"self.bankedCoins.quarters" options:NSKeyValueObservingOptionNew context:bankedCoinsContext];
-    [self.bankedCoins addObserver:self forKeyPath:@"self.bankedCoins.dimes" options:NSKeyValueObservingOptionNew context:bankedCoinsContext];
-    [self.bankedCoins addObserver:self forKeyPath:@"self.bankedCoins.nickels" options:NSKeyValueObservingOptionNew context:bankedCoinsContext];
-    [self.bankedCoins addObserver:self forKeyPath:@"self.bankedCoins.pennies" options:NSKeyValueObservingOptionNew context:bankedCoinsContext];
+    [self.bankedCoins addObserver:self forKeyPath:@"quarters" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:bankedCoinsContext];
+    [self.bankedCoins addObserver:self forKeyPath:@"dimes" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:bankedCoinsContext];
+    [self.bankedCoins addObserver:self forKeyPath:@"nickels" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:bankedCoinsContext];
+    [self.bankedCoins addObserver:self forKeyPath:@"pennies" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:bankedCoinsContext];
 }
 
 - (void)unregisterForKeyValueObserving {
-    [self.bankedCoins removeObserver:self forKeyPath:@"self.bankedCoins.quarters"];
-    [self.bankedCoins removeObserver:self forKeyPath:@"self.bankedCoins.dimes"];
-    [self.bankedCoins removeObserver:self forKeyPath:@"self.bankedCoins.nickels"];
-    [self.bankedCoins removeObserver:self forKeyPath:@"self.bankedCoins.pennies"];
+    [self.bankedCoins removeObserver:self forKeyPath:@"quarters"];
+    [self.bankedCoins removeObserver:self forKeyPath:@"dimes"];
+    [self.bankedCoins removeObserver:self forKeyPath:@"nickels"];
+    [self.bankedCoins removeObserver:self forKeyPath:@"pennies"];
 }
 
 - (void)registerForNotifications {
@@ -81,6 +81,7 @@ static void *bankedCoinsContext = &bankedCoinsContext;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unregisterForKeyValueObserving];
 }
 
 @end
