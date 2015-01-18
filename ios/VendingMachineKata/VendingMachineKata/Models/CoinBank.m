@@ -77,6 +77,7 @@ static void *bankedCoinsContext = &bankedCoinsContext;
 - (void)makeChange:(NSNotification *)notification {
     CoinBag *insertedCoins = [notification.userInfo objectForKey:kUserInfoKeyCoins];
     [insertedCoins emptyInto:self.bankedCoins];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationChangeDispensed object:self];
 }
 
 - (void)dealloc {

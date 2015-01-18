@@ -18,6 +18,7 @@
     if (self) {
         _insertedCoins= [CoinBag new];
         _returnedCoins = [CoinBag new];
+        [self registerForNotifications];
     }
     
     return self;
@@ -25,6 +26,7 @@
 
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemWasSelected:) name:kNotificationItemSelected object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchaseWasCompleted:) name:kNotificationPurchaseCompleted object:nil];
 }
 
 - (void)dropCoinWithDiameter:(NSNumber *)diameter mass:(NSNumber *)mass thickness:(NSNumber *)thickness {
@@ -67,6 +69,11 @@
                                 kUserInfoKeyQuantity : [notification.userInfo objectForKey:kUserInfoKeyQuantity]
                                 }];
     }
+}
+
+- (void)purchaseWasCompleted:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:kNotificationBankCoinsAndMakeChange object:self userInfo:notification.userInfo];
 }
 
 - (void)dealloc {

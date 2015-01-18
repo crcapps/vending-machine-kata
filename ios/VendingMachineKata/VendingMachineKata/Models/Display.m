@@ -13,8 +13,7 @@
 typedef NS_OPTIONS(NSInteger, DisplayMode) {
     kDisplayModeReady = 0x00,
     kDisplayModeShowCredit = 1 << 0,
-    kDisplayModeShouldResetToCredit = 1 << 1,
-    kDisplayModeExactChangeOnly = 1 << 2
+    kDisplayModeExactChangeOnly = 1 << 1
 };
 
 NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
@@ -50,6 +49,9 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsEmptied:) name:kNotificationChangeDispensed object:nil];
 }
 
 - (NSString *)text {
@@ -104,6 +106,26 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
         self.displayMode |= kDisplayModeShowCredit;
     }
     _text = text;
+}
+
+- (void)selectionInStock:(NSNotification *)notification {
+    _text = kDisplayTextThankYou;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self userInfo:notification.userInfo];
+}
+
+- (void)coinsEmptied:(NSNotification *)notification {
+    self.credit = nil;
+    self.displayMode &= ~kDisplayModeShowCredit;
+}
+
+- (void)selectionOutOfStock:(NSNotification *)notification {
+    NSDecimalNumber *credit = [notification.userInfo valueForKey:kUserInfoKeyCredit];
+    NSComparisonResult compare = [credit compare:@0.00];
+    if (NSOrderedDescending == compare) {
+        self.displayMode |= kDisplayModeShowCredit;
+    }
+    self.credit = credit.localizedCurrencyString;
+    _text = kDisplayTextSoldOut;
 }
 
 - (void)dealloc {

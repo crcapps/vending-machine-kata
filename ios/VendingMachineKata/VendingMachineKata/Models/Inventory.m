@@ -114,8 +114,13 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedInStock object:self userInfo:notification.userInfo];
         itemQuantity--;
         [self.itemQuantities setObject:@(itemQuantity) forKey:@(item)];
-        NSLog(@"Dispensed a %@.", itemString);
-        NSLog(@"There are now %ld left.", (long)itemQuantity);
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kNotificationItemDispensed
+         object:self
+         userInfo:@{
+                    kUserInfoKeyItem : @(item),
+                    kUserInfoKeyText : itemString
+                    }];
     }
 }
 
