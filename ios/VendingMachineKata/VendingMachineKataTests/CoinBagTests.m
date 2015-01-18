@@ -313,7 +313,6 @@ CoinBag *coinBag;
     XCTAssertEqual(NSOrderedSame, totalCompareNew, @"*** Total value in new bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, totalCompareNew);
     XCTAssertEqual(0, newBag.coins, @"*** Total count in new bag was incorrect!  Expected %d but got %ld", 0, newBag.coins);
     XCTAssert([newBag.localizedValueString isEqualToString:@"$0.00"], @"*** Value string for new bag is incorrect! Expected %@ but got %@", @"$0.00", newBag.localizedValueString);
-    
 }
 
 @end
