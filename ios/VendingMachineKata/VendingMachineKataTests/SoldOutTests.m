@@ -30,21 +30,106 @@
 
 @implementation SoldOutTests
 
+CoinSlot *coinSlot;
+Inventory *inventory;
+Display *display;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    coinSlot = [CoinSlot new];
+    inventory = [Inventory new];
+    display = [Display new];
 }
 
 - (void)testItDisplaysTheCorrectMessageWhenTheItemSelectedIsSoldOut {
     NSLog(@"** When the item selected by the customer is out of stock, the machine displays SOLD OUT.");
     
-    XCTFail(@"*** This test is not yet implemented.");
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [inventory selectItem:kInventoryItemCola];
+    
+    NSString *displayText = display.text;
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
 }
 
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
     NSLog(@"** If the display is checked again, it will display the amount of money remaining in the machine or INSERT COIN if there is no money in the machine.");
     
-    XCTFail(@"*** This test is not yet implemented.");
+    NSLog(@"** When the item selected by the customer is out of stock, the machine displays SOLD OUT.");
+    
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [inventory selectItem:kInventoryItemCola];
+    
+    NSString *displayText = display.text;
+    NSString *expectedCreditText = @"$1.00";
+    
+    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
+    XCTAssert([self itDisplaysValidInitialValue], @"*** Display was not reset to valid initial value after selection!");
+    
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [inventory selectItem:kInventoryItemCola];
+    
+    displayText = display.text;
+    
+    XCTAssert([displayText isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
+    
+    displayText = display.text;
+    XCTAssert([displayText isEqualToString:expectedCreditText], @"*** Display was not reset to inserted credit!  Expected %@ but got %@", expectedCreditText, displayText);
+}
+
+#pragma mark - Helper Methods
+
+- (BOOL)itDisplaysValidInitialValue {
+    BOOL initialValueIsValid = NO;
+    
+    if ([display.text isEqualToString:kDisplayTextInsertCoin] || [display.text isEqualToString:kDisplayTextExactChangeOnly]) {
+        initialValueIsValid = YES;
+    }
+    
+    return initialValueIsValid;
+}
+
+- (void)dropCoin:(CoinType)coin amount:(NSInteger)amount {
+    if (amount > 0) {
+        NSNumber *diameter = nil;
+        NSNumber *mass = nil;
+        NSNumber *thickness = nil;
+        switch (coin) {
+            case kCoinTypeSlug:
+                diameter = @24.26;
+                mass = @5.000;
+                thickness = @1.52;
+                break;
+            case kCoinTypeQuarter:
+                diameter = @24.26;
+                mass = @5.670;
+                thickness = @1.75;
+                break;
+            case kCoinTypeDime:
+                diameter = @17.91;
+                mass = @2.268;
+                thickness = @1.35;
+                break;
+            case kCoinTypeNickel:
+                diameter = @21.21;
+                mass = @5.000;
+                thickness = @1.95;
+                break;
+            case kCoinTypePenny:
+                diameter = @19.05;
+                mass = @2.500;
+                thickness = @1.52;
+                break;
+            default:
+                break;
+        }
+        for (NSInteger index = 0; index < amount; index++) {
+            [coinSlot dropCoinWithDiameter:diameter mass:mass thickness:thickness];
+        }
+    }
 }
 
 @end
