@@ -31,6 +31,10 @@
 		F889549B1A6B46950019A620 /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549A1A6B46950019A620 /* Display.m */; };
 		F889549D1A6B46A40019A620 /* DisplayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549C1A6B46A40019A620 /* DisplayTests.m */; };
 		F88954A01A6B4B440019A620 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549F1A6B4B440019A620 /* Notifications.m */; };
+		F88954A31A6C039D0019A620 /* Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954A21A6C039D0019A620 /* Inventory.m */; };
+		F88954A61A6C03A90019A620 /* CoinBank.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954A51A6C03A90019A620 /* CoinBank.m */; };
+		F88954A81A6C03C20019A620 /* InventoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954A71A6C03C20019A620 /* InventoryTests.m */; };
+		F88954AA1A6C03D30019A620 /* CoinBankTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954A91A6C03D30019A620 /* CoinBankTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,12 @@
 		F889549C1A6B46A40019A620 /* DisplayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayTests.m; sourceTree = "<group>"; };
 		F889549E1A6B4B440019A620 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		F889549F1A6B4B440019A620 /* Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
+		F88954A11A6C039D0019A620 /* Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inventory.h; sourceTree = "<group>"; };
+		F88954A21A6C039D0019A620 /* Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inventory.m; sourceTree = "<group>"; };
+		F88954A41A6C03A90019A620 /* CoinBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinBank.h; sourceTree = "<group>"; };
+		F88954A51A6C03A90019A620 /* CoinBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBank.m; sourceTree = "<group>"; };
+		F88954A71A6C03C20019A620 /* InventoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryTests.m; sourceTree = "<group>"; };
+		F88954A91A6C03D30019A620 /* CoinBankTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinBankTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +187,10 @@
 				F88954951A6B46610019A620 /* CoinSlot.m */,
 				F88954991A6B46950019A620 /* Display.h */,
 				F889549A1A6B46950019A620 /* Display.m */,
+				F88954A11A6C039D0019A620 /* Inventory.h */,
+				F88954A21A6C039D0019A620 /* Inventory.m */,
+				F88954A41A6C03A90019A620 /* CoinBank.h */,
+				F88954A51A6C03A90019A620 /* CoinBank.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +215,8 @@
 				F88954921A6AFE6B0019A620 /* CoinBagTests.m */,
 				F88954971A6B46770019A620 /* CoinSlotTests.m */,
 				F889549C1A6B46A40019A620 /* DisplayTests.m */,
+				F88954A71A6C03C20019A620 /* InventoryTests.m */,
+				F88954A91A6C03D30019A620 /* CoinBankTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -327,9 +343,11 @@
 				F88954A01A6B4B440019A620 /* Notifications.m in Sources */,
 				F889548E1A6AF9010019A620 /* CoinBag.m in Sources */,
 				F889549B1A6B46950019A620 /* Display.m in Sources */,
+				F88954A31A6C039D0019A620 /* Inventory.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
 				F83EEE171A684CCF00022130 /* AppDelegate.m in Sources */,
 				F889548B1A6AF8BA0019A620 /* NSDecimalNumber+Currency.m in Sources */,
+				F88954A61A6C03A90019A620 /* CoinBank.m in Sources */,
 				F88954961A6B46610019A620 /* CoinSlot.m in Sources */,
 				F83EEE141A684CCF00022130 /* main.m in Sources */,
 			);
@@ -342,12 +360,14 @@
 				F889547A1A6AE2550019A620 /* CoinDataTests.m in Sources */,
 				F83EEE381A684DF600022130 /* AcceptCoinsTests.m in Sources */,
 				F8832FC21A6ACA0800CA40D1 /* ReturnCoinsTests.m in Sources */,
+				F88954A81A6C03C20019A620 /* InventoryTests.m in Sources */,
 				F8832FC41A6ACA1800CA40D1 /* SoldOutTests.m in Sources */,
 				F8832FBE1A6AC9D200CA40D1 /* SelectProductTests.m in Sources */,
 				F88954931A6AFE6B0019A620 /* CoinBagTests.m in Sources */,
 				F88954981A6B46770019A620 /* CoinSlotTests.m in Sources */,
 				F88954871A6AF5BC0019A620 /* CurrencyTests.m in Sources */,
 				F83EEE2E1A684CCF00022130 /* VendingMachineKataTests.m in Sources */,
+				F88954AA1A6C03D30019A620 /* CoinBankTests.m in Sources */,
 				F8832FC61A6ACA2A00CA40D1 /* ExactChangeOnlyTests.m in Sources */,
 				F889549D1A6B46A40019A620 /* DisplayTests.m in Sources */,
 				F8832FC01A6AC9E700CA40D1 /* MakeChangeTests.m in Sources */,
