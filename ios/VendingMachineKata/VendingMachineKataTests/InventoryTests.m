@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 
 #import "Inventory.h"
+#import "NSDecimalNumber+Currency.h"
 
 @interface InventoryTests : XCTestCase
 
@@ -17,26 +18,34 @@
 
 @implementation InventoryTests
 
+Inventory *inventory;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    inventory = [Inventory new];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testItReturnsCorrectValueForSelectedItems {
+    [inventory addItem:kInventoryItemCola quantity:1];
+    [inventory addItem:kInventoryItemChips quantity:1];
+    [inventory addItem:kInventoryItemCandy quantity:1];
+    
+    NSDecimalNumber *expectedColaValue = [NSDecimalNumber decimalNumberWithNumber:@1.00];
+    NSDecimalNumber *expectedChipsValue = [NSDecimalNumber decimalNumberWithNumber:@0.50];
+    NSDecimalNumber *expectedCandyValue = [NSDecimalNumber decimalNumberWithNumber:@0.65];
+    
+    NSDecimalNumber *actualColaValue = [inventory selectItem:kInventoryItemCola];
+    NSDecimalNumber *actualChipsValue = [inventory selectItem:kInventoryItemChips];
+    NSDecimalNumber *actualCandyValue = [inventory selectItem:kInventoryItemCandy];
+    
+    NSComparisonResult colaCompare = [expectedColaValue compare:actualCandyValue];
+    NSComparisonResult chipsCompare = [expectedChipsValue compare:actualChipsValue];
+    NSComparisonResult candyCompare = [expectedCandyValue compare:actualCandyValue];
+    
+    XCTAssertEqual(NSOrderedSame, colaCompare, @"*** Selecting Cola gave the wrong price.  Expected %@ but got %@", expectedColaValue, actualColaValue);
+    XCTAssertEqual(NSOrderedSame, chipsCompare, @"*** Selecting Chips gave the wrong price.  Expected %@ but got %@", expectedChipsValue, actualChipsValue);
+    XCTAssertEqual(NSOrderedSame, candyCompare, @"*** Selecting Candy gave the wrong price.  Expected %@ but got %@", expectedCandyValue, actualCandyValue);
+    XCTAssertThrows([inventory selectItem:NSIntegerMax], @"*** Selecting an invalid item did not throw an error,");
 }
 
 @end
