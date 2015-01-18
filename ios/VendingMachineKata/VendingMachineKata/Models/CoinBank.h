@@ -16,7 +16,7 @@
 @property (nonatomic, strong, readonly) CoinBag *bankedCoins;
 
 /** If the bank contains the magic threshold to make change for anything */
-@property (nonatomic, readonly)         BOOL    canMakeChangeForAnything;
+@property (nonatomic, readonly) BOOL canMakeChangeForAnything;
 
 /** Can the bank make change for this amount? */
 - (BOOL)canMakeChangeForAmount:(NSDecimalNumber *)amount onPrice:(NSDecimalNumber *)price withCoinsInserted:(CoinBag *)coins;

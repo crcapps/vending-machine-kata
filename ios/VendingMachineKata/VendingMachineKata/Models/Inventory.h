@@ -18,10 +18,10 @@ typedef NS_ENUM(NSInteger, InventoryItem) {
 @interface Inventory : NSObject
 
 /** Prices of items in inventory, keyed with InventoryItem as NSNumber */
-@property (nonatomic, strong, readonly) NSDictionary    *itemPrices;
+@property (nonatomic, strong, readonly) NSDictionary *itemPrices;
 
 /** Quantities of items in inventory, keyed with InventoryItem as NSNumber */
-@property (nonatomic, strong, readonly) NSMapTable      *itemQuantities;
+@property (nonatomic, strong, readonly) NSMapTable *itemQuantities;
 
 /** select an item from the machine */
 - (NSDecimalNumber *)selectItem:(InventoryItem)item;

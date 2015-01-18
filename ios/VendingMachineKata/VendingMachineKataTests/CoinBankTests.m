@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+#import "CoinBank.h"
+#import "CoinData.h"
+#import "NSDecimalNumber+Currency.h"
+
 @interface CoinBankTests : XCTestCase
 
 @end
