@@ -16,6 +16,16 @@
 
 @implementation Inventory
 
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canMakeChange:) name:kNotificationCanMakeChangeForSelection object:nil];
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)itemPrices {
     static NSDictionary *items = nil;
     static dispatch_once_t onceToken;
@@ -92,5 +102,25 @@
     return itemPrice;
 }
 
+#pragma mark - Notification Handlers
+
+- (void)canMakeChange:(NSNotification *)notification {
+    InventoryItem item = [[notification.userInfo valueForKey:kUserInfoKeyItem] integerValue];
+    NSString *itemString = [self.itemNames objectForKey:@(item)];
+    NSInteger itemQuantity = [self quantityForItem:item];
+    if (itemQuantity < 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedOutOfStock object:self userInfo:notification.userInfo];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedInStock object:self userInfo:notification.userInfo];
+        itemQuantity--;
+        [self.itemQuantities setObject:@(itemQuantity) forKey:@(item)];
+        NSLog(@"Dispensed a %@.", itemString);
+        NSLog(@"There are now %ld left.", (long)itemQuantity);
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

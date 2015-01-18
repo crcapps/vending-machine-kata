@@ -52,6 +52,12 @@ extern NSString * const kNotificationItemDispensed;
 /** Name of the notification posted when the display is updated */
 extern NSString * const kNotificationDisplayUpdated;
 
+/** Name of the notification posted when the bank has enough change */
+extern NSString * const kNotificationCanMakeChangeForAnything;
+
+/** Name of the notification posted when the bank doesn't have enough change */
+extern NSString * const kNotificationCannotMakeChangeForAnything;
+
 #pragma mark - Key Names
 
 /** Notification UserInfo key for text */
