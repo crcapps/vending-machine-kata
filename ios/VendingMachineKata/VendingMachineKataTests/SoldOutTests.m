@@ -50,7 +50,7 @@ Display *display;
     
     NSString *displayText = display.text;
     
-    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
+    XCTAssert([displayText isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
 }
 
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
@@ -66,6 +66,7 @@ Display *display;
     NSString *expectedCreditText = @"$1.00";
     
     XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
+    
     XCTAssert([self itDisplaysValidInitialValue], @"*** Display was not reset to valid initial value after selection!");
     
     [self dropCoin:kCoinTypeQuarter amount:4];
