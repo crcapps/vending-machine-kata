@@ -52,7 +52,7 @@
 /** Transfers coins from one bag to another
  NOOP and returns NO if amount > available
  */
-- (BOOL)transferCoin:(CoinData *)coins amount:(NSInteger)amount toBag:(CoinBag *)bag;
+- (BOOL)transferCoin:(CoinData *)coin amount:(NSInteger)amount toBag:(CoinBag *)bag;
 
 /** dumps all the coins from one bag into another */
 - (void)emptyInto:(CoinBag *)bag;

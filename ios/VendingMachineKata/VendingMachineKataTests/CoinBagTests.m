@@ -53,15 +53,16 @@ CoinBag *coinBag;
     
     XCTAssertEqual(NSOrderedSame, totalCompare, @"*** Total value was incorrect!  Expected %ld but got %ld", NSOrderedSame, totalCompare);
     XCTAssertEqual(numberOfCoins, coinBag.coins, @"*** Total count was incorrect!  Expected %ld but got %ld", numberOfCoins, coinBag.coins);
-    XCTAssert([expectedValueString isEqualToString:coinBag.localizedValueString], @"*** Value string is incorrect! Expected %@ but got %@", expectedValueString, coinBag.localizedValueString);
+    XCTAssert([expectedValueString isEqualToString:coinBag.localizedValueString],
+@"*** Value string is incorrect! Expected %@ but got %@", expectedValueString, coinBag.localizedValueString);
     XCTAssertEqual(NSOrderedSame, quartersCompare, @"*** Quarters value was incorrect!  Expected %ld but got %ld", NSOrderedSame, quartersCompare);
     XCTAssertEqual(numberOfQuarters, coinBag.quarters, @"*** Quarters count was incorrect!  Expected %ld but got %ld", numberOfQuarters, coinBag.quarters);
     XCTAssertEqual(NSOrderedSame, dimesCompare, @"*** Dimes value was incorrect!  Expected %ld but got %ld", NSOrderedSame, dimesCompare);
     XCTAssertEqual(numberOfDimes, coinBag.dimes, @"*** Dimes count was incorrect!  Expected %ld but got %ld", numberOfDimes, coinBag.dimes);
     XCTAssertEqual(NSOrderedSame, nickelsCompare, @"*** Nickels value was incorrect!  Expected %ld but got %ld", NSOrderedSame, nickelsCompare);
-    XCTAssertEqual(numberOfCoins, coinBag.nickels, @"*** Nickels count was incorrect!  Expected %ld but got %ld", numberOfNickels, coinBag.nickels);
+    XCTAssertEqual(numberOfNickels, coinBag.nickels, @"*** Nickels count was incorrect!  Expected %ld but got %ld", numberOfNickels, coinBag.nickels);
     XCTAssertEqual(NSOrderedSame, penniesCompare, @"*** Pennies value was incorrect!  Expected %ld but got %ld", NSOrderedSame, penniesCompare);
-    XCTAssertEqual(numberOfCoins, coinBag.pennies, @"*** Pennies count was incorrect!  Expected %ld but got %ld", numberOfPennies, coinBag.pennies);
+    XCTAssertEqual(numberOfPennies, coinBag.pennies, @"*** Pennies count was incorrect!  Expected %ld but got %ld", numberOfPennies, coinBag.pennies);
 }
 
 - (void)testItReturnsCorrectValueCountAndStringWhenCoinsAreRemoved {
@@ -75,10 +76,10 @@ CoinBag *coinBag;
     [coinBag removeCoin:[CoinData nickel] amount:1];
     [coinBag removeCoin:[CoinData penny] amount:2];
     
-    NSDecimalNumber *expectedTotalValue = [NSDecimalNumber decimalNumberWithNumber:@0.67];
-    NSString *expectedValueString = @"$0.67";
+    NSDecimalNumber *expectedTotalValue = [NSDecimalNumber decimalNumberWithNumber:@0.32];
+    NSString *expectedValueString = @"$0.32";
     NSInteger numberOfQuarters = 1;
-    NSDecimalNumber *expectedQuartersValue = [NSDecimalNumber decimalNumberWithNumber:@0.50];
+    NSDecimalNumber *expectedQuartersValue = [NSDecimalNumber decimalNumberWithNumber:@0.25];
     NSInteger numberOfDimes = 0;
     NSDecimalNumber *expectedDimesValue = [NSDecimalNumber decimalNumberWithNumber:@0.00];
     NSInteger numberOfNickels = 1;
@@ -170,7 +171,7 @@ CoinBag *coinBag;
     XCTAssertEqual(0, coinBag.coins, @"*** Total count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.coins);
     XCTAssert([coinBag.localizedValueString isEqualToString:@"$0.00"], @"*** Value string for old bag is incorrect! Expected %@ but got %@", @"$0.00", coinBag.localizedValueString);
     XCTAssertEqual(NSOrderedSame, quartersCompareOld, @"*** Quarters value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, quartersCompareOld);
-    XCTAssertEqual(numberOfQuarters, coinBag.quarters, @"*** Quarters count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.quarters);
+    XCTAssertEqual(0, coinBag.quarters, @"*** Quarters count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.quarters);
     XCTAssertEqual(NSOrderedSame, dimesCompareOld, @"*** Dimes value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, dimesCompareOld);
     XCTAssertEqual(0, coinBag.dimes, @"*** Dimes count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.dimes);
     XCTAssertEqual(NSOrderedSame, nickelsCompareOld, @"*** Nickels value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, nickelsCompareOld);
@@ -234,7 +235,7 @@ CoinBag *coinBag;
     XCTAssertEqual(0, coinBag.coins, @"*** Total count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.coins);
     XCTAssert([coinBag.localizedValueString isEqualToString:@"$0.00"], @"*** Value string for old bag is incorrect! Expected %@ but got %@", @"$0.00", coinBag.localizedValueString);
     XCTAssertEqual(NSOrderedSame, quartersCompareOld, @"*** Quarters value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, quartersCompareOld);
-    XCTAssertEqual(numberOfQuarters, coinBag.quarters, @"*** Quarters count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.quarters);
+    XCTAssertEqual(0, coinBag.quarters, @"*** Quarters count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.quarters);
     XCTAssertEqual(NSOrderedSame, dimesCompareOld, @"*** Dimes value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, dimesCompareOld);
     XCTAssertEqual(0, coinBag.dimes, @"*** Dimes count in old bag was incorrect!  Expected %d but got %ld", 0, coinBag.dimes);
     XCTAssertEqual(NSOrderedSame, nickelsCompareOld, @"*** Nickels value in old bag was incorrect!  Expected %ld but got %ld", NSOrderedSame, nickelsCompareOld);
