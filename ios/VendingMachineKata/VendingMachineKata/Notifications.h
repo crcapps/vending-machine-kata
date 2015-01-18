@@ -54,6 +54,9 @@ extern NSString * const kNotificationDisplayUpdated;
 
 #pragma mark - Key Names
 
+/** Notification UserInfo key for text */
+extern NSString * const kUserInfoKeyText;
+
 /** Notification UserInfo key for price */
 extern NSString * const kUserInfoKeyPrice;
 
@@ -71,6 +74,3 @@ extern NSString * const kUserInfoKeyCoins;
 
 /** Notification UserInfo key for the quantity of an item in inventory */
 extern NSString * const kUserInfoKeyQuantity;
-
-/** Notification UserInfo key for the displayed text */
-extern NSString * const kUserInfoKeyDisplayText;

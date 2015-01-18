@@ -29,4 +29,3 @@ NSString * const kUserInfoKeyItem = @"item";
 NSString * const kUserInfoKeyChange = @"change";
 NSString * const kUserInfoKeyCoins = @"coins";
 NSString * const kUserInfoKeyQuantity = @"quantity";
-NSString * const kUserInfoKeyDisplayText = @"displayText";
