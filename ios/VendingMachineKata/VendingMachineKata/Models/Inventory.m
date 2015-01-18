@@ -119,7 +119,7 @@
          object:self
          userInfo:@{
                     kUserInfoKeyItem : @(item),
-                    kUserInfoKeyText : itemString
+                    kUserInfoKeyText : [self nameForItem:item]
                     }];
     }
 }
