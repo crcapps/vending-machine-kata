@@ -39,7 +39,6 @@ CoinSlot *coinSlot;
 CoinBank *coinBank;
 Inventory *inventory;
 Display *display;
-InventoryItem item;
 
 - (void)setUp {
     [super setUp];
@@ -47,12 +46,6 @@ InventoryItem item;
     coinBank = [CoinBank new];
     inventory = [Inventory new];
     display = [Display new];
-    item = 0;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemWasDispensed:) name:kNotificationItemDispensed object:nil];
-}
-
-- (void)tearDown {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)testItDispensesTheCorrectProductAndTheCustomerIsThanked {
@@ -70,7 +63,6 @@ InventoryItem item;
     
     NSString *text = display.text;
     XCTAssert([text isEqualToString:kDisplayTextThankYou], @"*** Customer was not thanked!  Display shows %@ instead", text);
-    XCTAssertEqual(kInventoryItemCandy, item, @"*** Proper item was not dispensed!");
 }
 
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterPurchaseAndTheCreditIsResetToZero {
@@ -94,7 +86,6 @@ InventoryItem item;
     
     XCTAssert([text isEqualToString:kDisplayTextThankYou], @"*** Customer was not thanked!  Display shows %@ instead", text);
     XCTAssertEqual(NSOrderedSame, compare, @"*** Inserted coin value was not reset after selection!  Expected %@ but got %@", decimalZero, coinSlot.insertedCoins.value);
-    XCTAssertEqual(kInventoryItemCandy, item, @"*** Proper item was not dispensed!");
     XCTAssert([self itDisplaysValidInitialValue], @"*** Display was not reset to valid initial value after dispensing item!");
 }
 
@@ -179,11 +170,6 @@ InventoryItem item;
             [coinSlot dropCoinWithDiameter:diameter mass:mass thickness:thickness];
         }
     }
-}
-
-- (void)itemWasDispensed:(NSNotification *)notification {
-    NSLog(@"Item was dispensed.");
-    item = [[notification valueForKey:kUserInfoKeyItem] integerValue];
 }
 
 @end
