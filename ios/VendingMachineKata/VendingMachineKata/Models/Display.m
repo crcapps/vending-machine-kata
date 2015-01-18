@@ -111,6 +111,8 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 
 - (void)selectionInStock:(NSNotification *)notification {
     _text = kDisplayTextThankYou;
+    self.credit = nil;
+    self.displayMode &= ~kDisplayModeShowCredit;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPurchaseCompleted object:self userInfo:notification.userInfo];
 }
 
