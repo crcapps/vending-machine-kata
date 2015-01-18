@@ -8,6 +8,16 @@
 
 #import "Inventory.h"
 
+@interface Inventory ()
+
+/** Prices of items in inventory, keyed with InventoryItem as NSNumber */
+@property (nonatomic, strong, readonly) NSDictionary *itemPrices;
+
+/** Quantities of items in inventory, keyed with InventoryItem as NSNumber */
+@property (nonatomic, strong, readonly) NSMapTable *itemQuantities;
+
+@end
+
 @implementation Inventory
 
 @end
