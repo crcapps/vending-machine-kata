@@ -30,6 +30,7 @@
 		F88954981A6B46770019A620 /* CoinSlotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F88954971A6B46770019A620 /* CoinSlotTests.m */; };
 		F889549B1A6B46950019A620 /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549A1A6B46950019A620 /* Display.m */; };
 		F889549D1A6B46A40019A620 /* DisplayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549C1A6B46A40019A620 /* DisplayTests.m */; };
+		F88954A01A6B4B440019A620 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = F889549F1A6B4B440019A620 /* Notifications.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		F88954991A6B46950019A620 /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		F889549A1A6B46950019A620 /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
 		F889549C1A6B46A40019A620 /* DisplayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayTests.m; sourceTree = "<group>"; };
+		F889549E1A6B4B440019A620 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		F889549F1A6B4B440019A620 /* Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 			children = (
 				F83EEE121A684CCE00022130 /* Info.plist */,
 				F83EEE131A684CCF00022130 /* main.m */,
+				F889549E1A6B4B440019A620 /* Notifications.h */,
+				F889549F1A6B4B440019A620 /* Notifications.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F88954781A6AE23A0019A620 /* CoinData.m in Sources */,
+				F88954A01A6B4B440019A620 /* Notifications.m in Sources */,
 				F889548E1A6AF9010019A620 /* CoinBag.m in Sources */,
 				F889549B1A6B46950019A620 /* Display.m in Sources */,
 				F83EEE1A1A684CCF00022130 /* ViewController.m in Sources */,
