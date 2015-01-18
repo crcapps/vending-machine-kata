@@ -7,6 +7,7 @@
 //
 
 #import "CoinSlot.h"
+#import "CoinBag.h"
 
 @implementation CoinSlot
 
