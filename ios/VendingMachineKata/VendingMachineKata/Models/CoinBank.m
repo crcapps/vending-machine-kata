@@ -7,6 +7,9 @@
 //
 
 #import "CoinBank.h"
+#import "CoinBag.h"
+#import "CoinData.h"
+#import "NSDecimalNumber+Currency.h"
 
 @implementation CoinBank
 

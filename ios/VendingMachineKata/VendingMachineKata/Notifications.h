@@ -46,6 +46,9 @@ extern NSString * const kNotificationChangeDispensed;
 /** Name of the notification posted when the coin return is pressed */
 extern NSString * const kNotificationCoinsReturned;
 
+/** Name of the notification posted when an item is dispensed */
+extern NSString * const kNotificationItemDispensed;
+
 #pragma mark - Key Names
 
 /** Notification UserInfo key for price */

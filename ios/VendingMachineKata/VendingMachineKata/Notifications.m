@@ -20,6 +20,7 @@ NSString * const kNotificationItemSelectedInStock = @"SelectedItemInStockNotific
 NSString * const kNotificationBankCoinsAndMakeChange = @"BankCoinsAndMakeChangeNotification";
 NSString * const kNotificationChangeDispensed = @"DispensedChangeNotification";
 NSString * const kNotificationCoinsReturned = @"CoinsReturnedNotification";
+NSString * const kNotificationItemDispensed = @"ItemDispensedNotification";
 NSString * const kUserInfoKeyText = @"text";
 NSString * const kUserInfoKeyPrice = @"price";
 NSString * const kUserInfoKeyCredit = @"credit";
