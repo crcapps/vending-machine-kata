@@ -61,6 +61,11 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     return text;
 }
 
+- (void)setText:(NSString *)text {
+    _text = text;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDisplayUpdated object:self userInfo:@{kUserInfoKeyDisplayText : text}];
+}
+
 - (void)resetText {
     if (self.displayMode & kDisplayModeExactChangeOnly) {
         _text = kDisplayTextExactChangeOnly;
