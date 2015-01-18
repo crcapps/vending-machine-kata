@@ -48,7 +48,7 @@ Display *display;
     
     [inventory selectItem:kInventoryItemCola];
     
-    NSString *displayText = display.text;
+    NSString *displayText = [NSString stringWithString:display.text];
     
     XCTAssert([displayText isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
 }
@@ -56,28 +56,28 @@ Display *display;
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
     NSLog(@"** If the display is checked again, it will display the amount of money remaining in the machine or INSERT COIN if there is no money in the machine.");
     
-    NSLog(@"** When the item selected by the customer is out of stock, the machine displays SOLD OUT.");
-    
-    [self dropCoin:kCoinTypeQuarter amount:4];
-    
     [inventory selectItem:kInventoryItemCola];
     
-    NSString *displayText = display.text;
+    NSString *displayText = [NSString stringWithString:display.text];
     NSString *expectedCreditText = @"$1.00";
     
-    XCTAssert([display.text isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
+    XCTAssert([displayText isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
     
     XCTAssert([self itDisplaysValidInitialValue], @"*** Display was not reset to valid initial value after selection!");
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
+    displayText = [NSString stringWithString:display.text];
+    
+    XCTAssert([displayText isEqualToString:expectedCreditText], @"*** Display doesn't show correct inserted credit.  Expected %@ but got %@", expectedCreditText, displayText);
+    
     [inventory selectItem:kInventoryItemCola];
     
-    displayText = display.text;
-    
+    displayText = [NSString stringWithString:display.text];
+        
     XCTAssert([displayText isEqualToString:kDisplayTextSoldOut], @"*** Display shows wrong text!  Expected %@ but got %@", kDisplayTextSoldOut, displayText);
     
-    displayText = display.text;
+    displayText = [NSString stringWithString:display.text];
     XCTAssert([displayText isEqualToString:expectedCreditText], @"*** Display was not reset to inserted credit!  Expected %@ but got %@", expectedCreditText, displayText);
 }
 
@@ -86,7 +86,7 @@ Display *display;
 - (BOOL)itDisplaysValidInitialValue {
     BOOL initialValueIsValid = NO;
     
-    if ([display.text isEqualToString:kDisplayTextInsertCoin] || [display.text isEqualToString:kDisplayTextExactChangeOnly]) {
+    if ([display.text isEqualToString:kDisplayTextInsertCoin]) {
         initialValueIsValid = YES;
     }
     

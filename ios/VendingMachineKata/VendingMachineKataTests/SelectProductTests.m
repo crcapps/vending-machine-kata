@@ -124,7 +124,7 @@ Display *display;
 - (BOOL)itDisplaysValidInitialValue {
     BOOL initialValueIsValid = NO;
     
-    if ([display.text isEqualToString:kDisplayTextInsertCoin] || [display.text isEqualToString:kDisplayTextExactChangeOnly]) {
+    if ([display.text isEqualToString:kDisplayTextInsertCoin]) {
         initialValueIsValid = YES;
     }
     
