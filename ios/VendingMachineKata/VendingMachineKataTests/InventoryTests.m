@@ -38,7 +38,7 @@ Inventory *inventory;
     NSDecimalNumber *actualChipsValue = [inventory selectItem:kInventoryItemChips];
     NSDecimalNumber *actualCandyValue = [inventory selectItem:kInventoryItemCandy];
     
-    NSComparisonResult colaCompare = [expectedColaValue compare:actualCandyValue];
+    NSComparisonResult colaCompare = [expectedColaValue compare:actualColaValue];
     NSComparisonResult chipsCompare = [expectedChipsValue compare:actualChipsValue];
     NSComparisonResult candyCompare = [expectedCandyValue compare:actualCandyValue];
     
