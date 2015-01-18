@@ -47,7 +47,7 @@ Display *display;
     display = [Display new];
 }
 
-- (void)testItDispensesTheCorrectProductAndTheCustomerIsThanked {
+- (void)testItDispensesTheProductAndTheCustomerIsThanked {
     NSLog(@"** When the respective button is pressed and enough money has been inserted, the product is dispensed and the machine displays THANK YOU.");
     
     [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
