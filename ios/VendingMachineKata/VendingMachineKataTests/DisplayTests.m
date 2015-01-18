@@ -49,23 +49,23 @@ CoinSlot *coinSlot;
     
     [self dropCoin:kCoinTypeDime amount:numberOfDimes];
     currentText = [NSString stringWithString:display.text];
-    XCTAssert([currentText isEqualToString:expectedQuarterCumulativeValue], @"*** Display text was not updated to current credit! Expected %@ but got %@", expectedDimeCumulativeValue, currentText);
+    XCTAssert([currentText isEqualToString:expectedDimeCumulativeValue], @"*** Display text was not updated to current credit! Expected %@ but got %@", expectedDimeCumulativeValue, currentText);
     
     [self dropCoin:kCoinTypeNickel amount:numberOfNickels];
     currentText = [NSString stringWithString:display.text];
-    XCTAssert([currentText isEqualToString:expectedQuarterCumulativeValue], @"*** Display text was not updated to current credit! Expected %@ but got %@", expectedValueString, currentText);
+    XCTAssert([currentText isEqualToString:expectedValueString], @"*** Display text was not updated to current credit! Expected %@ but got %@", expectedValueString, currentText);
     
     [self dropCoin:kCoinTypePenny amount:numberOfPennies];
     currentText = [NSString stringWithString:display.text];
-    XCTAssert([currentText isEqualToString:expectedQuarterCumulativeValue], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
+    XCTAssert([currentText isEqualToString:expectedValueString], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
     
     [self dropCoin:kCoinTypeSlug amount:1];
     currentText = [NSString stringWithString:display.text];
-    XCTAssert([currentText isEqualToString:expectedQuarterCumulativeValue], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
+    XCTAssert([currentText isEqualToString:expectedValueString], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
     
     [self dropCoin:NSIntegerMax amount:255];
     currentText = [NSString stringWithString:display.text];
-    XCTAssert([currentText isEqualToString:expectedQuarterCumulativeValue], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
+    XCTAssert([currentText isEqualToString:expectedValueString], @"*** Display text was updated when coins were rejected! Expected %@ but got %@", expectedValueString, currentText);
     
 }
 
