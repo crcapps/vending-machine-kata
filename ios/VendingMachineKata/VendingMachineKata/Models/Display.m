@@ -52,6 +52,7 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionInStock:) name:kNotificationItemSelectedInStock object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionOutOfStock:) name:kNotificationItemSelectedOutOfStock object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsEmptied:) name:kNotificationChangeDispensed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsWereReturned:) name:kNotificationCoinsReturned object:nil];
 }
 
 - (NSString *)text {
@@ -126,6 +127,12 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     }
     self.credit = credit.localizedCurrencyString;
     _text = kDisplayTextSoldOut;
+}
+
+- (void)coinsWereReturned:(NSNotification *)notification {
+    self.credit = nil;
+    self.displayMode &= ~kDisplayModeShowCredit;
+    [self resetText];
 }
 
 - (void)dealloc {

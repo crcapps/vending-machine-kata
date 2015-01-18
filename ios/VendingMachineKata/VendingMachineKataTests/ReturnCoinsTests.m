@@ -51,7 +51,8 @@ Display *display;
     NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithNumber:@1.00];
     NSComparisonResult compare = [expectedValue compare:coinSlot.returnedCoins.value];
     
-    XCTAssertEqual(NSOrderedSame, compare, @"*** Coin returned contained the wrong amount of change.  Expected %@ but got %@", expectedValue.localizedCurrencyString, coinSlot.returnedCoins.localizedValueString);
+    XCTAssert([self coinSlotIsEmpty], @"*** Inserted coins not emptied after return coin pressed!");
+    XCTAssertEqual(NSOrderedSame, compare, @"*** Coin returned contained the wrong amount of change!  Expected %@ but got %@", expectedValue.localizedCurrencyString, coinSlot.returnedCoins.localizedValueString);
 }
 
 #pragma mark - Helper Methods
