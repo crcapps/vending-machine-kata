@@ -48,9 +48,6 @@ extern NSString * const kNotificationCoinsReturned;
 
 #pragma mark - Key Names
 
-/** Notification UserInfo key for value text */
-extern NSString * const kUserInfoKeyText;
-
 /** Notification UserInfo key for price */
 extern NSString * const kUserInfoKeyPrice;
 

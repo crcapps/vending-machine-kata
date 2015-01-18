@@ -8,6 +8,12 @@
 
 #import "Display.h"
 
+NSString * const kDisplayTextInsertCoin = @"INSERT COIN";
+NSString * const kDisplayTextThankYou = @"THANK YOU";
+NSString * const kDisplayTextPrice = @"PRICE";
+NSString * const kDisplayTextSoldOut = @"SOLD OUT";
+NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
+
 @implementation Display
 
 @end

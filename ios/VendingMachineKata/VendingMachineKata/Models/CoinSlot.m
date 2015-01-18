@@ -29,10 +29,7 @@
         [self.insertedCoins addCoin:coinData amount:1];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:kNotificationCoinAccepted
-         object:self userInfo:@{
-                                kUserInfoKeyText:self.insertedCoins.localizedValueString,
-                                kUserInfoKeyCredit : self.insertedCoins.value
-                                }];
+         object:self userInfo:@{kUserInfoKeyCredit : self.insertedCoins.value}];
     } else if (coinData.coinType != kCoinTypeSlug) {
         [self.returnedCoins addCoin:coinData amount:1];
     }
