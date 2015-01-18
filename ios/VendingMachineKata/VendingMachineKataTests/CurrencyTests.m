@@ -31,14 +31,14 @@
     NSDecimalNumber *expected = [NSDecimalNumber decimalNumberWithDecimal:[@0.99 decimalValue]];
     NSDecimalNumber *actual = [NSDecimalNumber decimalNumberWithNumber:@0.99];
     NSComparisonResult compare = [expected compare:actual];
-    XCTAssertEqual(NSOrderedSame, compare, @"** - (NSDecimalNumber *)decimalNumberWithNumber returned incorrect value!  Expected %@ but got %@", expected, actual);
+    XCTAssertEqual(NSOrderedSame, compare, @"*** - (NSDecimalNumber *)decimalNumberWithNumber returned incorrect value!  Expected %@ but got %@", expected, actual);
 }
 
 - (void)testLocalizedCurrencyStringForDecimalNumber {
     NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithNumber:@0.99];
     NSString *expectedStringForDevelopmentLocation = @"$0.99";
     NSString *actual = [decimalNumber localizedCurrencyString];
-    XCTAssert([expectedStringForDevelopmentLocation isEqualToString:actual], @"** - (NSString *)localizedCurrencyString returned incorrect value for en-us!  Expected %@ but got %@.", expectedStringForDevelopmentLocation, actual);
+    XCTAssert([expectedStringForDevelopmentLocation isEqualToString:actual], @"*** - (NSString *)localizedCurrencyString returned incorrect value for en-us!  Expected %@ but got %@.", expectedStringForDevelopmentLocation, actual);
 }
 
 @end
