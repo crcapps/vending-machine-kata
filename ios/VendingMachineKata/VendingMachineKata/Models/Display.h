@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ENUM(NSInteger, DisplayMode) {
-    kDisplayModeReady,
-    kDisplayModeShowCredit
-};
-
 extern NSString * const kDisplayTextInsertCoin;
 extern NSString * const kDisplayTextThankYou;
 extern NSString * const kDisplayTextPrice;
