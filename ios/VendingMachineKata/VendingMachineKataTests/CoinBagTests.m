@@ -53,8 +53,7 @@ CoinBag *coinBag;
     
     XCTAssertEqual(NSOrderedSame, totalCompare, @"*** Total value was incorrect!  Expected %ld but got %ld", NSOrderedSame, totalCompare);
     XCTAssertEqual(numberOfCoins, coinBag.coins, @"*** Total count was incorrect!  Expected %ld but got %ld", numberOfCoins, coinBag.coins);
-    XCTAssert([expectedValueString isEqualToString:coinBag.localizedValueString],
-@"*** Value string is incorrect! Expected %@ but got %@", expectedValueString, coinBag.localizedValueString);
+    XCTAssert([expectedValueString isEqualToString:coinBag.localizedValueString], @"*** Value string is incorrect! Expected %@ but got %@", expectedValueString, coinBag.localizedValueString);
     XCTAssertEqual(NSOrderedSame, quartersCompare, @"*** Quarters value was incorrect!  Expected %ld but got %ld", NSOrderedSame, quartersCompare);
     XCTAssertEqual(numberOfQuarters, coinBag.quarters, @"*** Quarters count was incorrect!  Expected %ld but got %ld", numberOfQuarters, coinBag.quarters);
     XCTAssertEqual(NSOrderedSame, dimesCompare, @"*** Dimes value was incorrect!  Expected %ld but got %ld", NSOrderedSame, dimesCompare);

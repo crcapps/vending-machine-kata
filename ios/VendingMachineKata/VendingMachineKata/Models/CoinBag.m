@@ -16,13 +16,17 @@
     self = [super init];
     
     if (self) {
-        _quarters = 0;
-        _dimes = 0;
-        _nickels = 0;
-        _pennies = 0;
+        [self zeroOutBag];
     }
     
     return self;
+}
+
+- (void)zeroOutBag {
+    [self setValue:@0 forKey:@"quarters"];
+    [self setValue:@0 forKey:@"dimes"];
+    [self setValue:@0 forKey:@"nickels"];
+    [self setValue:@0 forKey:@"pennies"];
 }
 
 - (NSInteger)coins {
@@ -34,25 +38,25 @@
     switch (coin.coinType) {
         case kCoinTypeQuarter:
             if (self.quarters - amount >= 0) {
-                _quarters -= amount;
+                [self setValue:@(_quarters - amount) forKey:@"quarters"];
                 removed = YES;
             }
             break;
         case kCoinTypeDime:
             if (self.dimes - amount >= 0) {
-                _dimes -= amount;
+                [self setValue:@(_dimes - amount) forKey:@"dimes"];
                 removed = YES;
             }
             break;
         case kCoinTypeNickel:
             if (self.nickels - amount >= 0) {
-                _nickels -= amount;
+                [self setValue:@(_nickels - amount) forKey:@"nickels"];
                 removed = YES;
             }
             break;
         case kCoinTypePenny:
             if (self.pennies - amount >= 0) {
-                _pennies -= amount;
+                [self setValue:@(_pennies - amount) forKey:@"pennies"];
                 removed = YES;
             }
             break;
@@ -65,16 +69,16 @@
 - (void)addCoin:(CoinData *)coin amount:(NSInteger)amount {
     switch (coin.coinType) {
         case kCoinTypeQuarter:
-            _quarters += amount;
+            [self setValue:@(_quarters + amount) forKey:@"quarters"];
             break;
         case kCoinTypeDime:
-            _dimes += amount;
+            [self setValue:@(_dimes + amount) forKey:@"dimes"];
             break;
         case kCoinTypeNickel:
-            _nickels += amount;
+            [self setValue:@(_nickels + amount) forKey:@"nickels"];
             break;
         case kCoinTypePenny:
-            _pennies += amount;
+            [self setValue:@(_pennies + amount) forKey:@"pennies"];
             break;
         default:
             break;
@@ -136,11 +140,7 @@
     [bag addCoin:[CoinData dime] amount:self.dimes];
     [bag addCoin:[CoinData nickel] amount:self.nickels];
     [bag addCoin:[CoinData penny] amount:self.pennies];
-    _quarters = 0;
-    _dimes = 0;
-    _nickels = 0;
-    _pennies = 0;
+    [self zeroOutBag];
 }
-
 
 @end

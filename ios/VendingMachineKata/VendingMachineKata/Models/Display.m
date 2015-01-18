@@ -49,6 +49,7 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
 
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinWasAccepted:) name:kNotificationCoinAccepted object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insufficientCredit:) name:kNotificationItemSelectedInsufficientCredit object:nil];
 }
 
 - (NSString *)text {
@@ -84,6 +85,25 @@ NSString * const kDisplayTextExactChangeOnly = @"EXACT CHANGE ONLY";
     if (text) {
         _text = text;
     }
+}
+
+- (void)insufficientCredit:(NSNotification *)notification {
+    NSDecimalNumber *price = [notification.userInfo valueForKey:kUserInfoKeyPrice];
+    NSDecimalNumber *credit = [notification.userInfo valueForKey:kUserInfoKeyCredit];
+    self.credit = credit.localizedCurrencyString;
+    NSComparisonResult compare = [credit compare:@0.00];
+    NSString *priceText = price.localizedCurrencyString;
+    NSString *text;
+    NSInteger quantity = [[notification.userInfo objectForKey:kUserInfoKeyQuantity] integerValue];
+    if (quantity > 0) {
+        text = [NSString stringWithFormat:@"%@ %@", kDisplayTextPrice, priceText];
+    } else {
+        text = kDisplayTextSoldOut;
+    }
+    if (compare == NSOrderedDescending) {
+        self.displayMode |= kDisplayModeShowCredit;
+    }
+    _text = text;
 }
 
 - (void)dealloc {
