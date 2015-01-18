@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+#import "CoinSlot.h"
+#import "CoinBag.h"
+#import "CoinData.h"
+#import "Display.h"
+
+#import "NSDecimalNumber+Currency.h"
+
 /**
  Return Coins
  
@@ -25,20 +32,82 @@
 
 @implementation ReturnCoinsTests
 
+CoinSlot *coinSlot;
+Display *display;
+
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+    coinSlot = [CoinSlot new];
+    display = [Display new];
 }
 
 - (void)testItReturnsInsertedMoneyAndDisplayShowsCorrectMessage {
     NSLog(@"** When the return coins is selected, the money the customer has placed in the machine is returned and the display shows INSERT COIN.");
     
-    XCTFail(@"*** This test is not yet implemented.");
+    [self dropCoin:kCoinTypeQuarter amount:4];
+    
+    [coinSlot returnCoins];
+    
+    NSDecimalNumber *expectedValue = [NSDecimalNumber decimalNumberWithNumber:@1.00];
+    NSComparisonResult compare = [expectedValue compare:coinSlot.returnedCoins.value];
+    
+    XCTAssertEqual(NSOrderedSame, compare, @"*** Coin returned contained the wrong amount of change.  Expected %@ but got %@", expectedValue.localizedCurrencyString, coinSlot.returnedCoins.localizedValueString);
+}
+
+#pragma mark - Helper Methods
+
+- (BOOL)coinSlotIsEmpty {
+    return ([coinSlot.insertedCoins.value compare:[NSDecimalNumber decimalNumberWithNumber:@0.00]] == NSOrderedSame);
+}
+
+- (BOOL)itDisplaysValidInitialValue {
+    BOOL initialValueIsValid = NO;
+    
+    if ([display.text isEqualToString:kDisplayTextInsertCoin] || [display.text isEqualToString:kDisplayTextExactChangeOnly]) {
+        initialValueIsValid = YES;
+    }
+    
+    return initialValueIsValid;
+}
+
+- (void)dropCoin:(CoinType)coin amount:(NSInteger)amount {
+    if (amount > 0) {
+        NSNumber *diameter = nil;
+        NSNumber *mass = nil;
+        NSNumber *thickness = nil;
+        switch (coin) {
+            case kCoinTypeSlug:
+                diameter = @24.26;
+                mass = @5.000;
+                thickness = @1.52;
+                break;
+            case kCoinTypeQuarter:
+                diameter = @24.26;
+                mass = @5.670;
+                thickness = @1.75;
+                break;
+            case kCoinTypeDime:
+                diameter = @17.91;
+                mass = @2.268;
+                thickness = @1.35;
+                break;
+            case kCoinTypeNickel:
+                diameter = @21.21;
+                mass = @5.000;
+                thickness = @1.95;
+                break;
+            case kCoinTypePenny:
+                diameter = @19.05;
+                mass = @2.500;
+                thickness = @1.52;
+                break;
+            default:
+                break;
+        }
+        for (NSInteger index = 0; index < amount; index++) {
+            [coinSlot dropCoinWithDiameter:diameter mass:mass thickness:thickness];
+        }
+    }
 }
 
 @end
