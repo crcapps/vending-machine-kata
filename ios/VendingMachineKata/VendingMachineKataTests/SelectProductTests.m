@@ -16,7 +16,6 @@
 #import "Inventory.h"
 #import "Display.h"
 #import "NSDecimalNumber+Currency.h"
-#import "Notifications.h"
 
 /**
  Select Product
