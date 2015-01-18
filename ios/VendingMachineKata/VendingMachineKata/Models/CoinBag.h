@@ -20,7 +20,7 @@
 /** Gives the string representation of the coins value
  formatted as a localized currency string.
  */
-@property (nonatomic, strong, readonly) NSString *valueText;
+@property (nonatomic, strong, readonly) NSString *localizedValueString;
 
 /** Counts all the coins in the bag. */
 @property (nonatomic, readonly) NSInteger coins;
