@@ -10,9 +10,11 @@
 #import <XCTest/XCTest.h>
 
 #import "CoinSlot.h"
+#import "CoinBag.h"
 #import "CoinData.h"
 #import "Inventory.h"
 #import "Display.h"
+#import "CoinBank.h"
 
 /**
  Sold Out
@@ -33,9 +35,11 @@
 CoinSlot *coinSlot;
 Inventory *inventory;
 Display *display;
+CoinBank *coinBank;
 
 - (void)setUp {
     [super setUp];
+    coinBank = [CoinBank new];
     coinSlot = [CoinSlot new];
     inventory = [Inventory new];
     display = [Display new];
@@ -43,6 +47,8 @@ Display *display;
 
 - (void)testItDisplaysTheCorrectMessageWhenTheItemSelectedIsSoldOut {
     NSLog(@"** When the item selected by the customer is out of stock, the machine displays SOLD OUT.");
+    
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
     
     [self dropCoin:kCoinTypeQuarter amount:4];
     
@@ -55,6 +61,8 @@ Display *display;
 
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
     NSLog(@"** If the display is checked again, it will display the amount of money remaining in the machine or INSERT COIN if there is no money in the machine.");
+    
+    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
     
     [inventory selectItem:kInventoryItemCola];
     
