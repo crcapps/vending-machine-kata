@@ -106,7 +106,7 @@
 
 - (void)canMakeChange:(NSNotification *)notification {
     InventoryItem item = [[notification.userInfo valueForKey:kUserInfoKeyItem] integerValue];
-    NSString *itemString = [self.itemNames objectForKey:@(item)];
+    NSString *itemString = [self nameForItem:item];
     NSInteger itemQuantity = [self quantityForItem:item];
     if (itemQuantity < 1) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationItemSelectedOutOfStock object:self userInfo:notification.userInfo];
@@ -119,7 +119,7 @@
          object:self
          userInfo:@{
                     kUserInfoKeyItem : @(item),
-                    kUserInfoKeyText : [self nameForItem:item]
+                    kUserInfoKeyText : itemString
                     }];
     }
 }
