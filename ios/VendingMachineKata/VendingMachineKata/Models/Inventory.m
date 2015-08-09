@@ -21,6 +21,7 @@
     
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canMakeChange:) name:kNotificationCanMakeChangeForSelection object:nil];
+        
     }
     
     return self;

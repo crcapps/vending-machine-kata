@@ -168,7 +168,7 @@ static void *bankedCoinsContext = &bankedCoinsContext;
                     isThereMoreChange = ([changeDue compare:[NSDecimalNumber zero]] == NSOrderedDescending);
                 } while (self.bankedCoins.nickels >= 1 && isThereMoreChange);
             }
-        }
+        }m 
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationChangeDispensed object:self userInfo:@{kUserInfoKeyCoins : changeBag}];
     }
 

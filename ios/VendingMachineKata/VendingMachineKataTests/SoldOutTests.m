@@ -47,9 +47,7 @@ CoinBank *coinBank;
 
 - (void)testItDisplaysTheCorrectMessageWhenTheItemSelectedIsSoldOut {
     NSLog(@"** When the item selected by the customer is out of stock, the machine displays SOLD OUT.");
-    
-    [coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
-    
+        
     [self dropCoin:kCoinTypeQuarter amount:4];
     
     [inventory selectItem:kInventoryItemCola];
@@ -61,8 +59,6 @@ CoinBank *coinBank;
 
 - (void)testItDisplaysTheCorrectMessageWhenCheckedAgainAfterASoldOutSelection {
     NSLog(@"** If the display is checked again, it will display the amount of money remaining in the machine or INSERT COIN if there is no money in the machine.");
-    
-    coinBank.bankedCoins addCoin:[CoinData nickel] amount:3];
     
     [inventory selectItem:kInventoryItemCola];
     
